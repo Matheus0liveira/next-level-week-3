@@ -1,6 +1,6 @@
 import Orphanages from '../models/Orphanage';
 
-import imageView from './image_view';
+import imageView from './Image_view';
 
 export default {
   render(orphanage: Orphanages) {
