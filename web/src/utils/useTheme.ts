@@ -6,13 +6,32 @@ interface PropsTheme{
   
     name: string;
     colors: {
-         
-        background: string;
-        primaryColor: string;
-        primaryBackgroundButton: string;
-        secondaryBackgroundButton: string;
-        primarycontentBackgroundButton: string;
-        secondarycontentBackgroundButton: string;
+
+      
+      linearGradient: string;
+      primaryBackground: string;
+      textPrimaryColor:string;
+      createOrphanageBg:string;
+      inpuBg: string;
+      mapBg: string;
+      textSecondaryColor: string; 
+      textTirdyColor: string; 
+      textFourthColor: string; 
+      thirdyWeekendsGradientNoOpen: string,
+      textWeekendsNoOpen: string
+      primaryButton: string; 
+      secondaryButton: string; 
+      primaryBorderSelectButton: string,
+      primarySelectButtonBg: string,
+      primarySelectButton: string; 
+      primarycontentButton: string; 
+      secondarycontentButton: string; 
+      primaryWeekendsGradient: string; 
+      secondaryWeekendsGradient: string;
+      primaryIconWeekends: string; 
+      secondaryIconWeekends: string; 
+      primaryConfirmButton: string; 
+      secondaryConfirmButton: string; 
     
     };
 

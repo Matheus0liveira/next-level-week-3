@@ -76,7 +76,7 @@ export const Header = styled.header``;
 export const Aside = styled.aside`
 
   width: 440px;
-  background:${props => props.theme.colors.background};
+  background:${props => props.theme.colors.linearGradient};
   padding: 88px;
 
   display: flex;
@@ -87,7 +87,7 @@ export const Aside = styled.aside`
 
 export const Text= styled.h2<TitleProps>`
 
-  color: ${props => props.theme.colors.primaryColor};
+  color: ${props => props.theme.colors.textSecondaryColor};
 
   ${props => props.typeText === 'title' && css`
     
@@ -121,7 +121,7 @@ export const Footer = styled.footer`
 
 
  strong,span{
-   color: ${props => props.theme.colors.primaryColor};
+   color: ${props => props.theme.colors.textSecondaryColor};
  }
 
   strong{
@@ -142,7 +142,10 @@ export const CreateOrphanages = styled.span`
   width: 64px;
   height: 64px;
 
-  background:${props => props.theme.name === 'dark' ? '#494949' : '#17D6EB'};
+  /* background:${props => props.theme.name === 'dark' ? '#494949' : '#17D6EB'}; */
+  background:${props => props.theme.colors.linearGradient};
+
+  
   border-radius: 20px;
 
   display: flex;
@@ -152,7 +155,7 @@ export const CreateOrphanages = styled.span`
 
   &:hover{
 
-    background:${props => props.theme.colors.secondarycontentBackgroundButton};
+    background:${props => props.theme.colors.secondarycontentButton};
    
   }
 

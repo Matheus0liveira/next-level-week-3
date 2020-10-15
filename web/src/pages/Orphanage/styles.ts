@@ -32,8 +32,8 @@ export const OrphanageDetails = styled.div`
   width: 700px;
   margin: 64px auto;
 
-  background: #FFFFFF;
-  border: 1px solid #D3E2E5;
+  background:${props => props.theme.colors.createOrphanageBg};
+  border: ${props => props.theme.name === 'dark' ? '1px solid #585858' :  '1px solid #D3E2E5'};
   border-radius: 20px;
 
   overflow: hidden;
@@ -95,7 +95,7 @@ export const Button = styled.button<PropsButton>`
     height: 64px;
     border: 0;
     cursor: pointer;
-    background: #3CDC8C;
+    background: #37C77F;
     border-radius: 20px;
     color: #FFFFFF;
     font-weight: 800;
@@ -110,9 +110,9 @@ export const Button = styled.button<PropsButton>`
     svg{
        margin-right: 16px;
 
-       &:hover{
-          background: #36CF82;
-       }
+      }
+    &:hover{
+      background: #3EE08F;
     }
 
   `}
@@ -124,24 +124,25 @@ export const OrphanageDetailsContent = styled.div`
 
   h1{
 
-    color: #4D6F80;
+    color: ${props => props.theme.colors.textPrimaryColor};
     font-size: 54px;
     line-height: 54px;
     margin-bottom: 8px;
   }
-
-
+  
+  
   h2{
-
+    
     font-size: 36px;
     line-height: 46px;
-    color: #4D6F80;
+    color: ${props => props.theme.colors.textPrimaryColor};
   }
   
-
+  
   p{
     line-height: 28px;
-    color: #5C8599;
+    color: ${props => props.theme.colors.textFourthColor};
+    /* color: #5C8599; */
     margin-top: 24px;
   }
     
@@ -161,8 +162,8 @@ export const MapContainer = styled.div`
 
 
   margin-top: 64px;
-  background: #E6F7FB;
-  border: 1px solid #B3DAE2;
+  background: ${props => props.theme.colors.mapBg};
+  border:${props => props.theme.name === 'dark' ? '1px solid #9F9F9F' :  '1px solid #D3E2E5'};
   border-radius: 20px;
 
   
@@ -175,7 +176,7 @@ export const MapContainer = styled.div`
     a{
 
       line-height: 24px;
-      color: #0089A5;
+      color: ${props => props.theme.colors.textFourthColor};
       text-decoration: none;
 
 
@@ -185,7 +186,7 @@ export const MapContainer = styled.div`
 
  .leaflet-container {
 
-  border-bottom: 1px solid #DDE3F0;
+   border:${props => props.theme.name === 'dark' ? '1px solid #9F9F9F' :  '1px solid #D3E2E5'};
   border-radius: 20px;
 
  }
@@ -215,23 +216,24 @@ export const OpenDetails = styled.div`
 `;
 export const Hour = styled.div`
 
-  background: linear-gradient(149.97deg, #E6F7FB 8.13%, #FFFFFF 92.67%);
-  border: 1px solid #B3DAE2;
-  color: #5C8599;
-
-`;
+  background: ${props => props.theme.colors.primaryWeekendsGradient};
+  border:${props => props.theme.name === 'dark' ? '1px solid #9F9F9F' :  '1px solid #D3E2E5'};
+  color: ${props => props.theme.colors.textPrimaryColor};
+  
+  `;
 export const OpenOnWeekends = styled.div<PropsOpenOnWeekends>`
 
-  background: linear-gradient(154.16deg, #EDFFF6 7.85%, #FFFFFF 91.03%);
+  background: ${props => props.theme.colors.secondaryWeekendsGradient};
   border: 1px solid #A1E9C5;
   color: #37C77F;
-
-
+  
+  
   ${ props => !props.open && css`
-
-    background: linear-gradient(154.16deg, #FCF0F4 7.85%, #FFFFFF 91.03%);
-    border: 1px solid #FFBCD4;
-    color: #FF669D;
+  
+    background: ${props => props.theme.colors.thirdyWeekendsGradientNoOpen};
+    border:${props => props.theme.name === 'dark' ? '1px solid #9F9F9F' :  '1px solid #D3E2E5'};
+    color: ${props => props.theme.colors.textWeekendsNoOpen};
+    
 
   `}
 `;

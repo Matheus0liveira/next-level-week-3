@@ -19,6 +19,8 @@ import SideBar from '../../components/SideBar';
 import mapIcon from '../../utils/mapIcon';
 import api from '../../services/api';
 import { useParams } from 'react-router-dom';
+import SwitchTheme from '../../components/SwitchTheme';
+import useTheme from '../../utils/useTheme';
 
 
 interface  Orphanage {
@@ -41,6 +43,8 @@ interface ParamsOrphanage{
 }
 
 export default function Orphanage() {
+
+  const { themeValues } = useTheme();
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
@@ -73,6 +77,7 @@ export default function Orphanage() {
 
   return (
     <PageOrphanage>
+      <SwitchTheme/>
       <SideBar/>
       
       <main>
@@ -90,7 +95,6 @@ export default function Orphanage() {
             onClick={() => setActiveImageIndex(index)}
             
             >
-            {/* {console.log(activeImageIndex === index ? true : false)} */}
 
               <img src={image.url} alt={orphanage.name} />
             </Button>
@@ -115,7 +119,7 @@ export default function Orphanage() {
                 doubleClickZoom={false}
               >
                 <TileLayer 
-                  url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
+                  url={`https://api.mapbox.com/styles/v1/mapbox/${themeValues.name}-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
                 />
                 <Marker interactive={false} icon={mapIcon} position={[orphanage.latitude, orphanage.longitude]} />
               </Map>

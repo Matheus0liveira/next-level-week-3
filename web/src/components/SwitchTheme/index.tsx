@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { FiMoon, FiSun } from 'react-icons/fi';
 
 import useTheme from '../../utils/useTheme';
-import { theme } from '../../context/theme';
+import dark from '../../themes/dark';
+import light from '../../themes/light';
 
 import { StyledSwitchTheme } from './styles';
 
@@ -20,10 +21,10 @@ const SwitchTheme = () => {
     setToggleIcon(!toggleIcon);
 
     if(themeValues.name === 'dark'){
-     return  setThemeValues(theme[0]);
+     return  setThemeValues(light);
     }
     
-      return  setThemeValues(theme[1]);
+      return  setThemeValues(dark);
 
   };
 
@@ -35,13 +36,13 @@ const SwitchTheme = () => {
       
       themeValues.name === 'light' ?
       ( 
-      <FiSun size={28} color={themeValues.colors.primarycontentBackgroundButton}/>
+      <FiSun size={28} color={themeValues.colors.primarycontentButton}/>
       ) 
 
       :
 
       (
-      <FiMoon size={28} color={themeValues.colors.primarycontentBackgroundButton}/>
+      <FiMoon size={28} color={themeValues.colors.primarycontentButton}/>
       )
 
       }

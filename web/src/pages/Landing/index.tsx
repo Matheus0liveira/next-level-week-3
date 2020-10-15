@@ -1,5 +1,4 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
 
 import { FiArrowRight  } from 'react-icons/fi';
 
@@ -23,7 +22,7 @@ const Landing = () => {
 
 
   return (
-    <ThemeProvider theme={themeValues}>
+   
     <PageLanding>
 
 
@@ -49,7 +48,7 @@ const Landing = () => {
         <Link to='/app'>
 
           <EnterApp>
-            <FiArrowRight size={26} color={themeValues.colors.primarycontentBackgroundButton} />
+            <FiArrowRight size={26} color={themeValues.colors.primarycontentButton} />
           </EnterApp>
 
         </Link>
@@ -59,7 +58,7 @@ const Landing = () => {
 
     </PageLanding>
 
-    </ThemeProvider>
+
   );
 };
 

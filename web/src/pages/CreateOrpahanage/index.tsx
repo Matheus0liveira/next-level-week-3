@@ -22,10 +22,14 @@ import {
 import SideBar from '../../components/SideBar';
 import { FiPlus } from 'react-icons/fi';
 import api from '../../services/api';
+import SwitchTheme from '../../components/SwitchTheme';
+import useTheme from '../../utils/useTheme';
 
 
 
 export default function CreateOrphanage() {
+
+  const {themeValues } = useTheme();
 
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
 
@@ -112,7 +116,10 @@ export default function CreateOrphanage() {
 };
 
 return (
+
   <PageCreateOrphanage>
+
+    <SwitchTheme/>
     <SideBar />
 
     <main>
@@ -127,7 +134,7 @@ return (
             onClick={handleMapClick}
           >
             <TileLayer
-              url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
+              url={`https://api.mapbox.com/styles/v1/mapbox/${themeValues.name}-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
             />
 
             {position.latitude !== 0 && (
@@ -184,7 +191,7 @@ return (
               ))}
 
               <NewImageLabel htmlFor='image[]'>
-                <FiPlus size={24} color="#15b6d6" />
+                <FiPlus size={24} color={themeValues.colors.secondarycontentButton} />
               </NewImageLabel>
 
               <input multiple type="file" onChange={handleSelectImage} id="image[]" />

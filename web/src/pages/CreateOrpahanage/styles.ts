@@ -23,8 +23,9 @@ export const CreateOrphanageForm = styled.form`
   width: 700px;
   margin: 64px auto;
 
-  background: #FFFFFF;
-  border: 1px solid #D3E2E5;
+  background:${props => props.theme.colors.createOrphanageBg};
+
+  border: ${props => props.theme.name === 'dark' ? '1px solid #585858' :  '1px solid #D3E2E5'};
   border-radius: 20px;
 
   padding: 64px 80px;
@@ -51,10 +52,12 @@ export const CreateOrphanageForm = styled.form`
 
     font-size: 32px;
     line-height: 34px;
-    color: #5C8599;
+    color:${props => props.theme.colors.textPrimaryColor};
+    
     font-weight: 700;
 
-    border-bottom: 1px solid #D3E2E5;
+   
+    border-bottom: ${props => props.theme.name === 'dark' ? '1px solid #9F9F9F' :  '1px solid #D3E2E5'};
     margin-bottom: 40px;
     padding-bottom: 24px;
 
@@ -63,7 +66,7 @@ export const CreateOrphanageForm = styled.form`
   .leaflet-container{
 
     margin-bottom: 40px;
-    border: 1px solid #D3E2E5;
+    border-bottom: ${props => props.theme.name === 'dark' ? '1px solid #9F9F9F' :  '1px solid #D3E2E5'};
     border-radius: 20px;
   }
 
@@ -80,7 +83,7 @@ export const InputBlock = styled.div`
   label{
 
   display: flex;
-  color: #8FA7B3;
+  color:${props => props.theme.colors.textTirdyColor};
   margin-bottom: 8px;
   line-height: 24px;
   
@@ -108,11 +111,12 @@ export const InputBlock = styled.div`
   textarea{
 
     width: 100%;
-    background: #F5F8FA;
-    border: 1px solid #D3E2E5;
+    background: ${props => props.theme.colors.inputBg};
+    
+    border:${props => props.theme.name === 'dark' ? '1px solid #9F9F9F' :  '1px solid #D3E2E5'};
     border-radius: 20px;
     outline: none;
-    color: #5C8599;
+    color: ${props => props.theme.colors.textFourthColor};
   }
 
 `;
@@ -121,13 +125,13 @@ export const InputBlock = styled.div`
 export const Label = styled.label`
 
   display: flex;
-  color: #8FA7B3;
+  color: ${props => props.theme.colors.textTirdyColor};
   margin-bottom: 8px;
   line-height: 24px;
 
   span {
     font-size: 14px;
-    color: #8FA7B3;
+    color: ${props => props.theme.colors.textTirdyColor};
     margin-left: 24px;
     line-height: 24px;
   }
@@ -150,9 +154,9 @@ export const Button = styled.button<PropsButton>`
   ${props => props.typeStyle === 'select' && css`
 
     height: 64px;
-    background: #F5F8FA;
-    border: 1px solid #D3E2E5;
-    color: #5C8599;
+    background: ${props => props.theme.name === 'light' ? '#F5F8FA' : '#505050'};
+    border:${props => props.theme.name === 'dark' ? '1px solid #9F9F9F' :  '1px solid #D3E2E5'};
+    color: ${props => props.theme.colors.textTirdyColor};
     cursor: pointer;
 
 
@@ -173,8 +177,9 @@ export const Button = styled.button<PropsButton>`
 
   ${props => props.active && css`
 
-    background: #EDFFF6;
-    border: 1px solid #A1E9C5;
+    background ${props => props.theme.colors.primarySelectButtonBg};
+
+    border: 1px solid ${props => props.theme.colors.primaryBorderSelectButton };
     color: #37C77F;
 
   `}
@@ -238,8 +243,8 @@ export const ImagesContainer = styled.div`
 export const NewImageLabel = styled.label`
 
     height: 96px;
-    background: #F5F8FA;
-    border: 1px dashed #96D2F0;
+    background: ${props => props.theme.colors.inputBg};
+    border: 1px dashed ${props => props.theme.colors.textTirdyColor};
     border-radius: 20px;
     cursor: pointer;
 

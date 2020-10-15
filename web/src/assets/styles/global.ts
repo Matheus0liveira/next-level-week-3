@@ -1,7 +1,36 @@
 import { createGlobalStyle } from 'styled-components';
 
+interface Props{
+  theme: {
+    name: string;
+    colors: {
 
-const GlobalStyle = createGlobalStyle`
+      
+      linearGradient: string;
+      primaryBackground: string;
+      textPrimaryColor:string;
+      createOrphanageBg:string;
+      textSecondaryColor: string; 
+      textTirdyColor: string; 
+      textFourthColor: string; 
+      primaryButton: string; 
+      secondaryButton: string; 
+      primarySelectButton: string; 
+      primarycontentButton: string; 
+      secondarycontentButton: string; 
+      primaryWeekendsGradient: string; 
+      secondaryWeekendsGradient: string;
+      primaryIconWeekends: string; 
+      secondaryIconWeekends: string; 
+      primaryConfirmButton: string; 
+      secondaryConfirmButton: string; 
+    
+    };
+  }
+  
+}
+
+const GlobalStyle = createGlobalStyle<Props>`
 
 
   *{
@@ -13,7 +42,7 @@ const GlobalStyle = createGlobalStyle`
 
   body{
     color: #FFF;
-    background: #EBF2F5;
+    background: ${props => props.theme.colors.primaryBackground};
 
   }
 

@@ -4,14 +4,14 @@ import styled from 'styled-components';
 
 export const StyledSwitchTheme = styled.button`
 
- position: absolute;
+ position: fixed;
  top: 20px;
  right: 40px;
 
 
  width: 40px;
  height: 40px;
- background: ${props => props.theme.colors.primaryBackgroundButton};
+ background: ${props => props.theme.colors.primaryBackground};
  border: 0;
  border-radius: 10px;
 
@@ -25,7 +25,7 @@ export const StyledSwitchTheme = styled.button`
 
 
  &:hover{
-   background: ${props => props.theme.colors.secondaryBackgroundButton};
+   background: ${props => props.theme.colors.textSecondaryColor};
  }
 
 `;

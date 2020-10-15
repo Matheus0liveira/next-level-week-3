@@ -6,7 +6,8 @@ export const Aside = styled.aside`
   position: fixed;
   height: 100%;
   padding: 32px 24px;
-  background: linear-gradient(329.54deg, #15B6D6 0%, #15D6D6 100%);
+  /* background: linear-gradient(329.54deg, #15B6D6 0%, #15D6D6 100%); */
+  background:${props => props.theme.colors.linearGradient};
 
   display: flex;
   flex-direction: column;
@@ -29,8 +30,8 @@ export const Footer = styled.footer`
     height: 48px;
 
     border: 0;
+    background:${props => props.theme.name === 'light' ? '#12AFCB'  : '#494949'};
 
-    background: #12AFCB;
     border-radius: 16px;
 
     cursor: pointer;
@@ -42,7 +43,7 @@ export const Footer = styled.footer`
     align-items: center;
 
     &:hover{
-        background: #17D6EB;
+        background:${props => props.theme.name === 'light' ? '#17D6EB'  : '#001010'};
     }
 
   }

@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import multer from 'multer';
 
-import OrphanagesController from './controllers/OrphanatesController';
+import OrphanagesController from './controllers/OrphanageController';
 
 import uploadConfig from './config/upload';
 

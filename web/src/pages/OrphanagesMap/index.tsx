@@ -1,7 +1,5 @@
 import React , {useEffect, useState} from 'react';
 
-import {ThemeProvider} from 'styled-components';
-
 import { Map, TileLayer, Marker, Popup} from 'react-leaflet';
 
 import api from '../../services/api';
@@ -12,11 +10,11 @@ import { PageMap, Header, Aside, Text, Footer, CreateOrphanages, SelectStyleMap 
 
 import mapMarkerImg from '../../assets/images/map-marker.svg';
 
-import useTheme from '../../utils/useTheme';
 import { FiArrowRight, FiPlus } from 'react-icons/fi';
 
 import SwitchTheme from '../../components/SwitchTheme';
 import mapIcon from '../../utils/mapIcon';
+import useTheme from '../../utils/useTheme';
 
 interface Orphanage {
   id: number;
@@ -27,11 +25,12 @@ interface Orphanage {
 
 const OrphanagesMap = () => {
 
+  const { themeValues } = useTheme();
+
   const [orphanages, setOrphanages] = useState<Orphanage[]>([]);
-   const {themeValues } = useTheme();
  
 
-  const [toggleSwitch, setToggleSwitch] = useState('light');
+  const [toggleSwitch, setToggleSwitch] = useState(themeValues.name);
 
 
 
@@ -50,7 +49,7 @@ const OrphanagesMap = () => {
 
 
   return (
-     <ThemeProvider theme={themeValues}>
+     
     <PageMap>
 
       <SwitchTheme />
@@ -136,7 +135,6 @@ const OrphanagesMap = () => {
         </CreateOrphanages>
       </Link>
     </PageMap>
-    </ThemeProvider>
   );
 }
 

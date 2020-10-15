@@ -11,8 +11,8 @@ export const PageLanding = styled.div`
   width: 100vw;
   height: 100vh;
 
-  /* background: linear-gradient(329.54deg, #29B6D1 0%, #00C7C7 100%); */
-  background: ${props => props.theme.colors.background};
+
+  background: ${props => props.theme.colors.linearGradient};
   background-size: 400% 400%;
 
 
@@ -71,7 +71,7 @@ export const Location = styled.div`
 
   strong,span{
 
-    color: ${props => props.theme.colors.primaryColor};
+    color: ${props => props.theme.colors.textSecondaryColor};
   }
   strong{
 
@@ -90,7 +90,7 @@ export const Text = styled.h1<PropsTitle>`
 
   max-width: 350px;
   
-  color: ${props => props.theme.colors.primaryColor};
+  color: ${props => props.theme.colors.textSecondaryColor};
 
   ${props => props.typeTitle === 'title' && css`
 
@@ -123,7 +123,7 @@ export const EnterApp = styled.span`
 
  width: 80px;
  height: 80px;
- background: ${props => props.theme.colors.primaryBackgroundButton};
+ background: ${props => props.theme.colors.primaryButton};
  border-radius: 30px;
 
  display: flex;
@@ -134,7 +134,7 @@ export const EnterApp = styled.span`
 
 
  &:hover{
-   background: ${props => props.theme.colors.secondaryBackgroundButton};
+   background: ${props => props.theme.colors.secondaryButton};
  }
 
 `;
