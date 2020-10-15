@@ -84,36 +84,28 @@ export default function CreateOrphanage() {
 
     const { latitude, longitude } = position;
 
+    const data = new FormData();
 
-    
-
-
-
-  const data = new FormData();
-
-  data.append('name', name);
-  data.append('about', about);
-  data.append('instructions', instructions);
-  data.append('latitude', String(latitude));
-  data.append('longitude', String(longitude));
-  data.append('opening_hours', opening_hours);
-  data.append('open_on_weekends', String(open_on_weekends));
+    data.append('name', name);
+    data.append('about', about);
+    data.append('instructions', instructions);
+    data.append('latitude', String(latitude));
+    data.append('longitude', String(longitude));
+    data.append('opening_hours', opening_hours);
+    data.append('open_on_weekends', String(open_on_weekends));
 
 
-  images.forEach(image => {
+    images.forEach(image => {
 
-    data.append('images', image);
+      data.append('images', image);
 
-  });
+    });
 
-  await api.post('/orphanages', data);
+    await api.post('/orphanages', data);
 
+    history.push('/orphanage/create/success');
 
-  alert('Cadastro realizado com sucesso!');
-
-  history.push('/app');
-
-};
+  };
 
 return (
 
