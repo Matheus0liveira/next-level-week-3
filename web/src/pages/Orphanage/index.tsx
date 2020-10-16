@@ -29,6 +29,7 @@ interface  Orphanage {
   name: string;
   about: string;
   instructions: string;
+  phone: string;
   opening_hours: string;
   open_on_weekends: string;
   images: Array<{
@@ -52,6 +53,7 @@ export default function Orphanage() {
 
 
   const [orphanage, setOrphanage] = useState<Orphanage>();
+
 
 
 
@@ -145,7 +147,7 @@ export default function Orphanage() {
               {orphanage.open_on_weekends ?
               (
               <OpenOnWeekends open >
-                <FiInfo size={32} color="#39CC83" />
+                <FiInfo size={32} color={themeValues.colors.primaryWeekendsGradient} />
                 Atendemos <br />
                 finais de semana
 
@@ -168,10 +170,15 @@ export default function Orphanage() {
                 }
             </OpenDetails>
 
+              <a 
+              target='_blank' 
+              rel="noopener noreferrer" 
+              href={`https://api.whatsapp.com/send?phone=${orphanage.phone}&text=Oi! ví seu orfanato (${orphanage.name}) no happy, como posso fazer uma visita?`}>
             <Button type="button" typeStyle="contact">
               <FaWhatsapp size={20} color="#FFF" />
               Entrar em contato
             </Button>
+              </a>
           </OrphanageDetailsContent>
         </OrphanageDetails>
       </main>

@@ -7,7 +7,7 @@ export default {
     filename: (request, file, callback) => {
       const fileName = `${Date.now()}-${file.originalname}`;
 
-      callback(null, fileName);
+      callback(null, fileName.trim());
     },
   }),
 };

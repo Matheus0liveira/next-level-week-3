@@ -41,6 +41,11 @@ export class crateOrphanages1602595073339 implements MigrationInterface {
 
         },
         {
+          name: 'phone',
+          type: 'varchar',
+
+        },
+        {
           name: 'opening_hours',
           type: 'varchar',
 

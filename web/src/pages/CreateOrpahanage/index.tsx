@@ -1,5 +1,7 @@
 import React, { useState, FormEvent, ChangeEvent, useEffect } from "react";
 
+import InputMask from "react-input-mask";
+
 import { useHistory } from 'react-router-dom';
 import { Map, Marker, TileLayer } from 'react-leaflet';
 
@@ -41,6 +43,7 @@ export default function CreateOrphanage() {
   const [name, setName] = useState('');
   const [about, setAbout] = useState('');
   const [instructions, setInstructions] = useState('');
+  const [phone, setPhone] = useState('');
   const [opening_hours, setOpeningHours] = useState('');
   const [open_on_weekends, setOpenOnWeekends] = useState(true);
   const [images, setImages] = useState<File[]>([]);
@@ -113,11 +116,14 @@ export default function CreateOrphanage() {
     data.append('name', name);
     data.append('about', about);
     data.append('instructions', instructions);
+    data.append('phone', phone);
     data.append('latitude', String(latitude));
     data.append('longitude', String(longitude));
     data.append('opening_hours', opening_hours);
     data.append('open_on_weekends', String(open_on_weekends));
 
+
+    console.log(data);
 
     images.forEach(image => {
 
@@ -180,16 +186,27 @@ return (
               onChange={event => setName(event.target.value)}
             />
           </InputBlock>
+          
 
 
 
           <InputBlock >
             <Label htmlFor="about">Sobre <span>Máximo de 300 caracteres</span></Label>
             <textarea
-              id="name"
+              id="about"
               maxLength={300}
               value={about}
               onChange={event => setAbout(event.target.value)}
+            />
+          </InputBlock>
+
+          <InputBlock>
+            <Label htmlFor="phone">Número para contato</Label>
+            <InputMask
+            mask='(99) 99999-9999'
+              id="phone"
+              value={phone}
+              onChange={event => setPhone(event.target.value)}
             />
           </InputBlock>
 

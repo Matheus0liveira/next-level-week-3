@@ -94,7 +94,6 @@ export const Button = styled.button<PropsButton>`
     width: 100%;
     height: 64px;
     border: 0;
-    cursor: pointer;
     background: #37C77F;
     border-radius: 20px;
     color: #FFFFFF;
@@ -103,6 +102,7 @@ export const Button = styled.button<PropsButton>`
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 
     transition: background-color 0.2s;
 
@@ -225,7 +225,7 @@ export const OpenOnWeekends = styled.div<PropsOpenOnWeekends>`
 
   background: ${props => props.theme.colors.secondaryWeekendsGradient};
   border: 1px solid #A1E9C5;
-  color: #37C77F;
+  color: ${props => props.theme.name === 'light' ? '#37C77F' : '#FFFF'};
   
   
   ${ props => !props.open && css`

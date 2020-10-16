@@ -11,6 +11,7 @@ export default {
       longitude: orphanage.longitude,
       about: orphanage.about,
       instructions: orphanage.instructions,
+      phone: orphanage.instructions,
       opening_hours: orphanage.opening_hours,
       open_on_weekends: orphanage.open_on_weekends,
       images: imageView.renderMany(orphanage.images),

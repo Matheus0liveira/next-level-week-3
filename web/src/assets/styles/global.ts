@@ -40,19 +40,27 @@ const GlobalStyle = createGlobalStyle<Props>`
 
   }
 
+
   body{
     color: #FFF;
     background: ${props => props.theme.colors.primaryBackground};
 
   }
 
+
   body, input, button, textarea{
     font: 600 18px  Nunito, sans-serif;
   }
+
+
   input, button, textarea{
     outline: 0;
   }
   
+
+  a{
+    text-decoration: none;
+  }
 
 `;
 
