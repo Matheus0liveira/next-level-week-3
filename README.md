@@ -15,8 +15,8 @@
 <br/>
 <br/>
 
-  <img src='./.github/Macbook.svg' width='700'/>
-  <img src='./.github/Device.svg' width='200'/>
+  <img src='./.github/Macbook.svg' width='400'/>
+  <img src='./.github/Device.svg' width='150'/>
 
 </div>
 
@@ -25,6 +25,7 @@
 <br/>
 
 <hr/>
+
 <br/>
 <br/>
 
@@ -34,6 +35,7 @@ NLW (next-level-week) is an intensive week managed by RocketSeat
 
 This week's project was Happy, a project focused on orphanages, with the goal of bringing more people closer to the nearest orphanages
 
+<hr/>
 <br/>
 <br/>
 
@@ -65,6 +67,7 @@ This week's project was Happy, a project focused on orphanages, with the goal of
 
 &rarr; Add colors in the respective markers (when registering an orphanage, the author chooses the color).
 
+<hr/>
 <br/>
 <br/>
 
@@ -174,6 +177,9 @@ $ npm start
 
 </details>
 
+<hr/>
+<br/>
+<br/>
 <br/>
 <br/>
 
@@ -182,14 +188,14 @@ $ npm start
 Layout in figma &rarr;
 <a href='https://www.figma.com/file/OYtFKRuGEFKMNgeuiOnK8j/Happy-Web-Copy?node-id=2%3A3'> Figma </a>
 
+<hr/>
 <br/>
 <br/>
 <br/>
 <br/>
 
-<hr/>
 <div align='center'>
 
-Projeto feito por <a href='https://www.github.com/Matheus0liveira'> Matheus Oliveira 💛 </a>
+Project created by: <a href='https://www.github.com/Matheus0liveira'> Matheus Oliveira 💛 </a>
 
 </div>
