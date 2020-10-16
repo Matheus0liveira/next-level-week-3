@@ -71,6 +71,12 @@ This week's project was Happy, a project focused on orphanages, with the goal of
 
 # <p id='instalation'>🚀 Instalation</p>
 
+First Clone this repositiorie
+
+```shell
+$ git clone https://github.com/Matheus0liveira/next-level-week-3.git
+```
+
 <details>
 
 <summary>BackEnd</summary>
@@ -78,6 +84,8 @@ This week's project was Happy, a project focused on orphanages, with the goal of
 #### For instalaitons dependncies execute: (using yarn/npm):
 
 ```shell
+
+$ cd backend/
 
 # yarn
 
@@ -148,6 +156,10 @@ $ npm run dev
 #### Apenas execute
 
 ```shell
+
+$ cd web/
+#or
+$ cd mobile/
 
 #For install dependencies
 
