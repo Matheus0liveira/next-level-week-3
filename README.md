@@ -1,12 +1,11 @@
 <div align='center'>
 
-  <img src='./.github/Logo.svg'/>
+  <img src='./.github/logo.svg'/>
 
   <hr/>
 
 <a href='#nlw'>NLW </a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 <a href='#functionalities'>FUNCTIONALITIES </a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-<a href='#tecnologies'>TECNOLOGIES </a> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
 <a href='#instalation'>INSTALATION </a> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
 <a href='#layout'>LAYOUT </a>
 
@@ -71,7 +70,7 @@ This week's project was Happy, a project focused on orphanages, with the goal of
 <br/>
 <br/>
 
-# <p id='Iinstalation'>🚀 Instalation</p>
+# <p id='instalation'>🚀 Instalation</p>
 
 <details>
 
