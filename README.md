@@ -14,8 +14,7 @@
 <br/>
 <br/>
 
-  <img src='./.github/Macbook.svg' width='400'/>
-  <img src='./.github/Device.svg' width='150'/>
+  <img src='./.github/Devices.svg' width='600'/>
 
 </div>
 
