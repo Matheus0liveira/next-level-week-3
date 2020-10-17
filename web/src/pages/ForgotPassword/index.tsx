@@ -1,24 +1,12 @@
-import React, { useEffect, useState, FormEvent } from 'react';
-
-
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import LayoutRestrictAccess from '../../components/LayoutRestrictAccess';
 
-import {
-  Session,
-  Text,
-  Form, 
-  InputContainer, 
-  Footer, 
-  ContentFooter,
-  Button
-} from './styles';
+
+import { Session, Form, Text, InputContainer, Footer, ContentFooter, Button} from './styles';
 
 
-
-const Login = () => {
-
-
+const ForgotPassword = () => {
 
 
   const [email, setEmail] = useState('');
@@ -27,51 +15,18 @@ const Login = () => {
   const [realeaseButton, setRealeaseButton] = useState(false);
 
 
-
-
-  useEffect(()=>{
-
-    
-    
-    if(validateEmail(email) && password.length > 5){
-      return setRealeaseButton(true);
-    };
-
-    return setRealeaseButton(false);
-
-
-  },[email, password]);
-
-
-
-  const validateEmail = (email: string) => {
-
-
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    return re.test(String(email).toLowerCase());
-  };
-
-
-
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-
-
-    if(!realeaseButton){
-      return;
-    }
-
-    console.log(email, password)
- 
+  const handleSubmit = () => {
+    return 
   }
 
 
-  return (  
+  return (
 
-      <LayoutRestrictAccess>
-    
-      <Session>
+
+    <LayoutRestrictAccess>
+      
+
+    <Session>
 
 
 
@@ -134,11 +89,9 @@ const Login = () => {
 
 
       </Session>
-      
-      </LayoutRestrictAccess>
+
+    </LayoutRestrictAccess>
   );
-};
+}
 
-
-
-export default Login;
+export default ForgotPassword;

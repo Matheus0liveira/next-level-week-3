@@ -56,8 +56,9 @@ const OrphanagesMap = () => {
        
       <Aside>
         <Header>
-          <img src={mapMarkerImg} alt="Happy"/>
-
+          <Link to='/'>
+            <img src={mapMarkerImg} alt="Happy"/>
+          </Link>
           <Text typeText='title' >Escolha um orfanato no mapa</Text>
           <Text typeText='description' >Muitas crianças estão esperando a sua visita {':)'}</Text>
         </Header>

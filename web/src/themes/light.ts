@@ -20,6 +20,7 @@ const light = {
       textPrimaryColor: '#4D6F80',
       textSecondaryColor: '#FFF',
       textTirdyColor: '#8FA7B2',
+      
       textFourthColor: '#5C8599',
 
 

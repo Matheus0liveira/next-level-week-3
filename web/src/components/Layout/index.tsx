@@ -4,7 +4,7 @@ import useTheme from '../../utils/useTheme';
 
 
 
-const Layout = ({children}: any) => {
+const Layout: React.FC = ({children}) => {
 
   const {themeValues } = useTheme();
   

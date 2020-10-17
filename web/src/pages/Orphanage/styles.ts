@@ -55,7 +55,7 @@ export const Images = styled.div`
   display: grid;
   grid-template-columns: repeat(6 ,1fr);
   column-gap: 16px;
-
+  row-gap: 10px;
   margin: 16px 40px 0;
 
 `;

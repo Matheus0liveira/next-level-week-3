@@ -27,12 +27,13 @@ export const PageMap = styled.div`
 
 
  .map-popup .leaflet-popup-content-wrapper{
-   background:rgba(255,255,255, 0.8);
+   background:${props => props.theme.name === 'light' ? 'rgba(255,255,255, 0.8)' : 'rgba(0,0,0, 0.6)'};
    border-radius:20px;
    box-shadow:none;
- }
- .map-popup .leaflet-popup-content{
-   color: #0089A5;
+  }
+  .map-popup .leaflet-popup-content{
+    color: #0089A5;
+    color:${props => props.theme.name === 'light' ? '#0089A5' : '#FFF'};
 
    font-size: 20px;
    font-weight: bold;

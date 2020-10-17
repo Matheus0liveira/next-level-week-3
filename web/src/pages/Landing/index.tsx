@@ -44,7 +44,7 @@ const Landing = () => {
         </Main>
 
         <ButtonRestrict>
-          <Link to='/login'>
+          <Link to='/restrict/login'>
           <button type='button'>Acesso restrito</button>
           </Link>
         </ButtonRestrict>
