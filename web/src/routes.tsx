@@ -26,7 +26,6 @@ const Routes = () => {
         <Route exact path='/orphanage/create/success' component={Success}/>
         <Route exact path='/restrict/login' component={Login}/>
         <Route exact path='/restrict/forgotpassword' component={ForgotPassword}/>
-        <Route exact path='/restrict/dashboard' component={DashBoard}/>
         <Route exact path='/restrict/dashboard/orphanages' component={DashBoard}/>
         <Route exact path='/restrict/dashboard/pending' component={PendingEntries}/>
 

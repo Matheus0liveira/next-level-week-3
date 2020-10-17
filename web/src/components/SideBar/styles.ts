@@ -86,9 +86,9 @@ export const Main = styled.main`
 
   }
 
-  button:first-child {
+  /* button:first-child {
     background: #FFD666;
-  }
+  } */
 
 `;
 

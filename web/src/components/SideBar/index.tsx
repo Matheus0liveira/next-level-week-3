@@ -20,6 +20,7 @@ const SideBar = ({ page = 'default' } : PropsSideBar) => {
 
     <>
     {
+
       page === 'dashboard' ?
       
       
@@ -30,17 +31,18 @@ const SideBar = ({ page = 'default' } : PropsSideBar) => {
           <img src={mapMarkerImg} alt="Happy" />
 
           <Main>
-
-            <button type="button" onClick={() => {}}>
-              <FiMapPin size={24} id='map' color="#FFF" />
-            </button>
+            <Link to='/restrict/dashboard/orphanages'>
+              <button type="button" >
+                <FiMapPin size={24} id='map' color="#FFF" />
+              </button>
+            </Link>
 
 
             <Link to='/restrict/dashboard/pending'>
-            <button type="button">
-              <FiAlertCircle size={24} color="#FFF" />
-              <Alert/>
-            </button>
+              <button type="button">
+                <FiAlertCircle size={24} color="#FFF" />
+                <Alert/>
+              </button>
             </Link>
             
 

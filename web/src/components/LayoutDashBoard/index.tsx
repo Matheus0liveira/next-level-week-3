@@ -1,9 +1,16 @@
 import React from 'react';
 import Header from '../Header';
 import SideBar from '../SideBar';
-import { Container, LayoutPage, MapContainer } from './styles';
+import { Container, LayoutPage, MapContainer, FlexMap } from './styles';
 
-const LayoutDashBoard: React.FC = ({ children }) => {
+
+interface PropsLayoutDashBoard{
+
+  titleHeader: string;
+}
+
+
+const LayoutDashBoard: React.FC<PropsLayoutDashBoard> = ({ children, titleHeader } ) => {
 
   return (
     
@@ -12,11 +19,14 @@ const LayoutDashBoard: React.FC = ({ children }) => {
       <LayoutPage>
 
         <Container>
-          <Header title='Cadastros pendentes' countOrphanages={0}/>
+          <Header title={titleHeader} countOrphanages={0}/>
 
             <MapContainer>
+              <FlexMap>
 
               {children}
+
+              </FlexMap>
 
             </MapContainer>
 

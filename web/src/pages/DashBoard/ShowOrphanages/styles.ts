@@ -31,23 +31,7 @@ export const Container = styled.div`
 `;
 
 
-export const FlexMap = styled.div`
 
-  display:flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-
-  padding-bottom:50px;
-
- 
-   @media (max-width:840px){
-      
-    justify-content: center;
-  }
- 
-  
-
-`;
 export const MapContainer = styled.div`
 
   width: 48%;

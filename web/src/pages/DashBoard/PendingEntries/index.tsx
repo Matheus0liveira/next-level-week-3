@@ -1,15 +1,41 @@
 import React from 'react';
-import Header from '../../../components/Header';
+
 import LayoutDashBoard from '../../../components/LayoutDashBoard';
 import MiniMap from '../../../components/MiniMap';
+import { MapContainer } from './styles';
 
 
 
 const Pending = () => {
   return (
    <>
-    <LayoutDashBoard>
+    <LayoutDashBoard titleHeader='Cadastros pendentes'>
+
+
+      <MapContainer>
       <MiniMap page='dashboard/pending' latitude={-8.8061861} longitude={-44.2194616}/>
+      </MapContainer>
+      
+      <MapContainer>
+      <MiniMap page='dashboard/pending' latitude={-8.8061861} longitude={-44.2194616}/>
+      </MapContainer>
+      <MapContainer>
+      <MiniMap page='dashboard/pending' latitude={-8.8061861} longitude={-44.2194616}/>
+      </MapContainer>
+
+      <MapContainer>
+      <MiniMap page='dashboard/pending' latitude={-8.8061861} longitude={-44.2194616}/>
+      </MapContainer>
+      <MapContainer>
+      <MiniMap page='dashboard/pending' latitude={-8.8061861} longitude={-44.2194616}/>
+      </MapContainer>
+
+      <MapContainer>
+      <MiniMap page='dashboard/pending' latitude={-8.8061861} longitude={-44.2194616}/>
+      </MapContainer>
+
+
+
     </LayoutDashBoard>
 
    </>

@@ -1,9 +1,9 @@
 import React from 'react';
-import Header from '../../../components/Header';
+import LayoutDashBoard from '../../../components/LayoutDashBoard';
 import MiniMap from '../../../components/MiniMap';
-import SideBar from '../../../components/SideBar';
 
-import {ShowOrphanagePage, Container,FlexMap, MapContainer} from './styles';
+
+import {MapContainer} from './styles';
 
 
 
@@ -17,16 +17,7 @@ const DashBoard = () => {
   return (
 
     <>
-      <SideBar page='dashboard'/>
-      <ShowOrphanagePage>
-        <Container>
-
-
-          <Header title='Orfanatos Cadastrados' countOrphanages={5}/>
-
-          <FlexMap>
-
-
+      <LayoutDashBoard titleHeader='Orfanatos Cadastrados'>
 
           <MapContainer>
           <MiniMap page='dashboard' latitude={-8.8061861} longitude={-44.2194616}/>
@@ -45,17 +36,8 @@ const DashBoard = () => {
           </MapContainer>
 
 
-         
+      </LayoutDashBoard>
 
-          </FlexMap>
-        
-
-
-
-
-
-        </Container>
-      </ShowOrphanagePage>
     </>
   );
 };
