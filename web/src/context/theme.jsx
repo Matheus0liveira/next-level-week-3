@@ -1,5 +1,7 @@
 import React, { createContext, useState } from 'react';
 
+import usePersistStateTheme from '../utils/usePersistStateTheme';
+
 import light from '../themes/light';
 
 
@@ -9,7 +11,7 @@ export const ThemeContext = createContext();
 
 const CustomThemeProvider = ( { children } ) => {
 
-  const [ themeValues, setThemeValues] = useState(light);
+  const [ themeValues, setThemeValues] = usePersistStateTheme('theme', light);
 
   return (
 

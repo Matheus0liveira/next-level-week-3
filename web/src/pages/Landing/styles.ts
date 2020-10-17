@@ -23,6 +23,15 @@ export const PageLanding = styled.div`
   
 
 `;
+export const Header = styled.div`
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 64px;
+  
+
+`;
 
 
 export const ContentWrapper = styled.div`
@@ -56,7 +65,6 @@ export const ContentWrapper = styled.div`
 
 export const Location = styled.div`
 
-  position: absolute;
   top: 0;
   right: 0;
 
@@ -70,7 +78,7 @@ export const Location = styled.div`
   text-align: right;
 
   strong,span{
-
+    text-align: left;
     color: ${props => props.theme.colors.textSecondaryColor};
   }
   strong{
@@ -81,6 +89,11 @@ export const Location = styled.div`
 `;
 
 export const Main = styled.main`
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
 
 
 `;
@@ -140,3 +153,32 @@ export const EnterApp = styled.span`
 `;
 
 
+export const ButtonRestrict = styled.div`
+
+  
+  position: absolute;
+  top: 0;
+  right: 0;
+  
+
+
+  button{
+    width: 222px;
+    height: 56px;
+    background: ${props => props.theme.colors.restrictButtonBg};
+    color: ${props => props.theme.colors.restrictButtonText};
+    border: none;
+    border-radius: 20px;
+    font-weight: 800;
+    transition: all .2s ease;
+    cursor: pointer;
+
+      &:hover{
+
+        background: ${props => props.theme.colors.restrictButtonBgHover};
+        color: ${props => props.theme.colors.restrictButtonTextHover};
+
+      }
+  }
+
+`;

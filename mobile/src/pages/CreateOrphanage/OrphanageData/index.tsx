@@ -3,6 +3,7 @@ import { ScrollView, View, StyleSheet, Switch, Text, TextInput, TouchableOpacity
 import { Feather } from '@expo/vector-icons';
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { TextInputMask } from 'react-native-masked-text'
 
 
 import * as ImagePicker from 'expo-image-picker'; 
@@ -114,14 +115,21 @@ export default function OrphanageData() {
       <Label>Sobre</Label>
       <Input
         
-        style={[styles.input, { height: 110 }]}
+        style={ { height: 110 }}
         multiline
         value={about}
         onChangeText={setAbout}
       />
 
       <Label>Whatsapp</Label>
-      <Input
+      <TextInputMask
+        type={'cel-phone'}
+        options={{
+          maskType: 'BRL',
+          withDDD: true,
+          dddMask: '(99)'
+        }}
+        style={styles.input}
         
         value={phone}
         onChangeText={setPhone}
@@ -151,7 +159,7 @@ export default function OrphanageData() {
 
       <Label>Instruções</Label>
       <Input
-        style={[styles.input, { height: 110 }]}
+        style={{ height: 110 }}
         multiline
         value={instructions}
         onChangeText={setInstructions}
@@ -186,20 +194,21 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  title: {
-    
-  },
-
-  label: {
-    
-  },
-
   comment: {
     fontSize: 11,
     color: '#8fa7b3',
   },
 
   input: {
+    backgroundColor: '#fff',
+    borderWidth: 1.4,
+    borderColor: '#d3e2e6',
+    borderRadius: 20,
+    height: 56,
+    paddingVertical: 18 ,
+    paddingHorizontal: 24 ,
+    
+    marginBottom: 16,
     
   },
 

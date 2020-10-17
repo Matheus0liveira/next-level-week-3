@@ -1,10 +1,14 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View} from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
+
+import { Container, Title } from './styles';
+
+ 
 interface PropsHeader{
 
   title: string;
@@ -24,7 +28,7 @@ const Header = ({title, showCancel = true} : PropsHeader) => {
   }
   return (
 
-    <View style={styles.container}>
+    <Container>
 
       <BorderlessButton onPress={navigation.goBack}>
 
@@ -32,7 +36,7 @@ const Header = ({title, showCancel = true} : PropsHeader) => {
           
       </BorderlessButton>
       
-      <Text style={styles.title}>{title}</Text>  
+      <Title>{title}</Title>  
 
       {
         showCancel ? (
@@ -51,32 +55,11 @@ const Header = ({title, showCancel = true} : PropsHeader) => {
 
 
 
-    </View>
+    </Container>
 
   );
 };
 
 
-const styles = StyleSheet.create({
-
-  container: {
-
-    padding: 24,
-    backgroundColor: '#F9FAFC',
-    borderBottomWidth: 1,
-    borderColor: '#DDE3F0',
-    paddingTop: 44,
-
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignContent: 'center',
-  },
-  title: {
-
-    fontFamily: 'Nunito_600SemiBold',
-    color: '#8FA7B3',
-    fontSize: 16,
-  }
-});
 
 export default Header;

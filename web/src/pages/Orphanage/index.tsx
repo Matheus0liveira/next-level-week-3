@@ -173,7 +173,7 @@ export default function Orphanage() {
               <a 
               target='_blank' 
               rel="noopener noreferrer" 
-              href={`https://api.whatsapp.com/send?phone=${orphanage.phone}&text=Oi! ví seu orfanato (${orphanage.name}) no happy, como posso fazer uma visita?`}>
+              href={`https://api.whatsapp.com/send?phone=+55${orphanage.phone}&text=Oi! ví seu orfanato (${orphanage.name}) no happy, como posso fazer uma visita?`}>
             <Button type="button" typeStyle="contact">
               <FaWhatsapp size={20} color="#FFF" />
               Entrar em contato

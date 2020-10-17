@@ -33,11 +33,6 @@ const light = {
       primarycontentButton: '#8D734B',
       secondarycontentButton: '#15C3D6',
 
-      restrictButtonBg: '#12D4E0',
-      restrictButtonBgHover: '#96FEFF', 
-      restrictButtonText: '#FFFF',
-      restrictButtonTextHover: '#15C3D6',
-
 
       primaryWeekendsGradient: 'linear-gradient(149.97deg, #E6F7FB 8.13%, #FFFFFF 92.67%)',
       secondaryWeekendsGradient: 'linear-gradient(154.16deg, #EDFFF6 7.85%, #FFFFFF 91.03%)',

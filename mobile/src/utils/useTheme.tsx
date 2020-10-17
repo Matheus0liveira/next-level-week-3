@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { ThemeContext } from '../context/theme';
 
-interface PropsTheme{
+export interface PropsTheme{
   
     name: string;
     colors: {
@@ -21,10 +21,6 @@ interface PropsTheme{
       textWeekendsNoOpen: string
       primaryButton: string; 
       secondaryButton: string; 
-       restrictButtonBg: string;
-      restrictButtonBgHover: string;
-      restrictButtonText: string;
-      restrictButtonTextHover: string;
       primaryBorderSelectButton: string,
       primarySelectButtonBg: string,
       primarySelectButton: string; 
@@ -50,7 +46,7 @@ interface PropsContext {
 const useTheme = () => {
 
 
-  const context: PropsContext = useContext(ThemeContext);
+  const context = useContext(ThemeContext) as  PropsContext; 
 
 
   if (!context) throw new Error('useTheme must be used whitin a UserProvider');

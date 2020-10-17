@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import useTheme from '../../utils/useTheme';
 
 
-import { PageLanding, ContentWrapper, Main, Text, Location, EnterApp } from './styles';
+import { PageLanding,Header, ContentWrapper, Main, Text, Location, EnterApp,ButtonRestrict } from './styles';
 
 
 import SwitchTheme from '../../components/SwitchTheme';
@@ -30,19 +30,24 @@ const Landing = () => {
 
 
       <ContentWrapper>
-        
-        <img src={logoImg} alt="Happy"/>
+        <Header>
+          <img src={logoImg} alt="Happy"/>
+          <Location>
+            <strong>Rio do Sul</strong>
+            <span>Santa Catarina</span>
+          </Location>
 
+        </Header>    
         <Main>
           <Text typeTitle='title'>Leve felicidade para o mundo</Text>
           <Text typeTitle='description'>Visite orfanatos e mude o dia de muitas crianças.</Text>
         </Main>
 
-
-        <Location>
-          <strong>Rio do Sul</strong>
-          <span>Santa Catarina</span>
-        </Location>
+        <ButtonRestrict>
+          <Link to='/login'>
+          <button type='button'>Acesso restrito</button>
+          </Link>
+        </ButtonRestrict>
 
 
         <Link to='/app'>

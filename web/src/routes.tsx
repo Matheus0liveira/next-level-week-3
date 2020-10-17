@@ -7,6 +7,7 @@ import OrphanagesMap from './pages/OrphanagesMap';
 import CreateOrpahanage from './pages/CreateOrpahanage';
 import Orphanage from './pages/Orphanage';
 import Success from './pages/Success';
+import Login from './pages/Login';
 
 const Routes = () => {
 
@@ -16,6 +17,7 @@ const Routes = () => {
       <Switch>
 
         <Route exact path='/' component={Landing}/>
+        <Route exact path='/login' component={Login}/>
         <Route exact path='/app' component={OrphanagesMap}/>
         <Route exact path='/orphanage/create' component={CreateOrpahanage}/>
         <Route exact path='/orphanage/:id' component={Orphanage}/>

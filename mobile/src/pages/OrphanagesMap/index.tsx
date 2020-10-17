@@ -17,6 +17,9 @@ import mapMarkerImg from '../../images/map-marker.png';
 import api from '../../services/api';
 
 import { ViewContainer, CalloutContainer, Footer, FooterText, CalloutText } from './styles';
+import SwitchTheme from '../../Components/SwitchTheme';
+import { ThemeProvider} from 'styled-components';
+import useTheme from '../../utils/useTheme';
 
 
 interface Orphanage{
@@ -31,8 +34,10 @@ interface Orphanage{
 
 const OrphanagesMap = () => {
 
+  const { themeValues } = useTheme();
+
   const [orphanages, setOrphanages] = useState<Orphanage[]>([]);
-  
+ 
 
   useFocusEffect(() => {
 
@@ -64,64 +69,67 @@ const OrphanagesMap = () => {
 
 
   return (
-    <ViewContainer>
-      <MapView
-        // provider={PROVIDER_GOOGLE}
+    <ThemeProvider theme={themeValues}>
+      <ViewContainer>
+        <SwitchTheme/>
+        <MapView
+          // provider={PROVIDER_GOOGLE}
 
-        
-        style={styles.map}
-        initialRegion={{
-            latitude: -8.8229483,
-            longitude: -44.2194616,
-            latitudeDelta: 0.008,
-            longitudeDelta: 0.008
 
-        }}
-      >
+          style={styles.map}
+          initialRegion={{
+              latitude: -8.8229483,
+              longitude: -44.2194616,
+              latitudeDelta: 0.008,
+              longitudeDelta: 0.008
 
-      {orphanages.map(orphanage => (
-
-        <Marker
-        key={orphanage.id}
-          icon={mapMarkerImg}
-          calloutAnchor={{
-            x: 2.3,
-            y: 0.8
-          }}
-          coordinate={{
-            latitude: orphanage.latitude,
-            longitude: orphanage.longitude,
           }}
         >
-          <Callout 
-          tooltip 
-          onPress={() => handleNavigationToOrphanageDetail(orphanage.id)}
+
+        {orphanages.map(orphanage => (
+
+          <Marker
+          key={orphanage.id}
+            icon={mapMarkerImg}
+            calloutAnchor={{
+              x: 2.3,
+              y: 0.8
+            }}
+            coordinate={{
+              latitude: orphanage.latitude,
+              longitude: orphanage.longitude,
+            }}
+          >
+            <Callout 
+            tooltip 
+            onPress={() => handleNavigationToOrphanageDetail(orphanage.id)}
+            >
+
+              <CalloutContainer >
+                <CalloutText>{orphanage.name}</CalloutText>
+              </CalloutContainer>
+
+            </Callout>
+
+          </Marker>
+
+
+        ))}
+        </MapView>
+
+        <Footer>
+          <FooterText>{orphanages.length} Orfanatos encontrados</FooterText>
+
+          <RectButton 
+          style={styles.createOrphanageButton}
+          onPress={handleNavigationToCreateOrphanage}
           >
 
-            <CalloutContainer >
-              <CalloutText>{orphanage.name}</CalloutText>
-            </CalloutContainer>
-
-          </Callout>
-
-        </Marker>
-
-
-      ))}
-      </MapView>
-
-      <Footer>
-        <FooterText>{orphanages.length} Orfanatos encontrados</FooterText>
-
-        <RectButton 
-        style={styles.createOrphanageButton}
-        onPress={handleNavigationToCreateOrphanage}
-         >
-
-           <Feather name='plus' size={20} color='#FFF'/>
-         </RectButton>
-      </Footer>
-    </ViewContainer>
+            <Feather name='plus' size={20} color='#FFF'/>
+          </RectButton>
+        </Footer>
+      </ViewContainer>
+    </ThemeProvider>
   );
   
 };

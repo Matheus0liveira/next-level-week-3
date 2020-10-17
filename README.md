@@ -69,7 +69,7 @@ This week's project was Happy, a project focused on orphanages, with the goal of
 <br/>
 <br/>
 
-# <p id='instalation'>🚀 Instalation</p>
+# <p id='instalation'>🔥 Instalation</p>
 
 #### First Clone this repositiorie
 

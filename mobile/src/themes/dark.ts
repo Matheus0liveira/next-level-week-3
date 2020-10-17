@@ -28,17 +28,9 @@ const dark = {
       primaryBorderSelectButton: '#9F9F9F',
       primarySelectButtonBg: '#43906A',
 
-      
-
 
       primarycontentButton: '#FFF',
       secondarycontentButton: '#B5B5B5',
-
-
-      restrictButtonBg: '#494949',
-      restrictButtonBgHover: '#171717', 
-      restrictButtonText: '#FFFF',
-      restrictButtonTextHover: '#9F9F9F',
 
 
       primaryWeekendsGradient: 'linear-gradient(154.16deg, #0BA1AB 7.85%, #3B92B7 91.03%)',
