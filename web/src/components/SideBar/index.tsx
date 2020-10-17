@@ -31,16 +31,16 @@ const SideBar = ({ page = 'default' } : PropsSideBar) => {
 
           <Main>
 
-            <button type="button" onClick={goBack}>
+            <button type="button" onClick={() => {}}>
               <FiMapPin size={24} id='map' color="#FFF" />
             </button>
-            <button type="button" onClick={goBack}>
+            <button type="button" onClick={() => {}}>
               <FiAlertCircle size={24} color="#FFF" />
             </button>
 
           </Main>
           <Footer>
-            <button type="button" onClick={goBack}>
+            <button type="button" onClick={() => {}}>
               <FiPower size={24} color="#FFF" />
             </button>
           </Footer>
