@@ -49,3 +49,45 @@ export const Footer = styled.footer`
   }
 
 `;
+
+
+export const Main = styled.main`
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  gap: 16px;
+
+  a,
+  button{
+
+    width: 48px;
+    height: 48px;
+
+    border: 0;
+    background:${props => props.theme.name === 'light' ? '#12AFCB'  : '#494949'};
+
+    border-radius: 16px;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover{
+        background:${props => props.theme.name === 'light' ? '#17D6EB'  : '#001010'};
+    }
+
+  }
+
+  button:first-child {
+    background: #FFD666;
+  }
+
+`;

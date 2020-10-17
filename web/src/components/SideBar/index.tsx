@@ -1,27 +1,73 @@
 import React from 'react';
-import { FiArrowLeft } from 'react-icons/fi';
+import { FiArrowLeft, FiMapPin, FiAlertCircle, FiPower } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
-import { Aside, Footer } from './styles';
 
+import { Aside, Footer, Main } from './styles';
 
 import mapMarkerImg from '../../assets/images/map-marker.svg';
 
-const SideBar = () => {
+
+interface PropsSideBar{
+
+  page?: string
+
+};
+
+const SideBar = ({ page = 'default' } : PropsSideBar) => {
 
     const { goBack } = useHistory();
   return (
 
-    <Aside>
+    <>
+    {
+      page === 'dashboard' ?
+      
+      
+      (
 
-      <img src={mapMarkerImg} alt="Happy" />
+        <Aside>
+    
+          <img src={mapMarkerImg} alt="Happy" />
 
-      <Footer>
-        <button type="button" onClick={goBack}>
-          <FiArrowLeft size={24} color="#FFF" />
-        </button>
-      </Footer>
+          <Main>
 
-    </Aside>
+            <button type="button" onClick={goBack}>
+              <FiMapPin size={24} id='map' color="#FFF" />
+            </button>
+            <button type="button" onClick={goBack}>
+              <FiAlertCircle size={24} color="#FFF" />
+            </button>
+
+          </Main>
+          <Footer>
+            <button type="button" onClick={goBack}>
+              <FiPower size={24} color="#FFF" />
+            </button>
+          </Footer>
+    
+        </Aside>
+
+      ) 
+      : 
+      (
+
+        <Aside>
+    
+          <img src={mapMarkerImg} alt="Happy" />
+    
+          <Footer>
+            <button type="button" onClick={goBack}>
+              <FiArrowLeft size={24} color="#FFF" />
+            </button>
+          </Footer>
+    
+        </Aside>
+
+
+
+      )
+    }
+    </>
   )
 }
 

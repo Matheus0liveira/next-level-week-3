@@ -1,18 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import LayoutRestrictAccess from '../../components/LayoutRestrictAccess';
 
 
-import { Session, Form, Text, InputContainer, Footer, ContentFooter, Button} from './styles';
+import { Session, Form, Text, InputContainer, Button} from './styles';
 
 
 const ForgotPassword = () => {
 
 
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [remember, setRemeber] = useState(false);
   const [realeaseButton, setRealeaseButton] = useState(false);
+
+
+  useEffect(()=>{
+
+    
+    
+    if(validateEmail(email)){
+      return setRealeaseButton(true);
+    };
+
+    return setRealeaseButton(false);
+
+
+  },[email]);
+
+
+
+  const validateEmail = (email: string) => {
+
+
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    return re.test(String(email).toLowerCase());
+  };
+
+
 
 
   const handleSubmit = () => {
@@ -32,7 +56,9 @@ const ForgotPassword = () => {
 
         <Form  onSubmit={handleSubmit}>
 
-          <Text>Fazer login</Text>
+          <Text>Esqueci a senha</Text>
+          <p>Sua redefinição de senha será enviada
+             para o e-mail cadastrado.</p>
 
           <InputContainer>
 
@@ -48,45 +74,10 @@ const ForgotPassword = () => {
 
           </InputContainer>
 
-          <InputContainer>
-
-            <label htmlFor="password" style={{marginTop: '16px'}}>Senha</label>  
-            <input 
-            type="password" 
-            placeholder='******************' 
-            id='password'
-             value={password}
-             onChange={(event) => setPassword(event.target.value)}
-           
-            
-            />
-
-          </InputContainer>
-
-
-          <Footer>
-            <ContentFooter>
-
-              <input 
-              type="checkbox" 
-              name="remember" 
-              id="remember"
-              defaultChecked={remember}
-              onClick={() => setRemeber(!remember)}
-
-              />
-              <label htmlFor='remember'>Lembrar-me</label>
-
-            </ContentFooter>
-              <Link to='/restrict/forgotpassword'>Esqueci minha senha</Link>
-            
-          </Footer>
-
-          <Button type='submit' realease={realeaseButton}>Entrar</Button >
+          
+          <Button type='submit' realease={realeaseButton}>Enviar</Button >
 
         </Form>
-
-
 
       </Session>
 

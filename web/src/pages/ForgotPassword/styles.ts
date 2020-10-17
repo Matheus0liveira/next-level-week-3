@@ -22,7 +22,7 @@ export const Session = styled.div`
 export const Text = styled.h1`
 
   color: ${props => props.theme.colors.textPrimaryColor};
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   font-weight: bold;
   font-size: 32px;
   line-height: 34px;
@@ -34,6 +34,12 @@ export const Form = styled.form`
   width: 100%;
   max-width: 360px;
   max-height: 430px;
+
+
+  p{
+    color: ${props => props.theme.colors.textFourthColor};
+    margin-bottom: 40px;
+  }
 
 `;
 
@@ -65,86 +71,6 @@ export const InputContainer = styled.div`
  }
 
 
-
-`;
-
-
-export const Footer = styled.footer`
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 24px;
-
-
-  a{
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 16px;
-    color: ${props => props.theme.colors.textTirdyColor};
-    transition: opacity .2s ease;
-
-    &:hover{
-      opacity: 0.6;
-    }
-  }
-
-
-`;
-
-export const ContentFooter = styled.div`
-
-
-
-  display: inherit;
-  align-items: inherit;
-  justify-content: space-between;
-
-
-  label{
-    color: ${props => props.theme.colors.textTirdyColor};
-
-  }
-
-
-  input[type='checkbox'] {
-    position: absolute;
-    z-index: -1;
-    /* opacity: 0; */
-  }
-
-  input[type='checkbox'] + label {
-    position: relative;
-    cursor: pointer;
-    padding-left: 30px;
-    
-  }
-  input[type='checkbox'] + label::before {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    left: 0;
-    bottom: 0;
-    border: solid 2px #D3E2E5;
-    background: #F5F8FA;
-    border-radius: 8px;
-    vertical-align: bottom;
-  }
-
-  
-  input[type='checkbox']:checked + label::after {
-    content: '';
-    position: absolute;
-    left: 0px;
-    /* bottom: 10px; */
-    width: 21px;
-    height: 21px;
-    border-radius: 8px;
-    border-right:  solid 3px #37C77F;
-    border-bottom: solid 3px #37C77F;
-    background: #37C77F;
-  }
 
 `;
 
