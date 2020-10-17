@@ -1,8 +1,9 @@
 import React from 'react';
-import MiniMap from '../../components/MiniMap';
-import SideBar from '../../components/SideBar';
+import Header from '../../../components/Header';
+import MiniMap from '../../../components/MiniMap';
+import SideBar from '../../../components/SideBar';
 
-import {DashBoardPage, Header, Text, Container,FlexMap, MapContaainer} from './styles';
+import {ShowOrphanagePage, Container,FlexMap, MapContainer} from './styles';
 
 
 
@@ -17,35 +18,31 @@ const DashBoard = () => {
 
     <>
       <SideBar page='dashboard'/>
-      <DashBoardPage>
+      <ShowOrphanagePage>
         <Container>
 
 
-          <Header>
-
-            <Text typeText='title'>Orfanatos Cadastrados</Text>
-            <Text typeText='count'>2 orfanatos</Text>
-          </Header>
+          <Header title='Orfanatos Cadastrados' countOrphanages={5}/>
 
           <FlexMap>
 
 
 
-          <MapContaainer>
+          <MapContainer>
           <MiniMap page='dashboard' latitude={-8.8061861} longitude={-44.2194616}/>
-          </MapContaainer>
-          <MapContaainer>
+          </MapContainer>
+          <MapContainer>
           <MiniMap page='dashboard' latitude={-8.8061861} longitude={-44.2194616}/>
-          </MapContaainer>
-          <MapContaainer>
+          </MapContainer>
+          <MapContainer>
           <MiniMap page='dashboard' latitude={-8.8061861} longitude={-44.2194616}/>
-          </MapContaainer>
-          <MapContaainer>
+          </MapContainer>
+          <MapContainer>
           <MiniMap page='dashboard' latitude={-8.8061861} longitude={-44.2194616}/>
-          </MapContaainer>
-          <MapContaainer>
+          </MapContainer>
+          <MapContainer>
           <MiniMap page='dashboard' latitude={-8.8061861} longitude={-44.2194616}/>
-          </MapContaainer>
+          </MapContainer>
 
 
          
@@ -58,7 +55,7 @@ const DashBoard = () => {
 
 
         </Container>
-      </DashBoardPage>
+      </ShowOrphanagePage>
     </>
   );
 };

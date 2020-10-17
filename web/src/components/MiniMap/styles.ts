@@ -102,6 +102,9 @@ export const Button = styled.button`
   cursor: pointer;
   transition: opacity .2s ease;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover{
     opacity: 0.6;

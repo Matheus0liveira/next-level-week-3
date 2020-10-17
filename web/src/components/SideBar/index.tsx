@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { FiArrowLeft, FiMapPin, FiAlertCircle, FiPower } from 'react-icons/fi';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-import { Aside, Footer, Main } from './styles';
+import { Aside, Footer, Main, Alert } from './styles';
 
 import mapMarkerImg from '../../assets/images/map-marker.svg';
 
@@ -34,9 +34,15 @@ const SideBar = ({ page = 'default' } : PropsSideBar) => {
             <button type="button" onClick={() => {}}>
               <FiMapPin size={24} id='map' color="#FFF" />
             </button>
-            <button type="button" onClick={() => {}}>
+
+
+            <Link to='/restrict/dashboard/pending'>
+            <button type="button">
               <FiAlertCircle size={24} color="#FFF" />
+              <Alert/>
             </button>
+            </Link>
+            
 
           </Main>
           <Footer>
@@ -71,4 +77,4 @@ const SideBar = ({ page = 'default' } : PropsSideBar) => {
   )
 }
 
-export default SideBar;
+export default memo(SideBar);

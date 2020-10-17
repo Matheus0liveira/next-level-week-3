@@ -25,7 +25,7 @@ export const Footer = styled.footer`
 
   a,
   button{
-
+    
     width: 48px;
     height: 48px;
 
@@ -63,7 +63,7 @@ export const Main = styled.main`
 
   a,
   button{
-
+    position: relative;
     width: 48px;
     height: 48px;
 
@@ -89,5 +89,16 @@ export const Main = styled.main`
   button:first-child {
     background: #FFD666;
   }
+
+`;
+
+export const Alert = styled.div`
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FFD666;
 
 `;

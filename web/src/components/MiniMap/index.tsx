@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { Map, Marker, TileLayer } from "react-leaflet";
 import mapIcon from '../../utils/mapIcon';
 import useTheme from '../../utils/useTheme';
 
-import { FiEdit3, FiTrash } from 'react-icons/fi';
+import { FiEdit3, FiTrash, FiArrowRight } from 'react-icons/fi';
 
 import { MapContainer, Footer, Button } from './styles';
 
@@ -43,7 +43,7 @@ const MiniMap = ({ page='default', latitude, longitude} : PropsMiniMap) => {
                 <Marker interactive={false} icon={mapIcon} position={[latitude,longitude]} />
               </Map>
 
-              {page === 'dashboard' ? (
+              {page === 'dashboard' && (
 
                 <Footer page='dashboard'>
 
@@ -62,20 +62,44 @@ const MiniMap = ({ page='default', latitude, longitude} : PropsMiniMap) => {
                 </Footer>
 
               ) 
-              : 
-              (
+              }
 
-              <Footer>
+                {
 
-                <a 
-                target="_blank" 
-                rel='noopener noreferrer' 
-                href={`https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`}
-                >
-                  Ver rotas no Google Maps
-                </a>
+                  page === 'dashboard/pending' && (
 
-              </Footer>
+                  <Footer page='dashboard'>
+
+                    <h1>Orf. Esperança</h1>
+
+                    <div>
+                      <Button>
+                        <FiArrowRight size={24} color={themeValues.colors.secondarycontentButton}/>
+                      </Button>
+
+                    </div>
+
+                  </Footer>
+
+                  )
+
+                }
+
+
+              {
+                page === 'default' && (
+
+                <Footer>
+
+                  <a 
+                  target="_blank" 
+                  rel='noopener noreferrer' 
+                  href={`https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`}
+                  >
+                    Ver rotas no Google Maps
+                  </a>
+
+                </Footer>
 
               )}
             </MapContainer>
@@ -83,4 +107,4 @@ const MiniMap = ({ page='default', latitude, longitude} : PropsMiniMap) => {
 };
 
 
-export default MiniMap;
+export default memo(MiniMap);
