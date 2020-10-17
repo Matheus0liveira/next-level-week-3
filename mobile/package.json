@@ -28,6 +28,9 @@
     "react-native-web": "~0.13.12",
     "styled-components": "^5.2.0"
   },
+  "resolutions": {
+    "styled-components": "^5"
+  },
   "devDependencies": {
     "@types/react": "~16.9.35",
     "@types/react-dom": "~16.9.8",

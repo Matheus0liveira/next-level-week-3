@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
@@ -15,6 +15,8 @@ import { RectButton } from "react-native-gesture-handler";
 
 import mapMarkerImg from '../../images/map-marker.png';
 import api from '../../services/api';
+
+import { ViewContainer, CalloutContainer, Footer, FooterText, CalloutText } from './styles';
 
 
 interface Orphanage{
@@ -42,7 +44,7 @@ const OrphanagesMap = () => {
       }
     )()
 
-    console.log(orphanages);
+    
 
   });
 
@@ -62,10 +64,10 @@ const OrphanagesMap = () => {
 
 
   return (
-    <View style={styles.container}>
-      <Text>Hello World</Text>
+    <ViewContainer>
       <MapView
-        provider={PROVIDER_GOOGLE}
+        // provider={PROVIDER_GOOGLE}
+
         
         style={styles.map}
         initialRegion={{
@@ -95,18 +97,21 @@ const OrphanagesMap = () => {
           tooltip 
           onPress={() => handleNavigationToOrphanageDetail(orphanage.id)}
           >
-            <View style={styles.calloutContainer}>
-        <Text style={styles.calloutText}>{orphanage.name}</Text>
-            </View>
+
+            <CalloutContainer >
+              <CalloutText>{orphanage.name}</CalloutText>
+            </CalloutContainer>
+
           </Callout>
+
         </Marker>
 
 
       ))}
       </MapView>
 
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>{orphanages.length} Orfanatos encontrados</Text>
+      <Footer>
+        <FooterText>{orphanages.length} Orfanatos encontrados</FooterText>
 
         <RectButton 
         style={styles.createOrphanageButton}
@@ -115,62 +120,20 @@ const OrphanagesMap = () => {
 
            <Feather name='plus' size={20} color='#FFF'/>
          </RectButton>
-      </View>
-    </View>
+      </Footer>
+    </ViewContainer>
   );
   
 };
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
+  
   map: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
   },
-  calloutContainer:{
-
-    width: 160,
-    height: 46,
-    paddingHorizontal: 16,
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    borderRadius: 16,
-    justifyContent: 'center',
-  },
-  calloutText:{
-    fontFamily: 'Nunito_700Bold',
-    color: '#0089A5',
-    fontSize: 14
-  },
-  footer: {
-    position: 'absolute',
-    left: 24,
-    right: 24,
-    bottom: 32,
-
-    backgroundColor: '#FFF',
-    borderRadius: 20,
-    height: 56,
-    paddingLeft: 24,
-
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-
-    elevation: 3,
-    
-
-  },
-  footerText: {
-    fontFamily: 'Nunito_700Bold',
-    color: '#8FA7B3'
-  },
+  
   createOrphanageButton: {
 
     width: 56,

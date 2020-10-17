@@ -8,7 +8,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker'; 
 import api from '../../../services/api';
 
-
+import { Title, Label, Input } from './styles';
 
 interface OrphanageDataRouteParams{
   position: {
@@ -56,7 +56,6 @@ export default function OrphanageData() {
     });
 
 
-    console.log(result);
 
     if(result.cancelled) return;
 
@@ -73,16 +72,7 @@ export default function OrphanageData() {
 
     const { latitude, longitude } = params.position;
 
-    console.log({
-      name,
-      latitude,
-      longitude,
-      about,
-      instructions,
-      phone,
-      opening_hours,
-      open_on_weekends,
-    });
+    
 
     const data = new FormData();
 
@@ -103,6 +93,7 @@ export default function OrphanageData() {
       } as any);
     });
 
+
     await api.post('orphanages', data);
 
     navigate.navigate('OrphanagesMap');
@@ -111,31 +102,32 @@ export default function OrphanageData() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ padding: 24 }}>
-      <Text style={styles.title}>Dados</Text>
+      <Title>Dados</Title>
 
-      <Text style={styles.label}>Nome</Text>
-      <TextInput
-        style={styles.input}
+      <Label>Nome</Label>
+      <Input
+        
         value={name}
         onChangeText={setName}
       />
 
-      <Text style={styles.label}>Sobre</Text>
-      <TextInput
+      <Label>Sobre</Label>
+      <Input
+        
         style={[styles.input, { height: 110 }]}
         multiline
         value={about}
         onChangeText={setAbout}
       />
 
-      <Text style={styles.label}>Whatsapp</Text>
-      <TextInput
-        style={styles.input}
+      <Label>Whatsapp</Label>
+      <Input
+        
         value={phone}
         onChangeText={setPhone}
       />
 
-      <Text style={styles.label}>Fotos</Text>
+      <Label>Fotos</Label>
 
 
       <ScrollView horizontal disableScrollViewPanResponder style={styles.uploadImagesContainer}>
@@ -155,25 +147,25 @@ export default function OrphanageData() {
         <Feather name="plus" size={24} color="#15B6D6" />
       </TouchableOpacity>
 
-      <Text style={styles.title}>Visitação</Text>
+      <Title>Visitação</Title>
 
-      <Text style={styles.label}>Instruções</Text>
-      <TextInput
+      <Label>Instruções</Label>
+      <Input
         style={[styles.input, { height: 110 }]}
         multiline
         value={instructions}
         onChangeText={setInstructions}
       />
 
-      <Text style={styles.label}>Horario de visitas</Text>
-      <TextInput
-        style={styles.input}
+      <Label>Horario de visitas</Label>
+      <Input
+        
         value={opening_hours}
         onChangeText={setOpeningHours}
       />
 
       <View style={styles.switchContainer}>
-        <Text style={styles.label}>Atende final de semana?</Text>
+        <Label>Atende final de semana?</Label>
         <Switch 
           thumbColor="#fff" 
           trackColor={{ false: '#ccc', true: '#39CC83' }}
@@ -195,19 +187,11 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: '#5c8599',
-    fontSize: 24,
-    fontFamily: 'Nunito_700Bold',
-    marginBottom: 32,
-    paddingBottom: 24,
-    borderBottomWidth: 0.8,
-    borderBottomColor: '#D3E2E6'
+    
   },
 
   label: {
-    color: '#8fa7b3',
-    fontFamily: 'Nunito_600SemiBold',
-    marginBottom: 8,
+    
   },
 
   comment: {
@@ -216,15 +200,7 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    backgroundColor: '#fff',
-    borderWidth: 1.4,
-    borderColor: '#d3e2e6',
-    borderRadius: 20,
-    height: 56,
-    paddingVertical: 18,
-    paddingHorizontal: 24,
-    marginBottom: 16,
-    textAlignVertical: 'top',
+    
   },
 
   uploadImagesContainer: {
