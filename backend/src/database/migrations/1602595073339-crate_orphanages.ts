@@ -58,6 +58,16 @@ export class crateOrphanages1602595073339 implements MigrationInterface {
           type: 'boolean',
           default: false,
         },
+        {
+          name: 'pending',
+          type: 'boolean',
+          default: true,
+        },
+        {
+          name: 'markerMap',
+          type: 'varchar',
+          default: false,
+        },
       ],
     }));
   }

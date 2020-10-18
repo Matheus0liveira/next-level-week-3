@@ -23,5 +23,7 @@ module.exports = {
     'class-methods-use-this': 'off',
     'no-undef': 'off',
     'consistent-return': 'off',
+    'no-trailing-spaces': 'off',
+    'no-multiple-empty-lines': 'off',
   },
 };

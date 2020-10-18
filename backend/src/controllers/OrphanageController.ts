@@ -4,19 +4,24 @@ import * as Yup from 'yup';
 
 import { getRepository } from 'typeorm';
 
-import ophanargeView from '../view/Orphanages_view';
+import orphanageView from '../view/Orphanages_view';
 
 import Orphanage from '../models/Orphanage';
 
 class OrphanageController {
-  async index(request: Request, response: Response) {
+  async index(request: Request, response: Response) { 
     const orphanagesRepository = getRepository(Orphanage);
+
+
+
 
     const orphanages = await orphanagesRepository.find({
       relations: ['images'],
+      where: { pending: false },
     });
+    
 
-    return response.json(ophanargeView.renderMany(orphanages));
+    return response.json(orphanageView.renderMany(orphanages));
   }
 
   async show(request: Request, response: Response) {
@@ -28,7 +33,8 @@ class OrphanageController {
       relations: ['images'],
     });
 
-    return response.json(ophanargeView.render(orphanages));
+    console.log(orphanages);
+    return response.json(orphanageView.render(orphanages));
   }
 
   async create(request: Request, response: Response) {
