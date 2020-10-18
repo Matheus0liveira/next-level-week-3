@@ -94,7 +94,9 @@ export default function OrphanageDetails() {
 
   const handleOpenWhatsAppRoute = () => {
 
-    Linking.openURL(`https://api.whatsapp.com/send?phone=+55${orphanage.phone}&text=Oi! ví seu orfanato (${orphanage.name}) no happy, como posso fazer uma visita?`)
+    Linking.openURL(`https://api.whatsapp.com/send?phone=+55${orphanage.phone}&text=Oi! ví seu orfanato (${orphanage.name}) no happy, como posso fazer uma visita?`);
+  
+  
   };
 
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, FormEvent } from 'react';
 
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import LayoutRestrictAccess from '../../components/LayoutRestrictAccess';
 
 import {
@@ -26,7 +26,7 @@ const Login = () => {
   const [remember, setRemeber] = useState(false);
   const [realeaseButton, setRealeaseButton] = useState(false);
 
-
+  const history = useHistory();
 
 
   useEffect(()=>{
@@ -62,7 +62,10 @@ const Login = () => {
       return;
     }
 
-    console.log(email, password)
+
+    
+    history.push('/restrict/dashboard/orphanages');
+    
  
   }
 

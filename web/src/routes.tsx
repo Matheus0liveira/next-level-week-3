@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import ForgotPassword from './pages/ForgotPassword';
 import DashBoard from './pages/DashBoard/ShowOrphanages';
 import PendingEntries from './pages/DashBoard/PendingEntries';
+import EditOrphanage from './pages/DashBoard/EditOrphanage';
 
 const Routes = () => {
 
@@ -28,6 +29,7 @@ const Routes = () => {
         <Route exact path='/restrict/forgotpassword' component={ForgotPassword}/>
         <Route exact path='/restrict/dashboard/orphanages' component={DashBoard}/>
         <Route exact path='/restrict/dashboard/pending' component={PendingEntries}/>
+        <Route exact path='/restrict/dashboard/pending/edit' component={EditOrphanage}/>
 
       </Switch>
     </BrowserRouter>

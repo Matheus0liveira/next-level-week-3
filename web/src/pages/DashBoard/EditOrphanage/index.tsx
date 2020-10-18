@@ -1,0 +1,164 @@
+import { LeafletMouseEvent } from 'leaflet';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
+import FormCreateupdate from '../../../components/FormCreateUpdate'
+import api from '../../../services/api';
+
+import { CreateOrphanagePage } from './styles';
+
+
+const CreateOrpanage = () => {
+
+
+  const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
+
+  const [name, setName] = useState('');
+  const [about, setAbout] = useState('');
+  const [instructions, setInstructions] = useState('');
+  const [phone, setPhone] = useState('');
+  const [opening_hours, setOpeningHours] = useState('');
+  const [open_on_weekends, setOpenOnWeekends] = useState(true);
+  const [images, setImages] = useState<File[]>([]);
+  const [previewImages, setpreviewImages] = useState<string[]>([]);
+
+
+  const history = useHistory();
+
+
+  const [location, setLocation ] = useState({
+    latitude: -27.2092052,
+    longitude: -49.6401092
+  });
+  
+
+  useEffect(() => {
+
+  navigator.geolocation.getCurrentPosition( (position: any) => {
+
+
+    if(position){
+      const { latitude, longitude } = position.coords;
+
+
+      setLocation({latitude, longitude});
+
+    }
+  }, error => console.log(error));
+
+  
+  }, []);
+
+
+
+
+
+  const handleMapClick = (event: LeafletMouseEvent) => {
+ 
+
+    const { lat, lng } = event.latlng
+
+    setPosition({
+      latitude: lat,
+      longitude: lng
+    });
+  };
+
+
+
+  const handleSelectImage = (event: ChangeEvent<HTMLInputElement>) => {
+
+   
+
+
+    if (!event.target.files) return;
+
+    const selectedImages = Array.from(event.target.files);
+
+    
+    
+    setImages(selectedImages);
+    
+    
+    
+    const selectImagesPreview = selectedImages.map(image => {
+      
+      return URL.createObjectURL(image);
+    });
+    
+    setpreviewImages(selectImagesPreview);
+    
+    
+  };
+
+
+  const handleForm = async (event: FormEvent) => {
+
+    event.preventDefault();
+
+
+
+    const { latitude, longitude } = position;
+
+    const data = new FormData();
+
+    data.append('name', name);
+    data.append('about', about);
+    data.append('instructions', instructions);
+    data.append('phone', phone);
+    data.append('latitude', String(latitude));
+    data.append('longitude', String(longitude));
+    data.append('opening_hours', opening_hours);
+    data.append('open_on_weekends', String(open_on_weekends));
+
+
+    console.log(data);
+
+    images.forEach(image => {
+
+      data.append('images', image);
+
+    });
+
+    await api.post('/orphanages', data);
+
+    history.push('/orphanage/create/success');
+
+  };
+
+
+  return (
+
+
+
+  <CreateOrphanagePage>
+
+    <FormCreateupdate
+     name={name}
+     setName={setName}
+     about={about}
+     setAbout={setAbout}
+     instructions={instructions}
+     setInstructions={setInstructions}
+     phone={phone}
+     setPhone={setPhone}
+     opening_hours={opening_hours}
+     setOpeningHours={setOpeningHours}
+     open_on_weekends={open_on_weekends}
+     setOpenOnWeekends={setOpenOnWeekends}
+     position={position}
+     setPosition={setPosition}
+     previewImages={previewImages}
+     location={location}
+     handleMapClick={handleMapClick}
+     handleSelectImage={handleSelectImage}
+     handleForm={handleForm}
+     
+     />
+
+  </CreateOrphanagePage>
+  );
+};
+
+
+export default CreateOrpanage;

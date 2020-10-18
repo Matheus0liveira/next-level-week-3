@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { FiClock, FiInfo } from "react-icons/fi";
-import { Map, Marker, TileLayer } from "react-leaflet";
 
 
 import SideBar from '../../components/SideBar';
-import mapIcon from '../../utils/mapIcon';
 import api from '../../services/api';
 import { useParams } from 'react-router-dom';
 import SwitchTheme from '../../components/SwitchTheme';
@@ -18,7 +16,6 @@ import {
   Images, 
   Button, 
   OrphanageDetailsContent, 
-  MapContainer,
   OpenDetails,
   Hour,
   OpenOnWeekends
