@@ -27,9 +27,9 @@ const SideBar = ({ page = 'default' } : PropsSideBar) => {
       (
 
         <Aside>
-    
-          <img src={mapMarkerImg} alt="Happy" />
-
+          <Link to='/'>
+            <img src={mapMarkerImg} alt="Happy" />
+          </Link>
           <Main>
             <Link to='/restrict/dashboard/orphanages'>
               <button type="button" >
@@ -60,9 +60,9 @@ const SideBar = ({ page = 'default' } : PropsSideBar) => {
       (
 
         <Aside>
-    
-          <img src={mapMarkerImg} alt="Happy" />
-    
+          <Link to='/'>
+            <img src={mapMarkerImg} alt="Happy" />
+          </Link>
           <Footer>
             <button type="button" onClick={goBack}>
               <FiArrowLeft size={24} color="#FFF" />

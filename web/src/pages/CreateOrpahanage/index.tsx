@@ -1,42 +1,15 @@
-import React, { useState, FormEvent, ChangeEvent, useEffect } from "react";
-
-import InputMask from "react-input-mask";
-
-import { useHistory } from 'react-router-dom';
-import { Map, Marker, TileLayer } from 'react-leaflet';
-
-
 import { LeafletMouseEvent } from 'leaflet';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-
-import mapIcon from '../../utils/mapIcon';
-
-import {
-  PageCreateOrphanage,
-  CreateOrphanageForm,
-  InputBlock,
-  Label,
-  ButtonsSelect,
-  Button,
-  ImagesContainer,
-  NewImageLabel
-} from './styles';
-import SideBar from '../../components/SideBar';
-import { FiPlus } from 'react-icons/fi';
+import FormCreateupdate from '../../components/FormCreateUpdate'
 import api from '../../services/api';
-import SwitchTheme from '../../components/SwitchTheme';
-import useTheme from '../../utils/useTheme';
+
+import { CreateOrphanagePage } from './styles';
 
 
+const CreateOrpanage = () => {
 
-export default function CreateOrphanage() {
-
-  const {themeValues } = useTheme();
-
-  const [location, setLocation] = useState({
-    latitude: -27.2092052,
-    longitude: -49.6401092
-  });
 
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
 
@@ -53,22 +26,31 @@ export default function CreateOrphanage() {
   const history = useHistory();
 
 
+  const [location, setLocation ] = useState({
+    latitude: -27.2092052,
+    longitude: -49.6401092
+  });
+  
+
   useEffect(() => {
 
-      navigator.geolocation.getCurrentPosition( (position: any) => {
+  navigator.geolocation.getCurrentPosition( (position: any) => {
 
 
-        if(position){
-          const { latitude, longitude } = position.coords;
+    if(position){
+      const { latitude, longitude } = position.coords;
 
 
-          setLocation({latitude, longitude});
+      setLocation({latitude, longitude});
 
-        }
-      }, error => console.log(error));
-    
-     
-      },[]);
+    }
+  }, error => console.log(error));
+
+  
+  }, []);
+
+
+
 
 
   const handleMapClick = (event: LeafletMouseEvent) => {
@@ -82,6 +64,8 @@ export default function CreateOrphanage() {
     });
   };
 
+
+
   const handleSelectImage = (event: ChangeEvent<HTMLInputElement>) => {
 
    
@@ -90,16 +74,21 @@ export default function CreateOrphanage() {
     if (!event.target.files) return;
 
     const selectedImages = Array.from(event.target.files);
+
+    
+    
     setImages(selectedImages);
-
-
-
+    
+    
+    
     const selectImagesPreview = selectedImages.map(image => {
-
+      
       return URL.createObjectURL(image);
     });
-
+    
     setpreviewImages(selectImagesPreview);
+    
+    
   };
 
 
@@ -137,167 +126,39 @@ export default function CreateOrphanage() {
 
   };
 
-return (
 
-  <PageCreateOrphanage>
-
-    <SwitchTheme/>
-    <SideBar />
-
-    <main>
-      <CreateOrphanageForm onSubmit={handleForm}>
-        <fieldset>
-          <legend>Dados</legend>
-
-          <Map
-            center={[location.latitude, location.longitude]}
-            style={{ width: '100%', height: 280 }}
-            zoom={15}
-            onClick={handleMapClick}
-          >
-            <TileLayer
-              url={`https://api.mapbox.com/styles/v1/mapbox/${themeValues.name}-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
-            />
-
-            {position.latitude !== 0 && (
-
-              <Marker
-                interactive={false}
-                icon={mapIcon}
-                position={[
-                  position.latitude,
-                  position.longitude
-                ]}
-              />
-
-            )
-
-
-            }
-          </Map>
+  return (
 
 
 
-          <InputBlock>
-            <Label htmlFor="name">Nome</Label>
-            <input
-              id="name"
-              value={name}
-              onChange={event => setName(event.target.value)}
-            />
-          </InputBlock>
-          
+  <CreateOrphanagePage>
+
+    <FormCreateupdate
+     name={name}
+     setName={setName}
+     about={about}
+     setAbout={setAbout}
+     instructions={instructions}
+     setInstructions={setInstructions}
+     phone={phone}
+     setPhone={setPhone}
+     opening_hours={opening_hours}
+     setOpeningHours={setOpeningHours}
+     open_on_weekends={open_on_weekends}
+     setOpenOnWeekends={setOpenOnWeekends}
+     position={position}
+     setPosition={setPosition}
+     previewImages={previewImages}
+     location={location}
+     handleMapClick={handleMapClick}
+     handleSelectImage={handleSelectImage}
+     handleForm={handleForm}
+     
+     />
+
+  </CreateOrphanagePage>
+  );
+};
 
 
-
-          <InputBlock >
-            <Label htmlFor="about">Sobre <span>Máximo de 300 caracteres</span></Label>
-            <textarea
-              id="about"
-              maxLength={300}
-              value={about}
-              onChange={event => setAbout(event.target.value)}
-            />
-          </InputBlock>
-
-          <InputBlock>
-            <Label htmlFor="phone">Número para contato</Label>
-            <InputMask
-            mask='(99) 99999-9999'
-              id="phone"
-              value={phone}
-              onChange={event => setPhone(event.target.value)}
-            />
-          </InputBlock>
-
-
-
-          <InputBlock>
-
-
-            <Label htmlFor="images">Fotos</Label>
-
-            <ImagesContainer>
-
-              {previewImages.map(image => (
-                <img key={image} src={image} alt="" />
-              ))}
-
-              <NewImageLabel htmlFor='image[]'>
-                <FiPlus size={24} color={themeValues.colors.secondarycontentButton} />
-              </NewImageLabel>
-
-              <input multiple type="file" onChange={handleSelectImage} id="image[]" />
-
-            </ImagesContainer>
-
-
-
-          </InputBlock>
-
-
-
-
-        </fieldset>
-
-        <fieldset>
-          <legend>Visitação</legend>
-
-          <InputBlock>
-            <Label htmlFor="instructions">Instruções</Label>
-            <textarea
-              id="instructions"
-              value={instructions}
-              onChange={event => setInstructions(event.target.value)}
-            />
-          </InputBlock>
-
-
-          <InputBlock>
-
-            <Label htmlFor="opening_hours">Horário de funcionamento</Label>
-            <input
-              id="opening_hours"
-              value={opening_hours}
-              onChange={event => setOpeningHours(event.target.value)}
-            />
-
-          </InputBlock>
-
-
-          <InputBlock>
-            <Label htmlFor="open_on_weekends">Atende fim de semana</Label>
-
-            <ButtonsSelect>
-              <Button
-                type="button"
-                typeStyle='select'
-                active={open_on_weekends ? true : false}
-                onClick={() => setOpenOnWeekends(true)}
-              >
-                Sim
-                </Button>
-
-
-              <Button
-                type="button"
-                typeStyle='select'
-                active={!open_on_weekends ? true : false}
-                onClick={() => setOpenOnWeekends(false)}
-              >
-                Não
-                </Button>
-            </ButtonsSelect>
-          </InputBlock>
-        </fieldset>
-
-        <Button typeStyle="confirm" type="submit">
-          Confirmar
-          </Button>
-      </CreateOrphanageForm>
-    </main>
-  </PageCreateOrphanage>
-);
-}
-
-// return `https://a.tile.openstreetmap.org/${z}/${x}/${y}.png`;
+export default CreateOrpanage;
