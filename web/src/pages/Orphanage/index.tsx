@@ -5,7 +5,7 @@ import { FiClock, FiInfo } from "react-icons/fi";
 
 import SideBar from '../../components/SideBar';
 import api from '../../services/api';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import SwitchTheme from '../../components/SwitchTheme';
 import useTheme from '../../utils/useTheme';
 
@@ -49,6 +49,8 @@ export default function Orphanage() {
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
+  const history = useHistory();
+
   const params = useParams<ParamsOrphanage>();
 
 
@@ -60,16 +62,25 @@ export default function Orphanage() {
   useEffect(() => {
 
     (async () => {
-      const { data } = await api.get(`/orphanages/${params.id}`);
+      try{
+
+        const { data } = await api.get(`/orphanages/${params.id}`);
+
+        setOrphanage(data);
+
+      }catch(e) {
+
+        if(e) return history.push('/notfound');
+
+      }
 
       
-      setOrphanage(data);
       
     } )();
 
 
     
-  },[params.id]);
+  },[history, params.id]);
   
   if(!orphanage){
     return <p>Carregando...</p>

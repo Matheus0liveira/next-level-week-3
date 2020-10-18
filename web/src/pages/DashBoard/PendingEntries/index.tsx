@@ -1,8 +1,7 @@
 import React from 'react';
 
 import LayoutDashBoard from '../../../components/LayoutDashBoard';
-import MiniMap from '../../../components/MiniMap';
-import { MapContainer, NotFoundOrpanages } from './styles';
+import { NotFoundOrpanages } from './styles';
 
 import BadMarker from '../../../assets/images/BadMarker.svg';
 
@@ -11,7 +10,7 @@ const PendingEntries = () => {
    <>
     <LayoutDashBoard titleHeader='Cadastros pendentes'>
 
-
+{/* 
       <MapContainer>
       <MiniMap page='dashboard/pending' latitude={-8.8061861} longitude={-44.2194616}/>
       </MapContainer>
@@ -32,7 +31,7 @@ const PendingEntries = () => {
 
       <MapContainer>
       <MiniMap page='dashboard/pending' latitude={-8.8061861} longitude={-44.2194616}/>
-      </MapContainer>
+      </MapContainer> */}
 
       <NotFoundOrpanages>
         <img src={BadMarker} alt=""/>

@@ -1,10 +1,11 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { FiArrowLeft, FiMapPin, FiAlertCircle, FiPower } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 
-import { Aside, Footer, Main, Alert } from './styles';
+import { Aside, Footer, Main, Alert, Button } from './styles';
 
 import mapMarkerImg from '../../assets/images/map-marker.svg';
+import SwitchTheme from '../SwitchTheme';
 
 
 interface PropsSideBar{
@@ -15,7 +16,28 @@ interface PropsSideBar{
 
 const SideBar = ({ page = 'default' } : PropsSideBar) => {
 
-    const { goBack } = useHistory();
+  const [selectPage, setSelectPage] = useState('');
+
+  const { goBack } = useHistory();
+
+  const history = useHistory();
+
+
+  
+
+  
+  
+  
+  useEffect(() => {
+    
+    const param = history.location.pathname.split('/')[3];
+
+     setSelectPage(param);
+
+  },[history.location.pathname]);
+
+
+
   return (
 
     <>
@@ -32,25 +54,27 @@ const SideBar = ({ page = 'default' } : PropsSideBar) => {
           </Link>
           <Main>
             <Link to='/restrict/dashboard/orphanages'>
-              <button type="button" >
+              <Button active={selectPage === 'orphanages'} type="button" >
                 <FiMapPin size={24} id='map' color="#FFF" />
-              </button>
+              </Button>
             </Link>
 
 
             <Link to='/restrict/dashboard/pending'>
-              <button type="button">
+              <Button active={selectPage === 'pending'} type="button">
                 <FiAlertCircle size={24} color="#FFF" />
                 <Alert/>
-              </button>
+              </Button>
             </Link>
             
 
           </Main>
           <Footer>
+            <SwitchTheme styleSwitch={false}/>
             <button type="button" onClick={() => {}}>
               <FiPower size={24} color="#FFF" />
             </button>
+
           </Footer>
     
         </Aside>

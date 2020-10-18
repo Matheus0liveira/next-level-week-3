@@ -8,12 +8,18 @@ interface PropsText{
 
 export const StyledHeader = styled.header`
 
-
+  position: fixed;
+  left: 96px;
+  right: 0;
+  margin: 0 auto;
+  max-width: 1103.1px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   padding-bottom: 24px; 
-  z-index: 999;
+  z-index: 9999999;
+
+  background: ${props => props.theme.colors.primaryBackground};
 
   height: 122px;
   border-bottom: 1px solid  #D3E2E5;

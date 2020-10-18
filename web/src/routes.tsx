@@ -14,6 +14,7 @@ import PendingEntries from './pages/DashBoard/PendingEntries';
 import EditOrphanage from './pages/DashBoard/EditOrphanage';
 import NewOrphanage from './pages/DashBoard/NewOrphanage';
 import DeleteOrphanage from './pages/DashBoard/DeleteOrphanage';
+import NotFound from './pages/NotFound';
 ;
 
 const Routes = () => {
@@ -46,6 +47,7 @@ const Routes = () => {
         <Route exact path='/restrict/dashboard/pending' component={PendingEntries}/>
         
         <Route exact path='/restrict/dashboard/pending/edit' component={EditOrphanage}/>
+        <Route exact path='/*' component={NotFound}/>
         
 
       </Switch>

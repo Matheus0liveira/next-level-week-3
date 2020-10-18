@@ -84,7 +84,7 @@ const MiniMap = ({ page='default', latitude, longitude} : PropsMiniMap) => {
                     <h1>Orf. Esperança</h1>
 
                     <div>
-                      <Link to='/restrict/dashboard/pending/edit'> 
+                      <Link to='/restrict/dashboard/orphanages/new-orphanage'> 
                         <Button>
                           <FiArrowRight size={24} color={themeValues.colors.secondarycontentButton}/>
                         </Button>

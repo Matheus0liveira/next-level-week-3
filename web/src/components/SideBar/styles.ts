@@ -1,45 +1,29 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
+
+
+interface PropsButton{
+
+  active: boolean;
+
+};
 
 export const Aside = styled.aside`
   position: relative;
   position: fixed;
   height: 100%;
   padding: 32px 24px;
-  /* background: linear-gradient(329.54deg, #15B6D6 0%, #15D6D6 100%); */
   background:${props => props.theme.colors.linearGradient};
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  animation: showAside ease-in-out 2s;
 
   img{
      width: 48px;
   }
 
-
-
-
-  @keyframes showAside {
-    0%{
-
-      left: -100px;
-
-    }
-
-    50%{
-
-      left: 0px;
-
-    }
-    100%{
-
-      left: 0px;
-
-    }
-  }
 `;
 
 export const Footer = styled.footer`
@@ -63,11 +47,12 @@ export const Footer = styled.footer`
     justify-content: center;
     align-items: center;
 
+
     &:hover{
         background:${props => props.theme.name === 'light' ? '#17D6EB'  : '#001010'};
     }
 
-  }
+  };
 
 `;
 
@@ -82,9 +67,16 @@ export const Main = styled.main`
 
   gap: 16px;
 
-  a,
-  button{
-    position: relative;
+
+  /* button:first-child {
+   
+  } */
+
+`;
+
+export const Button = styled.button<PropsButton>`
+
+  position: relative;
     width: 48px;
     height: 48px;
 
@@ -105,14 +97,21 @@ export const Main = styled.main`
         background:${props => props.theme.name === 'light' ? '#17D6EB'  : '#001010'};
     }
 
-  }
 
-  /* button:first-child {
-    background: #FFD666;
-  } */
+    ${props => props.active && css`
+    
+     background: #FFD666;
+     transition: none;
 
+     &:hover{
+        background: #FFD666;
+    }
+      
+    
+    `}
+
+ 
 `;
-
 export const Alert = styled.div`
   position: absolute;
   top: 13px;

@@ -22,10 +22,13 @@ export const ShowOrphanagePage = styled.div`
 
 export const Container = styled.div`
   position: relative;
+
   width: 100%;
   width: 100%;
   max-width: 1100px;
   
+  margin: 0 auto;
+
   height: 100%;
   max-height: 680px;
 `;

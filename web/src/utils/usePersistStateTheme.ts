@@ -6,7 +6,7 @@ const usePersistStateTheme = (key: string, initialValue: object) => {
 
   const [state, setState] = useState(() => {
 
-    const storageValue = sessionStorage.getItem(key);
+    const storageValue = localStorage.getItem(key);
 
 
     if(storageValue){
@@ -19,7 +19,7 @@ const usePersistStateTheme = (key: string, initialValue: object) => {
 
 
   useEffect(() => {
-    sessionStorage.setItem(key, JSON.stringify(state))
+    localStorage.setItem(key, JSON.stringify(state))
   },[key, state]);
 
 

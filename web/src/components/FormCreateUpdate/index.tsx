@@ -19,7 +19,8 @@ import {
   ImagesContainer,
   NewImageLabel,
   Footer,
-  Button
+  Button,
+  Text
 } from './styles';
 import SideBar from '../../components/SideBar';
 import { FiCheck, FiPlus, FiXCircle } from 'react-icons/fi';
@@ -91,189 +92,193 @@ export default function CreateOrphanage({
 
   return (
 
-    <PageCreateOrphanage>
+  <>
+      <PageCreateOrphanage>
 
-      <SwitchTheme/>
-      <SideBar />
+        <SwitchTheme/>
+        <SideBar />
 
-      <main>
-        <CreateOrphanageForm onSubmit={handleForm}>
-          <fieldset>
-            <legend>Dados</legend>
+        <main>
+          <Text> Editar perfil de 7 Dias de Glória </Text>
+          
+          <CreateOrphanageForm onSubmit={handleForm}>
+            <fieldset>
+              <legend>Dados</legend>
 
-            <Map
-              center={[location.latitude, location.longitude]}
-              style={{ width: '100%', height: 280 }}
-              zoom={15}
-              onClick={handleMapClick}
-            >
-              <TileLayer
-                url={`https://api.mapbox.com/styles/v1/mapbox/${themeValues.name}-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
-              />
-
-              {position.latitude !== 0 && (
-
-                <Marker
-                  interactive={false}
-                  icon={mapIcon}
-                  position={[
-                    position.latitude,
-                    position.longitude
-                  ]}
+              <Map
+                center={[location.latitude, location.longitude]}
+                style={{ width: '100%', height: 280 }}
+                zoom={15}
+                onClick={handleMapClick}
+              >
+                <TileLayer
+                  url={`https://api.mapbox.com/styles/v1/mapbox/${themeValues.name}-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
                 />
 
-              )
+                {position.latitude !== 0 && (
+
+                  <Marker
+                    interactive={false}
+                    icon={mapIcon}
+                    position={[
+                      position.latitude,
+                      position.longitude
+                    ]}
+                  />
+
+                )
 
 
-              }
-            </Map>
+                }
+              </Map>
 
 
 
-            <InputBlock>
-              <Label htmlFor="name">Nome</Label>
-              <input
-                id="name"
-                value={name}
-                onChange={event => setName(event.target.value)}
+              <InputBlock>
+                <Label htmlFor="name">Nome</Label>
+                <input
+                  id="name"
+                  value={name}
+                  onChange={event => setName(event.target.value)}
+                />
+              </InputBlock>
+              
+
+
+
+              <InputBlock >
+                <Label htmlFor="about">Sobre <span>Máximo de 300 caracteres</span></Label>
+                <textarea
+                  id="about"
+                  maxLength={300}
+                  value={about}
+                  onChange={event => setAbout(event.target.value)}
+                />
+              </InputBlock>
+
+              <InputBlock>
+                <Label htmlFor="phone">Número para contato</Label>
+                <InputMask
+                mask='(99) 9 9999-9999'
+                  id="phone"
+                  value={phone}
+                  onChange={event => setPhone(event.target.value)}
               />
-            </InputBlock>
-            
+              </InputBlock>
 
 
 
-            <InputBlock >
-              <Label htmlFor="about">Sobre <span>Máximo de 300 caracteres</span></Label>
-              <textarea
-                id="about"
-                maxLength={300}
-                value={about}
-                onChange={event => setAbout(event.target.value)}
-              />
-            </InputBlock>
-
-            <InputBlock>
-              <Label htmlFor="phone">Número para contato</Label>
-              <InputMask
-              mask='(99) 9 9999-9999'
-                id="phone"
-                value={phone}
-                onChange={event => setPhone(event.target.value)}
-            />
-            </InputBlock>
+              <InputBlock>
 
 
+                <Label htmlFor="images">Fotos</Label>
 
-            <InputBlock>
+                <ImagesContainer>
 
+                  {previewImages.map((image, index) => (
+                    <img key={image} src={image} alt="" />
+                  
+                  ))}
 
-              <Label htmlFor="images">Fotos</Label>
+                  <NewImageLabel htmlFor='image[]'>
+                    <FiPlus size={24} color={themeValues.colors.secondarycontentButton} />
+                  </NewImageLabel>
 
-              <ImagesContainer>
+                  <input multiple type="file" onChange={handleSelectImage} id="image[]" />
 
-                {previewImages.map((image, index) => (
-                  <img key={image} src={image} alt="" />
-                
-                ))}
-
-                <NewImageLabel htmlFor='image[]'>
-                  <FiPlus size={24} color={themeValues.colors.secondarycontentButton} />
-                </NewImageLabel>
-
-                <input multiple type="file" onChange={handleSelectImage} id="image[]" />
-
-              </ImagesContainer>
+                </ImagesContainer>
 
 
 
-            </InputBlock>
+              </InputBlock>
 
 
 
 
-          </fieldset>
+            </fieldset>
 
-          <fieldset>
-            <legend>Visitação</legend>
+            <fieldset>
+              <legend>Visitação</legend>
 
-            <InputBlock>
-              <Label htmlFor="instructions">Instruções</Label>
-              <textarea
-                id="instructions"
-                value={instructions}
-                onChange={event => setInstructions(event.target.value)}
-              />
-            </InputBlock>
-
-
-            <InputBlock>
-
-              <Label htmlFor="opening_hours">Horário de funcionamento</Label>
-              <input
-                id="opening_hours"
-                value={opening_hours}
-                onChange={event => setOpeningHours(event.target.value)}
-              />
-
-            </InputBlock>
+              <InputBlock>
+                <Label htmlFor="instructions">Instruções</Label>
+                <textarea
+                  id="instructions"
+                  value={instructions}
+                  onChange={event => setInstructions(event.target.value)}
+                />
+              </InputBlock>
 
 
-            <InputBlock>
-              <Label htmlFor="open_on_weekends">Atende fim de semana</Label>
+              <InputBlock>
 
-              <ButtonsSelect>
-                <Button
-                  type="button"
-                  typeStyle='select'
-                  active={open_on_weekends ? true : false}
-                  onClick={() => setOpenOnWeekends(true)}
-                >
-                  Sim
-                  </Button>
+                <Label htmlFor="opening_hours">Horário de funcionamento</Label>
+                <input
+                  id="opening_hours"
+                  value={opening_hours}
+                  onChange={event => setOpeningHours(event.target.value)}
+                />
+
+              </InputBlock>
 
 
-                <Button
-                  type="button"
-                  typeStyle='select'
-                  active={!open_on_weekends ? true : false}
-                  onClick={() => setOpenOnWeekends(false)}
-                >
-                  Não
-                  </Button>
-              </ButtonsSelect>
-            </InputBlock>
-          </fieldset>
-        {
-          page === 'default' && (
+              <InputBlock>
+                <Label htmlFor="open_on_weekends">Atende fim de semana</Label>
 
-          <Button typeStyle="confirm" type="submit">
-            Confirmar
-          </Button>
-
-          )
-        }
-        </CreateOrphanageForm>
-
-        {
-         page === 'newOrphanage' &&
-          (
-            <Footer>
-              <ButtonForm type='button' color='red'>
-                <FiXCircle size={24} color='#FFF'/>
-                <p>Recusar</p>
-
-              </ButtonForm>
+                <ButtonsSelect>
+                  <Button
+                    type="button"
+                    typeStyle='select'
+                    active={open_on_weekends ? true : false}
+                    onClick={() => setOpenOnWeekends(true)}
+                  >
+                    Sim
+                    </Button>
 
 
-              <ButtonForm type='button' color='green'>
-                <FiCheck size={24} color='#FFF'/>
-                <p>Aceitar</p>
-              </ButtonForm>
-            </Footer>
-          )
-        }
-      </main>
-    </PageCreateOrphanage>
+                  <Button
+                    type="button"
+                    typeStyle='select'
+                    active={!open_on_weekends ? true : false}
+                    onClick={() => setOpenOnWeekends(false)}
+                  >
+                    Não
+                    </Button>
+                </ButtonsSelect>
+              </InputBlock>
+            </fieldset>
+          {
+            page === 'default' && (
+
+            <Button typeStyle="confirm" type="submit">
+              Confirmar
+            </Button>
+
+            )
+          }
+          </CreateOrphanageForm>
+
+          {
+          page === 'newOrphanage' &&
+            (
+              <Footer>
+                <ButtonForm type='button' color='red'>
+                  <FiXCircle size={24} color='#FFF'/>
+                  <p>Recusar</p>
+
+                </ButtonForm>
+
+
+                <ButtonForm type='button' color='green'>
+                  <FiCheck size={24} color='#FFF'/>
+                  <p>Aceitar</p>
+                </ButtonForm>
+              </Footer>
+            )
+          }
+        </main>
+      </PageCreateOrphanage>
+    </>
   );
 }
 

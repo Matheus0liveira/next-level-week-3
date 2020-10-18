@@ -25,7 +25,7 @@ export const PageCreateOrphanage = styled.div`
 export const CreateOrphanageForm = styled.form`
 
   width: 700px;
-  margin: 64px auto 0 auto;
+  margin: 0px auto 0 auto;
 
   background:${props => props.theme.colors.createOrphanageBg};
 
@@ -76,6 +76,17 @@ export const CreateOrphanageForm = styled.form`
   }
 
 
+`;
+
+
+export const Text = styled.h1`
+
+  text-align: center;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 40px 0 ;
+
+  color: ${props => props.theme.colors.textTirdyColor};
 `;
 
 
@@ -365,3 +376,4 @@ export const ButtonForm = styled.button<PropsButtonForm>`
 
 
 `;
+

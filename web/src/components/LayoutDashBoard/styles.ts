@@ -22,11 +22,11 @@ export const LayoutPage = styled.div`
 
 export const MapContainer = styled.div`
 
-
+   padding-top: 122px;
     /* width: 48%; */
    @media (max-width:840px){
       
-    width: 90%;
+    /* width: 90%; */
   }
 
 `;
@@ -41,6 +41,7 @@ export const Container = styled.div`
   
   height: 100%;
   max-height: 680px;
+ ;
 `;
 
 

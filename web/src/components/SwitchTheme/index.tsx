@@ -8,8 +8,12 @@ import light from '../../themes/light';
 
 import { StyledSwitchTheme } from './styles';
 
+interface PropsSwitch {
+  styleSwitch?: boolean;
+};
 
-const SwitchTheme = () => {
+
+const SwitchTheme = ({ styleSwitch = true }: PropsSwitch) => {
 
   const [toggleIcon, setToggleIcon] = useState(false);
   
@@ -30,19 +34,25 @@ const SwitchTheme = () => {
 
   return (
     <StyledSwitchTheme 
+      fixed={styleSwitch}
+
       onClick={toggleTheme}
       > 
       {
       
       themeValues.name === 'light' ?
       ( 
-      <FiSun size={28} color={themeValues.colors.primarycontentButton}/>
+
+      <FiSun size={28} color={ styleSwitch ? themeValues.colors.primarycontentButton: '#FFF'}/>
+
       ) 
 
       :
 
       (
-      <FiMoon size={28} color={themeValues.colors.primarycontentButton}/>
+
+      <FiMoon size={28} color={ styleSwitch ? themeValues.colors.primarycontentButton : '#FFF'}/>
+
       )
 
       }
