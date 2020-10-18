@@ -22,5 +22,6 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'class-methods-use-this': 'off',
     'no-undef': 'off',
+    'consistent-return': 'off',
   },
 };

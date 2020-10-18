@@ -8,8 +8,7 @@ import ophanargeView from '../view/Orphanages_view';
 
 import Orphanage from '../models/Orphanage';
 
-export default {
-
+class OrphanageController {
   async index(request: Request, response: Response) {
     const orphanagesRepository = getRepository(Orphanage);
 
@@ -18,7 +17,7 @@ export default {
     });
 
     return response.json(ophanargeView.renderMany(orphanages));
-  },
+  }
 
   async show(request: Request, response: Response) {
     const { id } = request.params;
@@ -30,7 +29,7 @@ export default {
     });
 
     return response.json(ophanargeView.render(orphanages));
-  },
+  }
 
   async create(request: Request, response: Response) {
     const {
@@ -93,5 +92,7 @@ export default {
 
     console.log(test);
     response.status(201).json(orphanages);
-  },
-};
+  }
+}
+
+export default new OrphanageController();

@@ -75,6 +75,8 @@ export default function OrphanageDetails() {
 
   }, [id]);
 
+  
+
    if(!orphanage){
 
     return (
@@ -98,8 +100,6 @@ export default function OrphanageDetails() {
   
   
   };
-
-
 
 
   return (

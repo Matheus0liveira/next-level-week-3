@@ -5,7 +5,7 @@ import Image from './Image';
 
 @Entity('orphanages')
 export default class Orphanage {
-  @PrimaryGeneratedColumn('increment')
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column()
