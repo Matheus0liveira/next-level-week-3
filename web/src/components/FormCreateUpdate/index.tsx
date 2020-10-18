@@ -15,12 +15,14 @@ import {
   InputBlock,
   Label,
   ButtonsSelect,
-  Button,
+  ButtonForm,
   ImagesContainer,
   NewImageLabel,
+  Footer,
+  Button
 } from './styles';
 import SideBar from '../../components/SideBar';
-import { FiPlus } from 'react-icons/fi';
+import { FiCheck, FiPlus, FiXCircle } from 'react-icons/fi';
 import SwitchTheme from '../../components/SwitchTheme';
 import useTheme from '../../utils/useTheme';
 import { LeafletMouseEvent } from 'leaflet';
@@ -52,6 +54,7 @@ interface PropsCreateOrphanage{
   handleMapClick: (event: LeafletMouseEvent) => void;
   handleSelectImage: (event: ChangeEvent<HTMLInputElement>) => void;
   handleForm:(event: FormEvent) => void;
+  page?: string
   
 
 
@@ -78,7 +81,8 @@ export default function CreateOrphanage({
   location,
   handleMapClick,
   handleSelectImage,
-  handleForm
+  handleForm,
+  page = 'default'
   
 }: PropsCreateOrphanage) {
 
@@ -239,11 +243,35 @@ export default function CreateOrphanage({
               </ButtonsSelect>
             </InputBlock>
           </fieldset>
+        {
+          page === 'default' && (
 
           <Button typeStyle="confirm" type="submit">
             Confirmar
-            </Button>
+          </Button>
+
+          )
+        }
         </CreateOrphanageForm>
+
+        {
+         page === 'newOrphanage' &&
+          (
+            <Footer>
+              <ButtonForm type='button' color='red'>
+                <FiXCircle size={24} color='#FFF'/>
+                <p>Recusar</p>
+
+              </ButtonForm>
+
+
+              <ButtonForm type='button' color='green'>
+                <FiCheck size={24} color='#FFF'/>
+                <p>Aceitar</p>
+              </ButtonForm>
+            </Footer>
+          )
+        }
       </main>
     </PageCreateOrphanage>
   );

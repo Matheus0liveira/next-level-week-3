@@ -6,6 +6,10 @@ interface PropsButton{
   typeStyle: 'select' | 'confirm';
   active?: boolean;
 }
+interface PropsButtonForm{
+
+  color: 'red'| 'green'
+}
 
 export const PageCreateOrphanage = styled.div`
 
@@ -21,12 +25,13 @@ export const PageCreateOrphanage = styled.div`
 export const CreateOrphanageForm = styled.form`
 
   width: 700px;
-  margin: 64px auto;
+  margin: 64px auto 0 auto;
 
   background:${props => props.theme.colors.createOrphanageBg};
 
   border: ${props => props.theme.name === 'dark' ? '1px solid #585858' :  '1px solid #D3E2E5'};
-  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 
   padding: 64px 80px;
 
@@ -282,6 +287,81 @@ export const BtnDeleteImg = styled.button`
   background: ${props => props.theme.colors.inputBg};
   border: 1px solid ${props => props.theme.name === 'light' ? '#D3E2E5' : '#212121' };
 
+
+
+`;
+
+
+
+export const Footer = styled.footer`
+
+
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+
+  width: 700px;
+  padding: 64px 80px;
+  margin: 0 auto 64px auto;
+
+  background:${props => props.theme.colors.inputBg};
+
+  border-left: ${props => props.theme.name === 'dark' ? '1px solid #585858' :  '1px solid #D3E2E5'};
+  border-right: ${props => props.theme.name === 'dark' ? '1px solid #585858' :  '1px solid #D3E2E5'};
+  border-bottom: ${props => props.theme.name === 'dark' ? '1px solid #585858' :  '1px solid #D3E2E5'};
+
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+
+
+
+  
+
+`;
+
+export const ButtonForm = styled.button<PropsButtonForm>`
+
+  border-radius: 20px;
+  width: 264px;
+  height: 64px;
+  border: 0;
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
+
+  color: #FFFF;
+  cursor: pointer;
+
+
+  font-weight: 800;
+  font-size: 18px;
+  transition: opacity .2s ease;
+
+
+
+  &:hover{
+    opacity: 0.6;
+  }
+
+
+  ${props => props.color === 'red' && css`
+
+    background: #FF669D;
+
+  `};
+  ${props => props.color === 'green' && css`
+  
+    background: #3CDC8C;
+  
+  `};
 
 
 `;

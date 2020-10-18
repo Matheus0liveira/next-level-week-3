@@ -8,7 +8,7 @@ import api from '../../../services/api';
 
 
 
-const EditOrphanage = () => {
+const NewOrphanage = () => {
 
 
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
@@ -21,6 +21,7 @@ const EditOrphanage = () => {
   const [open_on_weekends, setOpenOnWeekends] = useState(true);
   const [images, setImages] = useState<File[]>([]);
   const [previewImages, setpreviewImages] = useState<string[]>([]);
+
 
 
   const history = useHistory();
@@ -153,6 +154,7 @@ const EditOrphanage = () => {
      handleMapClick={handleMapClick}
      handleSelectImage={handleSelectImage}
      handleForm={handleForm}
+     page='newOrphanage'
      
      />
 
@@ -161,4 +163,4 @@ const EditOrphanage = () => {
 };
 
 
-export default EditOrphanage;
+export default NewOrphanage;
