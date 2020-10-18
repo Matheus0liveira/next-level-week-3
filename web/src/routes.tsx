@@ -12,7 +12,9 @@ import ForgotPassword from './pages/ForgotPassword';
 import DashBoard from './pages/DashBoard/ShowOrphanages';
 import PendingEntries from './pages/DashBoard/PendingEntries';
 import EditOrphanage from './pages/DashBoard/EditOrphanage';
-import NewOrphanage from './pages/DashBoard/NewOrphanage';;
+import NewOrphanage from './pages/DashBoard/NewOrphanage';
+import DeleteOrphanage from './pages/DashBoard/DeleteOrphanage';
+;
 
 const Routes = () => {
 
@@ -37,7 +39,9 @@ const Routes = () => {
 
         <Route exact path='/restrict/dashboard/orphanages' component={DashBoard}/>
 
-        <Route exact path='/restrict/dashboard/orphanages/new' component={NewOrphanage}/>
+        <Route exact path='/restrict/dashboard/orphanages/new-orphanage' component={NewOrphanage}/>
+
+        <Route exact path='/restrict/dashboard/orphanages/delete-orphanage' component={DeleteOrphanage}/>
 
         <Route exact path='/restrict/dashboard/pending' component={PendingEntries}/>
         

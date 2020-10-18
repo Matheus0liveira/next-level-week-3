@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 export const Aside = styled.aside`
-
+  position: relative;
   position: fixed;
   height: 100%;
   padding: 32px 24px;
@@ -13,12 +13,33 @@ export const Aside = styled.aside`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-
+  animation: showAside ease-in-out 2s;
 
   img{
      width: 48px;
   }
 
+
+
+
+  @keyframes showAside {
+    0%{
+
+      left: -100px;
+
+    }
+
+    50%{
+
+      left: 0px;
+
+    }
+    100%{
+
+      left: 0px;
+
+    }
+  }
 `;
 
 export const Footer = styled.footer`

@@ -7,6 +7,7 @@ import useTheme from '../../utils/useTheme';
 import { FiEdit3, FiTrash, FiArrowRight } from 'react-icons/fi';
 
 import { MapContainer, Footer, Button } from './styles';
+import { Link } from 'react-router-dom';
 
 
 
@@ -50,13 +51,23 @@ const MiniMap = ({ page='default', latitude, longitude} : PropsMiniMap) => {
                   <h1>Orf. Esperança</h1>
 
                   <div>
-                    <Button>
-                      <FiEdit3 size={24} color={themeValues.colors.secondarycontentButton}/>
-                    </Button>
 
-                    <Button>
-                      <FiTrash size={24} color={themeValues.colors.secondarycontentButton}/>
-                    </Button>
+
+                    <Link to='/restrict/dashboard/pending/edit'>
+                      
+                      <Button>
+                        <FiEdit3 size={24} color={themeValues.colors.secondarycontentButton}/>
+                      </Button>
+
+                    </Link>
+                    
+                    <Link to='/restrict/dashboard/orphanages/delete-orphanage'>
+
+                      <Button>
+                        <FiTrash size={24} color={themeValues.colors.secondarycontentButton}/>
+                      </Button>
+
+                    </Link>
                   </div>
 
                 </Footer>
@@ -73,9 +84,11 @@ const MiniMap = ({ page='default', latitude, longitude} : PropsMiniMap) => {
                     <h1>Orf. Esperança</h1>
 
                     <div>
-                      <Button>
-                        <FiArrowRight size={24} color={themeValues.colors.secondarycontentButton}/>
-                      </Button>
+                      <Link to='/restrict/dashboard/pending/edit'> 
+                        <Button>
+                          <FiArrowRight size={24} color={themeValues.colors.secondarycontentButton}/>
+                        </Button>
+                      </Link>
 
                     </div>
 
