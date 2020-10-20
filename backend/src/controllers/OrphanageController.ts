@@ -25,15 +25,22 @@ class OrphanageController {
   async show(request: Request, response: Response) {
     const { id } = request.params;
 
+
+    if (!id) {
+      response.status(400).json({ message: 'Id is required' });
+    }
+
+
     const orphanagesRepository = getRepository(Orphanage);
 
     const orphanages = await orphanagesRepository.findOneOrFail(id, {
       relations: ['images'],
     });
 
-    console.log(orphanages);
+
     return response.json(orphanageView.render(orphanages));
   }
+
 
   async create(request: Request, response: Response) {
     const {

@@ -38,9 +38,7 @@ export default class Orphanage {
   @Column()
   markerMap: string;
 
-  @OneToMany(() => Image, (image) => image.orphanage, {
-    cascade: ['insert', 'update'],
-  })
+  @OneToMany(() => Image, (image) => image.orphanage)
   @JoinColumn({ name: 'orphanage_id' })
   images: Image[];
 }
