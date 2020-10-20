@@ -13,11 +13,9 @@ class OrphanageController {
     const orphanagesRepository = getRepository(Orphanage);
 
 
-
-
     const orphanages = await orphanagesRepository.find({
       relations: ['images'],
-      where: { pending: false },
+      where: { pending: true },
     });
     
 
@@ -94,9 +92,9 @@ class OrphanageController {
 
     const orphanages = orphanagesRepository.create(data);
 
-    const test = await orphanagesRepository.save(orphanages);
+    await orphanagesRepository.save(orphanages);
 
-    console.log(test);
+
     response.status(201).json(orphanages);
   }
 }
