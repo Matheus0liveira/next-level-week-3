@@ -19,7 +19,7 @@ export default class {
   resetToken: string;
 
   @Column()
-  resetTokenExpires: Date;
+  resetTokenExpires: string;
 
   @BeforeInsert()
   @BeforeUpdate()

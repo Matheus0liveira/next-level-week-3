@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import * as Yup from 'yup';
 import { getRepository } from 'typeorm';
 import crypto from 'crypto';
-import bcrypt from 'bcryptjs';
 import transporter from '../utils/transporter';
 
 import User from '../models/User';
@@ -32,7 +31,7 @@ class UserController {
 
     await repository.save(user);
 
-    // return response.json(user);
+    return response.json(user);
   }
 
   async forgotPassword(request: Request, response: Response) {
@@ -53,11 +52,28 @@ class UserController {
       return response.json({ message: 'Email not exists' });
     }
 
-    const newPassword = crypto.randomBytes(4).toString('hex');
 
+    const token = crypto.randomBytes(20).toString('hex');     
 
+    const dateNow = new Date().getHours() + 1; 
+
+    const { id } = emailExists;
+    
+
+    const dataUpdate = {
+
+      email: emailExists.email,
+      password: emailExists.password,
+      resetToken: token,
+      resetTokenExpires: String(dateNow),
+
+    };
+
+    await userRepository.update({ id }, dataUpdate);
+
+    
     await transporter.sendMail({
-
+      
       subject: 'Alteração de senha',
       from: 'Equipe Happy',
       to: `${emailExists.email}`,
@@ -93,7 +109,7 @@ class UserController {
     >
       <h1 style="margin: 0">Happy</h1>
       <h1 style="color: #fff; font-size: 16px; font-weight: normal">
-        Leve felcidade para o mundo
+        Leve felicidade para o mundo
       </h1>
     </header>
 
@@ -110,14 +126,13 @@ class UserController {
         <h1 style="margin: 0; color: #4d6f80">Hello, tudo bem?!</h1>
 
         <h1 style="color: #4d6f80; font-size: 24px; font-weight: normal">
-          Segue a sua nova senha para acesso a plataforma:
+          <a href="http://localhost:3000/${token}">
+            Clique aqui</a
+          >
+          para redefinir sua senha!
         </h1>
 
-        <p style="padding: 24px 0 40px 0">
-          <strong style="font-size: 34px; color: #000; font-style: italic"
-            >${newPassword}</strong
-          >
-        </p>
+        <p style="padding: 24px 0 40px 0"></p>
         <div
           style="height: 1px; width: 100%; background: #29b6d1; margin: 40px 0"
         ></div>
@@ -150,24 +165,8 @@ class UserController {
 </html>
 
       `,
-    }).then(
-      async () => {
-        const password = await bcrypt.hash(newPassword, 10);
-
- 
-        const dataUpdate = {
-          email: emailExists.email,
-          password,
-        };
-
-        const { id } = emailExists;
-
-        const update = await userRepository.update({ id }, dataUpdate);
-        console.log(update);
-
-        return response.status(200).json({ message: 'Email sended' });
-      },
-    );
+    });
+    
 
     
 

@@ -33,8 +33,8 @@ export class createUsers1603035039752 implements MigrationInterface {
         },
         {
           name: 'resetTokenExpires',
-          type: 'date',
-          default: 'now()',
+          type: 'varchar',
+          default: false,
 
         },
       ],
