@@ -9,14 +9,15 @@ import User from '../models/User';
 
 class UserController {
   async create(request: Request, response: Response) {
-    const { email, password } = request.body;
+    const { name, email, password } = request.body;
 
     const schema = Yup.object().shape({
+      name: Yup.string().required(),
       email: Yup.string().email().required(),
       password: Yup.string().required().min(5),
     });
 
-    await schema.validate({ email, password }, { abortEarly: false });
+    await schema.validate({ name, email, password }, { abortEarly: false });
     const userRepository = getRepository(User);
 
     const userExists = await userRepository.findOne({ where: { email } });
@@ -25,11 +26,11 @@ class UserController {
       return response.status(409).json({ error: 'Email already exists' });
     }
 
-    const user = userRepository.create({ email, password });
+    const user = userRepository.create({ name, email, password });
 
     await userRepository.save(user);
 
-    return response.json(user);
+    return response.json(UserView.render(user));
   }
 
   async forgotPassword(request: Request, response: Response) {

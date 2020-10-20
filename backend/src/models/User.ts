@@ -10,6 +10,9 @@ export default class {
   id: string;
 
   @Column()
+  name: string;
+
+  @Column()
   email: string;
 
   @Column()

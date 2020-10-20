@@ -15,6 +15,7 @@ import EditOrphanage from './pages/DashBoard/EditOrphanage';
 import NewOrphanage from './pages/DashBoard/NewOrphanage';
 import DeleteOrphanage from './pages/DashBoard/DeleteOrphanage';
 import NotFound from './pages/NotFound';
+import ResetPassword from './pages/ResetPassword';
 ;
 
 const Routes = () => {
@@ -37,8 +38,11 @@ const Routes = () => {
         <Route exact path='/restrict/login' component={Login}/>
 
         <Route exact path='/restrict/forgotpassword' component={ForgotPassword}/>
+        
+        <Route exact path='/restrict/edit_password/:id' component={ResetPassword}/>
 
         <Route exact path='/restrict/dashboard/orphanages' component={DashBoard}/>
+
 
         <Route exact path='/restrict/dashboard/orphanages/new-orphanage' component={NewOrphanage}/>
 
@@ -47,6 +51,8 @@ const Routes = () => {
         <Route exact path='/restrict/dashboard/pending' component={PendingEntries}/>
         
         <Route exact path='/restrict/dashboard/pending/edit' component={EditOrphanage}/>
+
+
         <Route exact path='/*' component={NotFound}/>
         
 
