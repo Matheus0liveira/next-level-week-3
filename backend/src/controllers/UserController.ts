@@ -2,16 +2,14 @@ import { Request, Response } from 'express';
 import * as Yup from 'yup';
 import { getRepository } from 'typeorm';
 import crypto from 'crypto';
+import UserView from '../view/User_View';
 import transporter from '../utils/transporter';
 
 import User from '../models/User';
 
 class UserController {
-  async store(request: Request, response: Response) {
+  async create(request: Request, response: Response) {
     const { email, password } = request.body;
-
-    const resetTokenExpires = new Date();
-
 
     const schema = Yup.object().shape({
       email: Yup.string().email().required(),
@@ -19,17 +17,17 @@ class UserController {
     });
 
     await schema.validate({ email, password }, { abortEarly: false });
-    const repository = getRepository(User);
+    const userRepository = getRepository(User);
 
-    const userExists = await repository.findOne({ where: { email } });
+    const userExists = await userRepository.findOne({ where: { email } });
 
     if (userExists) {
       return response.status(409).json({ error: 'Email already exists' });
     }
 
-    const user = repository.create({ email, password, resetTokenExpires });
+    const user = userRepository.create({ email, password });
 
-    await repository.save(user);
+    await userRepository.save(user);
 
     return response.json(user);
   }
@@ -81,8 +79,8 @@ class UserController {
       
       html: 
       `
-      <!DOCTYPE html style="margin: 0; padding: 0; box-sizing: border-box;">
-<html lang="en">
+  <!DOCTYPE html style="margin: 0; padding: 0; box-sizing: border-box;">
+  <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -96,7 +94,7 @@ class UserController {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
         Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     "
-  >
+    >
     <header
       class="header"
       style="
@@ -162,7 +160,7 @@ class UserController {
       >
     </div>
   </body>
-</html>
+  </html>
 
       `,
     });
@@ -170,7 +168,70 @@ class UserController {
 
     
 
-    return response.json({ ok: true });
+    return response.sendStatus(200);
+  }
+
+  async resetPassword(request: Request, response: Response) {
+    const { email, password } = request.body;
+
+
+
+    const schema = Yup.object().shape({
+
+      email: Yup.string().email().required(),
+      password: Yup.string().required().min(5),
+    });
+
+    await schema.validate({ email, password }, { abortEarly: false });
+
+    const { token } = request.params;
+
+    const userRepository = getRepository(User);
+
+    if (!token) {
+      return response.json({ message: 'Token not provider' });
+    }
+
+
+    const user = await userRepository.findOne({ where: { email } });
+
+    if (!user) {
+      return response.json({ message: 'User not exists' });
+    }
+
+    if (token !== user.resetToken) {
+      return response.json({ message: 'Tokens not match' });
+    }
+    const { id } = user;
+
+    const nowHour = new Date().getHours(); 
+    if (Number(user.resetTokenExpires) < nowHour) {
+      const data = {
+        resetToken: '',
+        resetTokenExpires: '',
+
+      };
+      await userRepository.update({ id }, data);
+      return response.json({ message: 'Token expired' });
+    }
+
+    const data = {
+      email: user.email,
+      password,
+      resetToken: '',
+      resetTokenExpires: '',
+
+    };
+
+    await userRepository.update({ id }, data);
+
+    const userUpdated = await userRepository.findOne({ where: { id } });
+
+    if (!userUpdated) {
+      return;
+    }
+
+    return response.json(UserView.render(userUpdated));
   }
 }
 

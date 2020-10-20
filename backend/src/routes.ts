@@ -16,8 +16,6 @@ const upload = multer(uploadConfig);
 const routes = Router();
 
 
-// Session
-routes.post('/auth', AuthController.authentication);
 
 
 
@@ -30,8 +28,17 @@ routes.post('/orphanages', upload.array('images'), OrphanagesController.create);
 
 
 
-routes.post('/users', UserController.store);
+// Session
+routes.post('/auth', AuthController.authentication);
+
+
+
+// User
+routes.post('/users', UserController.create);
+
 routes.post('/users/forgot_password', UserController.forgotPassword);
+
+routes.put('/users/reset_password/:token', UserController.resetPassword);
 
 
 
