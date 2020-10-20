@@ -74,5 +74,6 @@ export class crateOrphanages1602595073339 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable('orphanages');
+    await queryRunner.query('DROP EXTENSION IF NOT EXISTS "uuid-ossp"');
   }
 }

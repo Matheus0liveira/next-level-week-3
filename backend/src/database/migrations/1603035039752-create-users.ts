@@ -26,6 +26,17 @@ export class createUsers1603035039752 implements MigrationInterface {
           type: 'varchar',
 
         },
+        {
+          name: 'resetToken',
+          type: 'varchar',
+          default: false,
+        },
+        {
+          name: 'resetTokenExpires',
+          type: 'date',
+          default: 'now()',
+
+        },
       ],
 
     }));

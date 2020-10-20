@@ -11,6 +11,8 @@ class UserController {
   async store(request: Request, response: Response) {
     const { email, password } = request.body;
 
+    const resetTokenExpires = new Date();
+
 
     const schema = Yup.object().shape({
       email: Yup.string().email().required(),
@@ -26,11 +28,11 @@ class UserController {
       return response.status(409).json({ error: 'Email already exists' });
     }
 
-    const user = repository.create({ email, password });
+    const user = repository.create({ email, password, resetTokenExpires });
 
     await repository.save(user);
 
-    return response.json(user);
+    // return response.json(user);
   }
 
   async forgotPassword(request: Request, response: Response) {

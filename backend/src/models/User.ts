@@ -15,6 +15,12 @@ export default class {
   @Column()
   password: string;
 
+  @Column()
+  resetToken: string;
+
+  @Column()
+  resetTokenExpires: Date;
+
   @BeforeInsert()
   @BeforeUpdate()
   hashPassword() {
