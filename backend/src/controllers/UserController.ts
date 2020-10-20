@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import * as Yup from 'yup';
 import { getRepository } from 'typeorm';
+import transporter from '../utils/transporter';
 
 import User from '../models/User';
 
@@ -28,6 +29,22 @@ class UserController {
     await repository.save(user);
 
     return response.json(user);
+  }
+
+  async sendMail(request: Request, response: Response) {
+    const mailSend = await transporter.sendMail({
+
+      text: 'Test send email',
+      subject: 'Email subject',
+      from: 'Equip Happy <Equip HAPPY>',
+      to: 'matheusfilho98.ms@gmail.com',
+
+      html: 'dwd',
+    });
+
+    console.log(mailSend);
+
+    return response.json({ ok: true });
   }
 }
 
