@@ -60,27 +60,94 @@ class UserController {
       from: 'Equipe Happy',
       to: `${emailExists.email}`,
       
-      html: `
-           <header class="header">
-            <h1 id="title">Happy</h1>
-           </header>
+      
+      html: 
+      `
+      <!DOCTYPE html style="margin: 0; padding: 0; box-sizing: border-box;">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
 
-           <div class="container">
-            <div>
-              <h1>Hello, tudo bem?!</h1>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    "
+  >
+    <header
+      class="header"
+      style="
+        background: #29b6d1;
+        color: #ffd666;
+        text-align: center;
+        padding: 50px 0;
+        font-size: 40;
+      "
+    >
+      <h1 style="margin: 0">Happy</h1>
+      <h1 style="color: #fff; font-size: 16px; font-weight: normal">
+        Leve felcidade para o mundo
+      </h1>
+    </header>
 
-              <h2 class="pass">Segue a sua senha para acesso a plataforma:</h2>
+    <div
+      style="
+        background: #b3dae2;
+        height: 100%;
+        margin: 0;
+        padding: 50px;
+        box-sizing: border-box;
+      "
+    >
+      <div>
+        <h1 style="margin: 0; color: #4d6f80">Hello, tudo bem?!</h1>
 
-              <h4><h4>Password: </h2><h1>${newPassword}</h1></h2>
+        <h1 style="color: #4d6f80; font-size: 24px; font-weight: normal">
+          Segue a sua nova senha para acesso a plataforma:
+        </h1>
 
-              <p>
-                E lembre-se, senha é algo secreto, não compartilhe com ninguém! :)
-              </p>
-            </div>
+        <p style="padding: 24px 0 40px 0">
+          <strong style="font-size: 34px; color: #000; font-style: italic"
+            >${newPassword}</strong
+          >
+        </p>
+        <div
+          style="height: 1px; width: 100%; background: #29b6d1; margin: 40px 0"
+        ></div>
 
-            <span>Atenciosamente, equipe Happy</span>
-           </div>
-    `,
+        <h1 style="font-size: 20px; color: #4d6f80">
+          E lembre-se, senha é algo secreto, não compartilhe com ninguém! :)
+        </h1>
+        <h1
+          style="
+            font-style: italic;
+            font-weight: lighter;
+            color: #4d6f80;
+            font-size: 20px;
+          "
+        >
+          Obs: Futuramente você poderá mudar a sua senha em seu perfil
+        </h1>
+      </div>
+      <span
+        style="
+          font-size: 18px;
+          width: 100%;
+          display: inline-block;
+          text-align: right;
+        "
+        >Atenciosamente, equipe Happy</span
+      >
+    </div>
+  </body>
+</html>
+
+      `,
     }).then(
       async () => {
         const password = await bcrypt.hash(newPassword, 10);
