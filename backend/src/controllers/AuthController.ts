@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+import * as Yup from 'yup';
 
 import jwt from 'jsonwebtoken';
 
@@ -12,6 +13,17 @@ class UserController {
   async authentication(request: Request, response: Response) {
     const { email, password } = request.body;
 
+
+
+    const schema = Yup.object().shape({
+      email: Yup.string().email().required(),
+      password: Yup.string().required(),
+    });
+
+    await schema.validate({ email, password }, { abortEarly: false });
+
+
+
     const repository = getRepository(User);
 
     const user = await repository.findOne({ where: { email } });
@@ -20,7 +32,7 @@ class UserController {
       return response.status(401).json({ error: 'Unauthorized' });
     }
 
-    const isValidPassword = bcrypt.compare(password, user.password);
+    const isValidPassword = await bcrypt.compare(password, user.password);
 
     if (!isValidPassword) {
       return response.status(401).json({ error: 'Unauthorized' });

@@ -1,9 +1,11 @@
+import * as AUTH from '../../variable';
+
 const SMTP_CONFIG = {
 
-  host: 'smtp.gmail.com',
-  port: 587,
-  user: 'happyorphanages.contact@gmail.com',
-  pass: 'happycontact$$71',
+  host: AUTH.AUTH_HOST,
+  port: AUTH.AUTH_PORT,
+  user: AUTH.AUTH_USER,
+  pass: AUTH.AUTH_PASS,
 };
 
 

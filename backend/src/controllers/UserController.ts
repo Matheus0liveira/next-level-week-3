@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import * as Yup from 'yup';
 import { getRepository } from 'typeorm';
+import crypto from 'crypto';
 import bcrypt from 'bcryptjs';
 import transporter from '../utils/transporter';
 
@@ -32,7 +33,7 @@ class UserController {
     return response.json(user);
   }
 
-  async sendMail(request: Request, response: Response) {
+  async forgotPassword(request: Request, response: Response) {
     const { email } = request.body;
 
 
@@ -43,46 +44,61 @@ class UserController {
     await schema.validate({ email });
 
 
-    const repository = getRepository(User);
-    const emailExists = await repository.findOne({ where: { email } });
+    const userRepository = getRepository(User);
+    const emailExists = await userRepository.findOne({ where: { email } });
 
     if (!emailExists) {
       return response.json({ message: 'Email not exists' });
     }
 
-    
+    const newPassword = crypto.randomBytes(4).toString('hex');
 
 
+    await transporter.sendMail({
 
-    const mailSend = await transporter.sendMail({
-
-      text: 'Test send email',
-      subject: 'Email subject',
-      from: 'Equip Happy <Equip HAPPY>',
-      to: 'matheusfilho98.ms@gmail.com',
+      subject: 'Alteração de senha',
+      from: 'Equipe Happy',
+      to: `${emailExists.email}`,
       
       html: `
-       <header class="header">
-        <h1 id="title">Happy</h1>
-       </header>
+           <header class="header">
+            <h1 id="title">Happy</h1>
+           </header>
 
-       <div class="container">
-        <div>
-          <h1>Hello Matheus tudo bem?!</h1>
+           <div class="container">
+            <div>
+              <h1>Hello, tudo bem?!</h1>
 
-          <h2 class="pass">Segue a sua senha para acesso a plataforma:</h2>
+              <h2 class="pass">Segue a sua senha para acesso a plataforma:</h2>
 
-          <h4><h4>Password: </h2><h1>1234567</h1></h2>
+              <h4><h4>Password: </h2><h1>${newPassword}</h1></h2>
 
-          <p>
-            E lembre-se, senha é algo secreto, não compartilhe com ninguém! :)
-          </p>
-        </div>
+              <p>
+                E lembre-se, senha é algo secreto, não compartilhe com ninguém! :)
+              </p>
+            </div>
 
-        <span>Atenciosamente, equipe Happy</span>
-       </div>
-`,
-    });
+            <span>Atenciosamente, equipe Happy</span>
+           </div>
+    `,
+    }).then(
+      async () => {
+        const password = await bcrypt.hash(newPassword, 10);
+
+ 
+        const dataUpdate = {
+          email: emailExists.email,
+          password,
+        };
+
+        const { id } = emailExists;
+
+        const update = await userRepository.update({ id }, dataUpdate);
+        console.log(update);
+
+        return response.status(200).json({ message: 'Email sended' });
+      },
+    );
 
     
 

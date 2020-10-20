@@ -31,7 +31,7 @@ routes.post('/orphanages', upload.array('images'), OrphanagesController.create);
 
 
 routes.post('/users', UserController.store);
-routes.post('/users/sendmail', UserController.sendMail);
+routes.post('/users/forgot_password', UserController.forgotPassword);
 
 
 

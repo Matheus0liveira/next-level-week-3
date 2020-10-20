@@ -2,7 +2,6 @@ import { createTransport } from 'nodemailer';
 import SMTP_CONFIG from '../config/smtp';
 
 const transporter = createTransport({
-  service: 'gmail',
   host: SMTP_CONFIG.host,
   port: SMTP_CONFIG.port,
   secure: false,
