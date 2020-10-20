@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import * as Yup from 'yup';
 import { getRepository } from 'typeorm';
+import bcrypt from 'bcryptjs';
 import transporter from '../utils/transporter';
 
 import User from '../models/User';
@@ -32,17 +33,58 @@ class UserController {
   }
 
   async sendMail(request: Request, response: Response) {
+    const { email } = request.body;
+
+
+    const schema = Yup.object().shape({
+
+      email: Yup.string().email().required(),
+    });
+    await schema.validate({ email });
+
+
+    const repository = getRepository(User);
+    const emailExists = await repository.findOne({ where: { email } });
+
+    if (!emailExists) {
+      return response.json({ message: 'Email not exists' });
+    }
+
+    
+
+
+
     const mailSend = await transporter.sendMail({
 
       text: 'Test send email',
       subject: 'Email subject',
       from: 'Equip Happy <Equip HAPPY>',
       to: 'matheusfilho98.ms@gmail.com',
+      
+      html: `
+       <header class="header">
+        <h1 id="title">Happy</h1>
+       </header>
 
-      html: 'dwd',
+       <div class="container">
+        <div>
+          <h1>Hello Matheus tudo bem?!</h1>
+
+          <h2 class="pass">Segue a sua senha para acesso a plataforma:</h2>
+
+          <h4><h4>Password: </h2><h1>1234567</h1></h2>
+
+          <p>
+            E lembre-se, senha é algo secreto, não compartilhe com ninguém! :)
+          </p>
+        </div>
+
+        <span>Atenciosamente, equipe Happy</span>
+       </div>
+`,
     });
 
-    console.log(mailSend);
+    
 
     return response.json({ ok: true });
   }
