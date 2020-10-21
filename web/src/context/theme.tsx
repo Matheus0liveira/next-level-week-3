@@ -55,7 +55,7 @@ export const ThemeContext = createContext<PropsTheme | PropsContext>(light);
 
 const CustomThemeProvider: React.FC = ( { children } ) => {
 
-  const [ themeValues, setThemeValues] = usePersistState('theme', light);
+  const [ themeValues, setThemeValues] = usePersistState('@theme', light);
 
   return (
 

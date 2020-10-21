@@ -4,6 +4,7 @@ import React, { useEffect, useState, FormEvent, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import LayoutRestrictAccess from '../../components/LayoutRestrictAccess';
 import api from '../../services/api';
+import useUser from '../../utils/useUser';
 
 import {
   Session,
@@ -29,6 +30,8 @@ const Login = () => {
   const [unlockedButton, setUnlockedButton] = useState(false);
   const [error, setError] = useState(false);
 
+
+  const {setUser, setToken } = useUser();
 
   const history = useHistory();
 
@@ -75,18 +78,20 @@ const Login = () => {
       const { data }  = await api.post('/auth', {
          email, password
        });
+
+       console.log(data);
+
+       setUser(data.user);
+       setToken(data.token);
+
+
+       
     }catch( err ){
 
       setEmail('')
       setPassword('')
       setError(true);
     }
-
-
-     
-
-
-
 
 
     

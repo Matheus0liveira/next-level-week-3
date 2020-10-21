@@ -3,7 +3,7 @@ import usePersistState from '../utils/usePersistState';
 
 
 
-const UserContext = createContext({});
+export const UserContext = createContext({});
 
 
 
@@ -24,8 +24,8 @@ const UserProvider: React.FC = ({ children }) => {
   };
 
 
-  const [user, setUser] = usePersistState('@user', userValues);
-  const [token, setToken] = usePersistState('@token', userToken);
+  const [user, setUser] = usePersistState('@dashboard:user', userValues);
+  const [token, setToken] = usePersistState('@dashboard:token', userToken);
 
   return (
 

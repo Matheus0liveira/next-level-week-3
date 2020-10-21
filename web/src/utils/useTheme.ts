@@ -54,7 +54,7 @@ const useTheme = () => {
   const context: any = useContext(ThemeContext);
 
   
-  if (!context) throw new Error('useTheme must be used within a UserProvider');
+  if (!context) throw new Error('useTheme must be used within a ThemeProvider');
 
   const { themeValues, setThemeValues } = context;
 

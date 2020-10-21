@@ -5,6 +5,7 @@ import CustomThemeProvider from './context/theme';
 
 import 'leaflet/dist/leaflet.css';
 import Layout from './components/Layout';
+import UserProvider from './context/user';
 
 function App() {
   return (
@@ -13,11 +14,15 @@ function App() {
       <Layout>
 
         <GlobalStyle/>
-        <Routes/>
+
+        <UserProvider>
+          
+          <Routes/>
+          
+        </UserProvider>
 
       </Layout>
       
-
     </CustomThemeProvider>
   );
 }
