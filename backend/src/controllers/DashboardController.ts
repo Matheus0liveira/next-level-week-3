@@ -52,6 +52,7 @@ class DashBoardController {
       about,
       instructions,
       phone,
+      pending,
       opening_hours,
       open_on_weekends,
 
@@ -76,6 +77,7 @@ class DashBoardController {
       about,
       instructions,
       phone,
+      pending,
       opening_hours,
       open_on_weekends: open_on_weekends === 'true',
       images,
@@ -91,6 +93,7 @@ class DashBoardController {
       about: Yup.string().required().max(300),
       instructions: Yup.string().required(),
       phone: Yup.string().required(),
+      pending: Yup.bool().required(),
       opening_hours: Yup.string().required(),
       open_on_weekends: Yup.boolean().required(),
       images: Yup.array(
@@ -130,6 +133,7 @@ class DashBoardController {
       about: about || orphanage.about,
       instructions: instructions || orphanage.instructions,
       phone: phone || orphanage.phone,
+      pending: pending === 'true',
       opening_hours: opening_hours || orphanage.opening_hours,
       open_on_weekends: open_on_weekends === 'true',
       images,

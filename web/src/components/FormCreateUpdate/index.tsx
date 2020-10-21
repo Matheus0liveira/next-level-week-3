@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Dispatch, FormEvent, SetStateAction } from "react";
+import React, { ChangeEvent, Dispatch, FormEvent, SetStateAction, useState } from "react";
 
 import InputMask from "react-input-mask";
 
@@ -20,7 +20,9 @@ import {
   NewImageLabel,
   Footer,
   Button,
-  Text
+  Text,
+  ImagesMarkers,
+  ButtonMarkerSelect
 } from './styles';
 import SideBar from '../../components/SideBar';
 import { FiCheck, FiPlus, FiXCircle } from 'react-icons/fi';
@@ -28,7 +30,13 @@ import SwitchTheme from '../../components/SwitchTheme';
 import useTheme from '../../utils/useTheme';
 import { LeafletMouseEvent } from 'leaflet';
 
+import Image from '../../assets/images/map-marker.svg';
 
+import MarkerYellow from '../../assets/images/Marker-yellow.svg';
+import MarkerRed from '../../assets/images/Marker-red.svg';
+import MarkerGreen from '../../assets/images/Marker-green.svg';
+import MarkerBlue from '../../assets/images/Marker-blue.svg';
+import MarkerBlack from '../../assets/images/Marker-black.svg';
 interface PropsCreateOrphanage{
 
   name: string;
@@ -87,6 +95,8 @@ export default function CreateOrphanage({
   
 }: PropsCreateOrphanage) {
 
+  const [markerSelect, setMarkerSelect ] = useState('#FF6666');
+
   const {themeValues } = useTheme();
 
 
@@ -134,6 +144,43 @@ export default function CreateOrphanage({
 
 
 
+              <InputBlock>
+              <label>Selecione a cor do seu marcador</label>
+
+              <ImagesMarkers>
+                <ButtonMarkerSelect 
+                active={markerSelect === '#FF6666'}
+                onClick={() => setMarkerSelect('#FF6666')}
+                >
+                <img src={MarkerRed} alt="" />
+                </ButtonMarkerSelect>
+                <ButtonMarkerSelect 
+                active={markerSelect === '#68DF7B'}
+                onClick={() => setMarkerSelect('#68DF7B')}
+                >
+                <img src={MarkerGreen} alt="" />
+                </ButtonMarkerSelect>
+                <ButtonMarkerSelect 
+                active={markerSelect === '#FFD666'}
+                onClick={() => setMarkerSelect('#FFD666')}
+                >
+                <img src={MarkerYellow} alt="" />
+                </ButtonMarkerSelect>
+                <ButtonMarkerSelect 
+                active={markerSelect === '#434343'}
+                onClick={() => setMarkerSelect('#434343')}
+                >
+                <img src={MarkerBlack} alt="" />
+                </ButtonMarkerSelect>
+                <ButtonMarkerSelect 
+                active={markerSelect === '#15D3D6'}
+                onClick={() => setMarkerSelect('#15D3D6')}
+                >
+                <img src={MarkerBlue} alt="" />
+                </ButtonMarkerSelect>
+                
+              </ImagesMarkers>
+              </InputBlock>
               <InputBlock>
                 <Label htmlFor="name">Nome</Label>
                 <input

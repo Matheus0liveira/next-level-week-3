@@ -10,12 +10,15 @@ import SwitchTheme from '../../components/SwitchTheme';
 import useTheme from '../../utils/useTheme';
 
 
-import { 
+
+
+
+import {
   PageOrphanage,
-  OrphanageDetails, 
-  Images, 
-  Button, 
-  OrphanageDetailsContent, 
+  OrphanageDetails,
+  Images,
+  Button,
+  OrphanageDetailsContent,
   OpenDetails,
   Hour,
   OpenOnWeekends
@@ -23,7 +26,7 @@ import {
 import MiniMap from '../../components/MiniMap';
 
 
-interface  Orphanage {
+interface Orphanage {
   latitude: number;
   longitude: number;
   name: string;
@@ -38,7 +41,7 @@ interface  Orphanage {
   }>;
 }
 
-interface ParamsOrphanage{
+interface ParamsOrphanage {
 
   id: string;
 }
@@ -55,44 +58,44 @@ export default function Orphanage() {
 
 
   const [orphanage, setOrphanage] = useState<Orphanage>();
-  
+
 
 
 
   useEffect(() => {
 
     (async () => {
-      try{
+      try {
 
         const { data } = await api.get(`/orphanages/${params.id}`);
 
         setOrphanage(data);
 
-      }catch(e) {
+      } catch (e) {
 
-        if(e) return history.push('/notfound');
+        if (e) return history.push('/notfound');
 
       }
 
-      
-      
-    } )();
 
 
-    
-  },[history, params.id]);
-  
-  if(!orphanage){
+    })();
+
+
+
+  }, [history, params.id]);
+
+  if (!orphanage) {
     return <p>Carregando...</p>
   }
-  
+
 
 
   return (
     <PageOrphanage>
-      <SwitchTheme/>
-      <SideBar/>
-      
+      <SwitchTheme />
+      <SideBar />
+
       <main>
         <OrphanageDetails>
           <img src={orphanage.images[activeImageIndex].url} alt={orphanage.name} />
@@ -100,27 +103,28 @@ export default function Orphanage() {
           <Images>
             {orphanage.images.map((image, index) => (
 
-            <Button 
-            key={image.id} 
-            active={activeImageIndex === index ? true : false}  
-            typeStyle='image' 
-            type="button"
-            onClick={() => setActiveImageIndex(index)}
-            
-            >
+              <Button
+                key={image.id}
+                active={activeImageIndex === index}
+                typeStyle='image'
+                type="button"
+                onClick={() => setActiveImageIndex(index)}
 
-              <img src={image.url} alt={orphanage.name} />
-            </Button>
+              >
+
+                <img src={image.url} alt={orphanage.name} />
+              </Button>
 
             ))}
-         
+
           </Images>
-          
+
           <OrphanageDetailsContent>
+          
             <h1>{orphanage.name}</h1>
             <p>{orphanage.about}</p>
 
-            <MiniMap latitude={orphanage.latitude} longitude={orphanage.longitude}/>
+            <MiniMap latitude={orphanage.latitude} longitude={orphanage.longitude} />
 
             <hr />
 
@@ -136,40 +140,40 @@ export default function Orphanage() {
 
 
               {orphanage.open_on_weekends ?
-              (
-              <OpenOnWeekends open >
-                <FiInfo size={32} color={themeValues.colors.primaryWeekendsGradient} />
+                (
+                  <OpenOnWeekends open >
+                    <FiInfo size={32} color={themeValues.colors.primaryWeekendsGradient} />
                 Atendemos <br />
                 finais de semana
 
-              </OpenOnWeekends>
-               
-               )
+                  </OpenOnWeekends>
 
-               :
+                )
 
-               (
+                :
 
-                <OpenOnWeekends open={false}>
+                (
+
+                  <OpenOnWeekends open={false}>
                     <FiInfo size={32} color="#FF669D" />
                       Não Atendemos <br />
                       finais de seman
 
 
-                </OpenOnWeekends>
+                  </OpenOnWeekends>
                 )
-                }
+              }
             </OpenDetails>
 
-              <a 
-              target='_blank' 
-              rel="noopener noreferrer" 
+            <a
+              target='_blank'
+              rel="noopener noreferrer"
               href={`https://api.whatsapp.com/send?phone=+55${orphanage.phone}&text=Oi! ví seu orfanato (${orphanage.name}) no happy, como posso fazer uma visita?`}>
-            <Button type="button" typeStyle="contact">
-              <FaWhatsapp size={20} color="#FFF" />
+              <Button type="button" typeStyle="contact">
+                <FaWhatsapp size={20} color="#FFF" />
               Entrar em contato
             </Button>
-              </a>
+            </a>
           </OrphanageDetailsContent>
         </OrphanageDetails>
       </main>

@@ -11,6 +11,14 @@ interface PropsButtonForm{
   color: 'red'| 'green'
 }
 
+
+
+interface PropsButtonMarkerSelect{
+
+  active: boolean;
+
+}
+
 export const PageCreateOrphanage = styled.div`
 
   display: flex;
@@ -377,3 +385,48 @@ export const ButtonForm = styled.button<PropsButtonForm>`
 
 `;
 
+export const ImagesMarkers = styled.div`
+
+
+  padding: 10px 0;
+  display: grid;
+
+  grid-template-columns: repeat(5, 1fr);
+  justify-content:space-between;
+
+  grid-column-gap: 40px;
+
+
+
+  justify-items: stretch;
+  align-items: center;
+
+  
+  button{
+    background: none;
+    
+    cursor: pointer;
+    
+  }
+
+
+`;
+
+
+export const ButtonMarkerSelect = styled.button<PropsButtonMarkerSelect>`
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid purple;
+    border-radius: 10%;
+
+
+    ${props => props.active  && css`
+  
+    border-bottom: 4px solid purple;
+  
+  `};
+
+
+  
+`;

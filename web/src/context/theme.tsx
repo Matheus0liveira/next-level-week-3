@@ -1,6 +1,8 @@
-import { useContext } from 'react';
+import React, { createContext } from 'react';
 
-import { ThemeContext } from '../context/theme';
+import usePersistStateTheme from '../utils/usePersistStateTheme';
+
+import light from '../themes/light';
 
 interface PropsTheme{
 
@@ -48,22 +50,23 @@ interface PropsContext {
   setThemeValues: any;
 };
 
-const useTheme = () => {
+export const ThemeContext = createContext<PropsTheme | PropsContext>(light);
 
 
-  const context: any = useContext(ThemeContext);
+const CustomThemeProvider: React.FC = ( { children } ) => {
 
-  
-  if (!context) throw new Error('useTheme must be used within a UserProvider');
+  const [ themeValues, setThemeValues] = usePersistStateTheme('theme', light);
 
-  const { themeValues, setThemeValues } = context;
+  return (
 
+    <ThemeContext.Provider value={{themeValues, setThemeValues}}>
 
-  return { themeValues, setThemeValues };
+        {children}
 
-
-
+    </ThemeContext.Provider>
+  );
 };
 
 
-export default useTheme;
+
+export default CustomThemeProvider;

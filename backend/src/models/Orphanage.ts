@@ -33,12 +33,14 @@ export default class Orphanage {
   open_on_weekends: boolean;
 
   @Column()
-  pending: string;
+  pending: boolean;
 
   @Column()
   markerMap: string;
 
-  @OneToMany(() => Image, (image) => image.orphanage)
+  @OneToMany(() => Image, (image) => image.orphanage, {
+    cascade: ['insert', 'update'],
+  })
   @JoinColumn({ name: 'orphanage_id' })
   images: Image[];
 }

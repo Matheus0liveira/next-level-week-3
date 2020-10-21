@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import jwt from 'jsonwebtoken';
 
 import bcrypt from 'bcryptjs';
+import userView from '../view/User_View';
 
 import User from '../models/User';
 import { JWT_TOKEN } from '../../variable';
@@ -42,7 +43,7 @@ class UserController {
       JWT_TOKEN,
       { expiresIn: '1d' });
 
-    return response.json({ user, token });
+    return response.json({ user: userView.render(user), token });
   }
 }
 

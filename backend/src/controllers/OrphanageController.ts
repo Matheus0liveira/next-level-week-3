@@ -17,6 +17,11 @@ class OrphanageController {
       relations: ['images'],
       where: { pending: true },
     });
+
+
+    if (!orphanages) {
+      return response.json({ message: 'Not found' });
+    }
     
 
     return response.json(orphanageView.renderMany(orphanages));
@@ -27,15 +32,18 @@ class OrphanageController {
 
 
     if (!id) {
-      response.status(400).json({ message: 'Id is required' });
+      return response.status(400).json({ message: 'Id is required' });
     }
 
 
     const orphanagesRepository = getRepository(Orphanage);
 
-    const orphanages = await orphanagesRepository.findOneOrFail(id, {
+    const orphanages = await orphanagesRepository.findOneOrFail({
       relations: ['images'],
     });
+
+
+    console.log(orphanages.images);
 
 
     return response.json(orphanageView.render(orphanages));
@@ -56,6 +64,9 @@ class OrphanageController {
 
     } = request.body;
 
+
+   
+
     const orphanagesRepository = getRepository(Orphanage);
 
     const resquestImages = request.files as Express.Multer.File[];
@@ -63,6 +74,7 @@ class OrphanageController {
     const images = resquestImages.map((image) => ({
       path: image.filename,
     }));
+
 
     const data = {
       name,
@@ -98,6 +110,9 @@ class OrphanageController {
     });
 
     const orphanages = orphanagesRepository.create(data);
+
+
+    console.log(orphanages);
 
     await orphanagesRepository.save(orphanages);
 

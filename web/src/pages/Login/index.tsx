@@ -1,8 +1,9 @@
-import React, { useEffect, useState, FormEvent } from 'react';
+import React, { useEffect, useState, FormEvent, useRef } from 'react';
 
 
 import { Link, useHistory } from 'react-router-dom';
 import LayoutRestrictAccess from '../../components/LayoutRestrictAccess';
+import api from '../../services/api';
 
 import {
   Session,
@@ -11,7 +12,8 @@ import {
   InputContainer, 
   Footer, 
   ContentFooter,
-  Button
+  Button,
+  Error
 } from './styles';
 
 
@@ -24,7 +26,9 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [remember, setRemeber] = useState(false);
-  const [realeaseButton, setRealeaseButton] = useState(false);
+  const [unlockedButton, setUnlockedButton] = useState(false);
+  const [error, setError] = useState(false);
+
 
   const history = useHistory();
 
@@ -33,15 +37,18 @@ const Login = () => {
 
     
     
-    if(validateEmail(email) && password.length > 5){
-      return setRealeaseButton(true);
+     if(validateEmail(email) && password.length > 5){
+      setError(false);
+      return setUnlockedButton(true);
     };
 
-    return setRealeaseButton(false);
+    return setUnlockedButton(false);
 
 
   },[email, password]);
 
+
+ 
 
 
   const validateEmail = (email: string) => {
@@ -54,17 +61,36 @@ const Login = () => {
 
 
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-
-
-    if(!realeaseButton){
+    setError(false);
+    
+    
+    if(!unlockedButton){
       return;
+    }
+    
+    try{
+      
+      const { data }  = await api.post('/auth', {
+         email, password
+       });
+    }catch( err ){
+
+      setEmail('')
+      setPassword('')
+      setError(true);
     }
 
 
+      // console.log(data);
+
+
+
+
+
     
-    history.push('/restrict/dashboard/orphanages');
+    // history.push('/restrict/dashboard/orphanages');
     
  
   }
@@ -130,7 +156,13 @@ const Login = () => {
             
           </Footer>
 
-          <Button type='submit' realease={realeaseButton}>Entrar</Button >
+          <Error>{error && 'Email ou senha inválido'}</Error>
+
+          <Button 
+          type='submit' 
+          err={error}
+          unlocked={unlockedButton}
+          >Entrar</Button >
 
         </Form>
 

@@ -29,6 +29,7 @@ const light = {
 
       primaryBorderSelectButton: '#A1E9C5',
       primarySelectButtonBg: '#EDFFF6',
+      primarySelectButton: '#EDFFF6',
 
 
       primarycontentButton: '#8D734B',
