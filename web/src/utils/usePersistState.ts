@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 
 
-const usePersistStateTheme = (key: string, initialValue: object) => {
+const usePersistState = (key: string, initialValue: object) => {
 
   const [state, setState] = useState(() => {
 
@@ -29,4 +29,4 @@ const usePersistStateTheme = (key: string, initialValue: object) => {
 
 
 
-export default usePersistStateTheme;
+export default usePersistState;
