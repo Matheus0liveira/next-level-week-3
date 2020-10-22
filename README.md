@@ -73,7 +73,7 @@ This week's project was Happy, a project focused on orphanages, with the goal of
 
 [x] Custom Alerts depending on the status of routes (Web).
 
-- ([x]) Change password if lost (Dashboard).
+- [x] Change password if lost (Dashboard).
 
 <hr/>
 <br/>
