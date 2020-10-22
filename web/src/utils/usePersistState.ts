@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 
 
-const usePersistState = (key: string, initialValue: object) => {
+const usePersistState = (key: string, initialValue: object | string) => {
 
   const [state, setState] = useState(() => {
 
@@ -19,7 +19,7 @@ const usePersistState = (key: string, initialValue: object) => {
 
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(state))
+    localStorage.setItem(key, JSON.stringify(state));
   },[key, state]);
 
 

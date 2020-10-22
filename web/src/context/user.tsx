@@ -8,24 +8,10 @@ export const UserContext = createContext({});
 
 
 const UserProvider: React.FC = ({ children }) => {
-  
-  const userValues = {
-    id: '',
-    name: '',
-    email: '',
-  
-  
-  };
-  
-  const userToken = {
-    token: ''
-  
-  
-  };
 
 
-  const [user, setUser] = usePersistState('@dashboard:user', userValues);
-  const [token, setToken] = usePersistState('@dashboard:token', userToken);
+  const [user, setUser] = usePersistState('@dashboard:user', '');
+  const [token, setToken] = usePersistState('@dashboard:token', '');
 
   return (
 

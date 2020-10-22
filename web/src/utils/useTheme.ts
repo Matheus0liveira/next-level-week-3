@@ -42,12 +42,6 @@ interface PropsTheme{
 
 }
 
-interface PropsContext {
-
-  themeValues: PropsTheme;
-  setThemeValues: any;
-};
-
 const useTheme = () => {
 
 
