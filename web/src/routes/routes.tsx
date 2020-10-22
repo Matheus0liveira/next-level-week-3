@@ -46,7 +46,7 @@ const Routes = () => {
 
         <Route isPrivate={true} exact path='/restrict/dashboard/orphanages' component={DashBoard}/>
 
-        <Route isPrivate={true} exact path='/restrict/dashboard/orphanages/new-orphanage' component={NewOrphanage}/>
+        <Route isPrivate={true} exact path='/restrict/dashboard/orphanages/new-orphanage/:id' component={NewOrphanage}/>
 
         <Route isPrivate={true} exact path='/restrict/dashboard/orphanages/delete-orphanage/:nameOrphanage/:id' component={DeleteOrphanage}/>
 

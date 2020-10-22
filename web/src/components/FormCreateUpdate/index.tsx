@@ -97,6 +97,9 @@ export default function CreateOrphanage({
 
   const {themeValues } = useTheme();
 
+
+
+
   return (
 
   <>
@@ -113,7 +116,7 @@ export default function CreateOrphanage({
               <legend>Dados</legend>
 
               <Map
-                center={[location.latitude, location.longitude]}
+                center={[position.latitude, position.longitude]}
                 style={{ width: '100%', height: 280 }}
                 zoom={15}
                 onClick={handleMapClick}
@@ -122,14 +125,14 @@ export default function CreateOrphanage({
                   url={`https://api.mapbox.com/styles/v1/mapbox/${themeValues.name}-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
                 />
 
-                {location.latitude !== 0 && (
+                {position.latitude !== 0 && (
 
                   <Marker
                     interactive={false}
                     icon={mapIcon}
                     position={[
-                      location.latitude,
-                      location.longitude
+                      position.latitude,
+                      position.longitude
                     ]}
                   />
 
@@ -224,15 +227,14 @@ export default function CreateOrphanage({
 
                 <ImagesContainer>
 
-                  {/* {previewImages.map((image, index) => (
+                  {previewImages.map((image, index) => (
                     
-                   <>
-                   {console.log('PREVIEW', image)}
+                  
                     <img key={image} src={image} alt="" />
-                   </>
+             
                    
                   ))}
-                    */}
+                   
 
                   <NewImageLabel htmlFor='image[]'>
                     <FiPlus size={24} color={themeValues.colors.secondarycontentButton} />

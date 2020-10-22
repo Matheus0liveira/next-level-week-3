@@ -62,8 +62,6 @@ class UserController {
 
     const dataUpdate = {
 
-      email: emailExists.email,
-      password: emailExists.password,
       resetToken: token,
       resetTokenExpires: String(dateNow),
 

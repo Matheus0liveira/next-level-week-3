@@ -38,15 +38,20 @@ class OrphanageController {
 
     const orphanagesRepository = getRepository(Orphanage);
 
-    const orphanages = await orphanagesRepository.findOneOrFail({
+    const orphanage = await orphanagesRepository.findOne({
       relations: ['images'],
+      where: { id },
     });
 
+    if (!orphanage) {
+      return response.status(400).json({ message: 'orphanage not exists' });
+    }
 
-    console.log(orphanages.images);
+
+    console.log(orphanage.images);
 
 
-    return response.json(orphanageView.render(orphanages));
+    return response.json(orphanageView.render(orphanage));
   }
 
 

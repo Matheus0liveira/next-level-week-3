@@ -2,7 +2,7 @@ import { LeafletMouseEvent } from 'leaflet';
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import FormCreateupdate from '../../components/FormCreateUpdate'
+import FormCreateUpdate from '../../components/FormCreateUpdate'
 import api from '../../services/api';
 
 import { CreateOrphanagePage } from './styles';
@@ -20,7 +20,7 @@ const CreateOrpanage = () => {
   const [opening_hours, setOpeningHours] = useState('');
   const [open_on_weekends, setOpenOnWeekends] = useState(true);
   const [images, setImages] = useState<File[]>([]);
-  const [previewImages, setpreviewImages] = useState<string[]>([]);
+  const [previewImages, setPreviewImages] = useState<string[]>([]);
 
 
   const history = useHistory();
@@ -86,7 +86,7 @@ const CreateOrpanage = () => {
       return URL.createObjectURL(image);
     });
     
-    setpreviewImages(selectImagesPreview);
+    setPreviewImages(selectImagesPreview);
     
     
   };
@@ -133,7 +133,7 @@ const CreateOrpanage = () => {
 
   <CreateOrphanagePage>
 
-    <FormCreateupdate
+    <FormCreateUpdate
      name={name}
      setName={setName}
      about={about}
