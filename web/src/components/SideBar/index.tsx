@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState } from 'react';
 import { FiArrowLeft, FiMapPin, FiAlertCircle, FiPower } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 
-import { Aside, Footer, Main, Alert, Button } from './styles';
+import { Aside, Footer, Main, Button } from './styles';
 
 import mapMarkerImg from '../../assets/images/map-marker.svg';
 import SwitchTheme from '../SwitchTheme';
@@ -10,7 +10,7 @@ import SwitchTheme from '../SwitchTheme';
 
 interface PropsSideBar{
 
-  page?: string
+  page?: string;
 
 };
 
@@ -63,7 +63,8 @@ const SideBar = ({ page = 'default' } : PropsSideBar) => {
             <Link to='/restrict/dashboard/pending'>
               <Button active={selectPage === 'pending'} type="button">
                 <FiAlertCircle size={24} color="#FFF" />
-                <Alert/>
+             
+                
               </Button>
             </Link>
             

@@ -112,13 +112,3 @@ export const Button = styled.button<PropsButton>`
 
  
 `;
-export const Alert = styled.div`
-  position: absolute;
-  top: 13px;
-  right: 13px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #FFD666;
-
-`;

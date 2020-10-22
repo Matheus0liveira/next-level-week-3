@@ -78,7 +78,6 @@ const DashBoard = () => {
   }, [history, token]);
 
 
-  // console.log(orphanages) 
 
   return (
 

@@ -31,6 +31,18 @@ const EditOrphanage = () => {
     longitude: -49.6401092
   });
   
+  
+
+  useEffect(() => {
+
+     ( async() => {
+
+      const { data } = api.get('/');
+
+     })()
+    
+
+  } ,[]);
 
   useEffect(() => {
 

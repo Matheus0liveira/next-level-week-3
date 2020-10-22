@@ -15,7 +15,7 @@ const LayoutDashBoard: React.FC<PropsLayoutDashBoard> = ({ children, titleHeader
   return (
     
     <>
-      <SideBar page='dashboard'/>
+      <SideBar  page='dashboard'/>
       <LayoutPage>
 
         <Container>

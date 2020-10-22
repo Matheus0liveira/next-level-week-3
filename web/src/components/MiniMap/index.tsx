@@ -83,7 +83,7 @@ const MiniMap = ({ page='default', latitude, longitude, idOrphanage, nameOrphana
 
                   <Footer page='dashboard'>
 
-                    <h1>Orf. Esperança</h1>
+                    <h1>{nameOrphanage}</h1>
 
                     <div>
                       <Link to='/restrict/dashboard/orphanages/new-orphanage'> 

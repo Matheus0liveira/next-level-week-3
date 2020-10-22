@@ -48,7 +48,7 @@ export const Container = styled.div`
 
 
 
-export const NotFoundOrpanages = styled.div`
+export const NotFoundOrphanages = styled.div`
   
   width: 100%;
   /* max-width: 1100px; */
