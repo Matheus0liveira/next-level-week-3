@@ -8,7 +8,6 @@ import { FiEdit3, FiTrash, FiArrowRight } from 'react-icons/fi';
 
 import { MapContainer, Footer, Button } from './styles';
 import { Link } from 'react-router-dom';
-import Orphanage from '../../pages/Orphanage';
 
 
 

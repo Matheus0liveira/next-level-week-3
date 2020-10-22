@@ -30,8 +30,6 @@ import SwitchTheme from '../../components/SwitchTheme';
 import useTheme from '../../utils/useTheme';
 import { LeafletMouseEvent } from 'leaflet';
 
-import Image from '../../assets/images/map-marker.svg';
-
 import MarkerYellow from '../../assets/images/Marker-yellow.svg';
 import MarkerRed from '../../assets/images/Marker-red.svg';
 import MarkerGreen from '../../assets/images/Marker-green.svg';
