@@ -59,9 +59,6 @@ const PendingEntries = () => {
 
         setOrphanages(data);
      
-       
-        
-
 
       }catch{
        

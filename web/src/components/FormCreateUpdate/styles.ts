@@ -418,7 +418,6 @@ export const ButtonMarkerSelect = styled.button<PropsButtonMarkerSelect>`
     border-left: none;
     border-right: none;
     border-bottom: 1px solid purple;
-    border-radius: 10%;
 
 
     ${props => props.active  && css`

@@ -125,7 +125,7 @@ class UserController {
         <h1 style="margin: 0; color: #4d6f80">Hello, tudo bem?!</h1>
 
         <h1 style="color: #4d6f80; font-size: 24px; font-weight: normal">
-          <a href="http://localhost:3000/${token}">
+          <a href="http://localhost:3000/restrict/edit_password/${token}">
             Clique aqui</a
           >
           para redefinir sua senha!

@@ -40,7 +40,7 @@ const Routes = () => {
 
         <Route  exact path='/restrict/forgotpassword' component={ForgotPassword}/>
         
-        <Route  exact path='/restrict/edit_password/:id' component={ResetPassword}/>
+        <Route  exact path='/restrict/edit_password/:token' component={ResetPassword}/>
 
 
 
@@ -52,7 +52,7 @@ const Routes = () => {
 
         <Route isPrivate={true} exact path='/restrict/dashboard/pending' component={PendingEntries}/>
         
-        <Route isPrivate={true} exact path='/restrict/dashboard/pending/edit' component={EditOrphanage}/>
+        <Route isPrivate={true} exact path='/restrict/dashboard/pending/edit/:id' component={EditOrphanage}/>
 
 
         <Route exact path='/*' component={NotFound}/>

@@ -1,5 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { css } from "@emotion/core";
+import PuffLoader from "react-spinners/PuffLoader";
 import LayoutRestrictAccess from '../../components/LayoutRestrictAccess';
+import api from '../../services/api';
 
 
 import { Session, Form, Text, InputContainer, Button} from './styles';
@@ -9,7 +14,11 @@ const ForgotPassword = () => {
 
 
   const [email, setEmail] = useState('');
-  const [realeaseButton, setRealeaseButton] = useState(false);
+  const [unlockButton, setUnlockButton] = useState(false);
+  const [ loadingButton, setLoadingButton ] = useState(false);
+
+
+  const history = useHistory();
 
 
   useEffect(()=>{
@@ -17,13 +26,14 @@ const ForgotPassword = () => {
     
     
     if(validateEmail(email)){
-      return setRealeaseButton(true);
+      return setUnlockButton(true);
     };
 
-    return setRealeaseButton(false);
+    return setUnlockButton(false);
 
 
   },[email]);
+
 
 
 
@@ -38,9 +48,52 @@ const ForgotPassword = () => {
 
 
 
-  const handleSubmit = () => {
-    return 
+  const handleSubmit = async (event: FormEvent) => {
+   event.preventDefault();
+
+
+    if(!validateEmail(email)){
+      return setUnlockButton(false);
+    };
+
+    setLoadingButton(true);
+    setUnlockButton(false);
+    await api.post('/users/forgot_password', {
+        email
+    }).catch(() => {
+      
+      toast.error(`📬 Erro no servidor - ( 500 )`,{ 
+        position: toast.POSITION.BOTTOM_RIGHT,
+        closeOnClick: true,  
+
+      });
+
+
+      history.push('/');
+    }
+    );
+
+
+
+    toast.info(`📬 Enviamos um link para: ${email}, verifique sua caixa de entrada!`,{ 
+      position: toast.POSITION.BOTTOM_RIGHT,
+      closeOnClick: true,  
+
+    });
+
+
+    history.push('/restrict/login');
+     
   }
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: #FFF;
+  color: #FFF;
+  /* width: 10px; 
+  height: 10px; */
+`;
+  
 
 
   return (
@@ -74,8 +127,28 @@ const ForgotPassword = () => {
           </InputContainer>
 
           
-          <Button type='submit' realease={realeaseButton}>Enviar</Button >
+          <Button type='submit' realease={unlockButton}>
+            { !loadingButton ? 
+            (
 
+             <span>Enviar</span>
+
+            ) 
+            :
+            (
+
+              <PuffLoader
+              css={override}
+              size={40}
+              color='#FFF'
+              loading={true}
+            />
+
+
+            )}
+            
+            
+            </Button >
         </Form>
 
       </Session>

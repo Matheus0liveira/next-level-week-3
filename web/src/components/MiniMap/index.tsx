@@ -8,6 +8,7 @@ import { FiEdit3, FiTrash, FiArrowRight } from 'react-icons/fi';
 
 import { MapContainer, Footer, Button } from './styles';
 import { Link } from 'react-router-dom';
+import Orphanage from '../../pages/Orphanage';
 
 
 
@@ -55,7 +56,7 @@ const MiniMap = ({ page='default', latitude, longitude, idOrphanage, nameOrphana
                   <div>
 
 
-                    <Link to='/restrict/dashboard/pending/edit'>
+                    <Link to={`/restrict/dashboard/pending/edit/${idOrphanage}`}>
                       
                       <Button>
                         <FiEdit3 size={24} color={themeValues.colors.secondarycontentButton}/>

@@ -6,6 +6,7 @@ import { Aside, Footer, Main, Button } from './styles';
 
 import mapMarkerImg from '../../assets/images/map-marker.svg';
 import SwitchTheme from '../SwitchTheme';
+import { toast } from 'react-toastify';
 
 
 interface PropsSideBar{
@@ -35,6 +36,25 @@ const SideBar = ({ page = 'default' } : PropsSideBar) => {
      setSelectPage(param);
 
   },[history.location.pathname]);
+
+
+
+
+  const handleLeftDashBoard = () => {
+    localStorage.removeItem('@dashboard:token');
+    localStorage.removeItem('@dashboard:user');
+
+    toast.success('Você saiu, volte sempre!!',{ 
+          position: toast.POSITION.BOTTOM_RIGHT,
+          closeOnClick: true,    
+
+    });
+        history.push('/');
+ 
+  };
+
+
+        
 
 
 
@@ -72,7 +92,7 @@ const SideBar = ({ page = 'default' } : PropsSideBar) => {
           </Main>
           <Footer>
             <SwitchTheme styleSwitch={false}/>
-            <button type="button" onClick={() => {}}>
+            <button type="button" onClick={handleLeftDashBoard}>
               <FiPower size={24} color="#FFF" />
             </button>
 

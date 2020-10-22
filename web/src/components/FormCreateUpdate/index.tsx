@@ -99,7 +99,6 @@ export default function CreateOrphanage({
 
   const {themeValues } = useTheme();
 
-
   return (
 
   <>
@@ -109,7 +108,7 @@ export default function CreateOrphanage({
         <SideBar />
 
         <main>
-          <Text> Editar perfil de 7 Dias de Glória </Text>
+          <Text> Editar perfil de {name} </Text>
           
           <CreateOrphanageForm onSubmit={handleForm}>
             <fieldset>
@@ -125,14 +124,14 @@ export default function CreateOrphanage({
                   url={`https://api.mapbox.com/styles/v1/mapbox/${themeValues.name}-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
                 />
 
-                {position.latitude !== 0 && (
+                {location.latitude !== 0 && (
 
                   <Marker
                     interactive={false}
                     icon={mapIcon}
                     position={[
-                      position.latitude,
-                      position.longitude
+                      location.latitude,
+                      location.longitude
                     ]}
                   />
 
@@ -148,31 +147,36 @@ export default function CreateOrphanage({
               <label>Selecione a cor do seu marcador</label>
 
               <ImagesMarkers>
-                <ButtonMarkerSelect 
+                <ButtonMarkerSelect
+                type='button' 
                 active={markerSelect === '#FF6666'}
                 onClick={() => setMarkerSelect('#FF6666')}
                 >
                 <img src={MarkerRed} alt="" />
                 </ButtonMarkerSelect>
-                <ButtonMarkerSelect 
+                <ButtonMarkerSelect
+                type='button' 
                 active={markerSelect === '#68DF7B'}
                 onClick={() => setMarkerSelect('#68DF7B')}
                 >
                 <img src={MarkerGreen} alt="" />
                 </ButtonMarkerSelect>
-                <ButtonMarkerSelect 
+                <ButtonMarkerSelect
+                type='button' 
                 active={markerSelect === '#FFD666'}
                 onClick={() => setMarkerSelect('#FFD666')}
                 >
                 <img src={MarkerYellow} alt="" />
                 </ButtonMarkerSelect>
-                <ButtonMarkerSelect 
+                <ButtonMarkerSelect
+                type='button' 
                 active={markerSelect === '#434343'}
                 onClick={() => setMarkerSelect('#434343')}
                 >
                 <img src={MarkerBlack} alt="" />
                 </ButtonMarkerSelect>
-                <ButtonMarkerSelect 
+                <ButtonMarkerSelect
+                type='button' 
                 active={markerSelect === '#15D3D6'}
                 onClick={() => setMarkerSelect('#15D3D6')}
                 >
@@ -222,10 +226,15 @@ export default function CreateOrphanage({
 
                 <ImagesContainer>
 
-                  {previewImages.map((image, index) => (
+                  {/* {previewImages.map((image, index) => (
+                    
+                   <>
+                   {console.log('PREVIEW', image)}
                     <img key={image} src={image} alt="" />
-                  
+                   </>
+                   
                   ))}
+                    */}
 
                   <NewImageLabel htmlFor='image[]'>
                     <FiPlus size={24} color={themeValues.colors.secondarycontentButton} />

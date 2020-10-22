@@ -1,7 +1,7 @@
 import React, { useEffect, useState, FormEvent } from 'react';
 
 
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import LayoutRestrictAccess from '../../components/LayoutRestrictAccess';
 
 import {
@@ -24,7 +24,7 @@ const ResetPassword = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [remember, setRemeber] = useState(false);
-  const [realeaseButton, setRealeaseButton] = useState(false);
+  const [unlockButton, setUnlockButton] = useState(false);
 
   const history = useHistory();
 
@@ -34,10 +34,10 @@ const ResetPassword = () => {
     
     
     if(validateEmail(email) && password.length > 5){
-      return setRealeaseButton(true);
+      return setUnlockButton(true);
     };
 
-    return setRealeaseButton(false);
+    return setUnlockButton(false);
 
 
   },[email, password]);
@@ -58,16 +58,17 @@ const ResetPassword = () => {
     event.preventDefault();
 
 
-    if(!realeaseButton){
+    if(!unlockButton){
       return;
     }
 
 
     
-    history.push('/restrict/dashboard/orphanages');
+    history.push('/restrict/dashboard/orphanages'); 
     
  
-  }
+  };
+
 
 
   return (  
@@ -127,7 +128,7 @@ const ResetPassword = () => {
             
           </Footer>
 
-          <Button type='submit' realease={realeaseButton}>Redefir</Button >
+          <Button type='submit' realease={unlockButton}>Redefir</Button >
 
         </Form>
 

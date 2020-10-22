@@ -1,12 +1,14 @@
 import { LeafletMouseEvent } from 'leaflet';
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
-import FormCreateupdate from '../../../components/FormCreateUpdate'
+import FormCreateUpdate from '../../../components/FormCreateUpdate';
 import api from '../../../services/api';
 
 
-
+interface PropsParams{
+  id: string;
+}
 
 const EditOrphanage = () => {
 
@@ -20,15 +22,17 @@ const EditOrphanage = () => {
   const [opening_hours, setOpeningHours] = useState('');
   const [open_on_weekends, setOpenOnWeekends] = useState(true);
   const [images, setImages] = useState<File[]>([]);
-  const [previewImages, setpreviewImages] = useState<string[]>([]);
+  const [previewImages, setPreviewImages] = useState<string[]>([]);
 
 
   const history = useHistory();
 
+  const { id } = useParams() as PropsParams;
+
 
   const [location, setLocation ] = useState({
-    latitude: -27.2092052,
-    longitude: -49.6401092
+    latitude: 0,
+    longitude:0
   });
   
   
@@ -37,12 +41,32 @@ const EditOrphanage = () => {
 
      ( async() => {
 
-      const { data } = api.get('/');
+      const { data } = await api.get(`/orphanages/${id}`);
+
+      if(!data) return history.push('/restrict/dashboard/orphanages');
+
+      
+      setName(data.name);
+      setAbout(data.about);
+      setInstructions(data.instructions);
+      setPhone(data.phone);
+      setOpeningHours(data.opening_hours);
+      setOpenOnWeekends(data.open_on_weekends);
+      setImages(data.images);
+      setPreviewImages(data.images);
+      setLocation({ latitude: data.latitude, longitude: data.longitude});
 
      })()
-    
+     
+    } ,[history, id]);
 
-  } ,[]);
+
+    console.log(previewImages);
+
+
+
+
+
 
   useEffect(() => {
 
@@ -63,14 +87,14 @@ const EditOrphanage = () => {
 
 
 
-
+  
 
   const handleMapClick = (event: LeafletMouseEvent) => {
  
 
-    const { lat, lng } = event.latlng
+    const { lat, lng } = event.latlng;
 
-    setPosition({
+    setLocation({
       latitude: lat,
       longitude: lng
     });
@@ -79,8 +103,6 @@ const EditOrphanage = () => {
 
 
   const handleSelectImage = (event: ChangeEvent<HTMLInputElement>) => {
-
-   
 
 
     if (!event.target.files) return;
@@ -98,7 +120,7 @@ const EditOrphanage = () => {
       return URL.createObjectURL(image);
     });
     
-    setpreviewImages(selectImagesPreview);
+    setPreviewImages(selectImagesPreview);
     
     
   };
@@ -110,7 +132,7 @@ const EditOrphanage = () => {
 
 
 
-    const { latitude, longitude } = position;
+    const { latitude, longitude } = location;
 
     const data = new FormData();
 
@@ -123,8 +145,6 @@ const EditOrphanage = () => {
     data.append('opening_hours', opening_hours);
     data.append('open_on_weekends', String(open_on_weekends));
 
-
-    console.log(data);
 
     images.forEach(image => {
 
@@ -142,10 +162,9 @@ const EditOrphanage = () => {
   return (
 
 
-
   <div>
 
-    <FormCreateupdate
+    <FormCreateUpdate
      name={name}
      setName={setName}
      about={about}
