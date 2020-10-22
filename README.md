@@ -41,11 +41,11 @@ This week's project was Happy, a project focused on orphanages, with the goal of
 
 ### Main features
 
-&rarr; Map showing all registered orphanages and their location.
+- [x] Map showing all registered orphanages and their location.
 
-&rarr; Register orphanage showing on the map in your location.
+- [x] Register orphanage showing on the map in your location.
 
-&rarr; Page showing details of the orphanage (name, about, available time, whatsapp contact ...).
+- [x] Page showing details of the orphanage (name, about, available time, whatsapp contact ...).
 
 <br/>
 
