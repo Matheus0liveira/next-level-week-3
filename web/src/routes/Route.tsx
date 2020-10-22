@@ -1,15 +1,16 @@
-import React, { Component} from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 
 
-import { Redirect, Route, Router } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 
 
 interface PropsRoute{
   redirectTo: string;
   isPrivate: boolean;
-  component: React.ComponentClass;
+  component: Function;
+  path: string;
   exact: boolean;
 
 }
@@ -17,14 +18,11 @@ interface PropsRoute{
 const RouteWrapper = ({ redirectTo, isPrivate, component: Component, ...rest }: PropsRoute) => {
 
 
-  const token = localStorage.getItem('@dashboard:token');
+  const authenticated = localStorage.getItem('@dashboard:token');
 
-  if(!token && isPrivate) return <Redirect to={redirectTo} />;
+  console.log(authenticated);
 
-
-
-
-
+  if(!authenticated && isPrivate) return <Redirect to={redirectTo} />;
   
     return <Route {...rest} render={props => <Component {...props} />} />;
 };
