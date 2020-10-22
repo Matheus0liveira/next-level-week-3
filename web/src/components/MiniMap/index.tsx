@@ -15,10 +15,12 @@ interface PropsMiniMap{
   page?: string;
   latitude: number;
   longitude: number;
+  idOrphanage?: string;
+  nameOrphanage?: string;
 };
 
 
-const MiniMap = ({ page='default', latitude, longitude} : PropsMiniMap) => {
+const MiniMap = ({ page='default', latitude, longitude, idOrphanage, nameOrphanage} : PropsMiniMap) => {
 
 
   const { themeValues } = useTheme();
@@ -48,7 +50,7 @@ const MiniMap = ({ page='default', latitude, longitude} : PropsMiniMap) => {
 
                 <Footer page='dashboard'>
 
-                  <h1>Orf. Esperança</h1>
+                  <h1>{nameOrphanage}</h1>
 
                   <div>
 
@@ -61,7 +63,7 @@ const MiniMap = ({ page='default', latitude, longitude} : PropsMiniMap) => {
 
                     </Link>
                     
-                    <Link to='/restrict/dashboard/orphanages/delete-orphanage'>
+                    <Link to={`/restrict/dashboard/orphanages/delete-orphanage/${nameOrphanage}/${idOrphanage}`}>
 
                       <Button>
                         <FiTrash size={24} color={themeValues.colors.secondarycontentButton}/>

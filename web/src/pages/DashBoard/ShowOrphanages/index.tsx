@@ -55,12 +55,12 @@ const DashBoard = () => {
 
         
    
-        return setOrphanages(data.orphanages);
+        setOrphanages(data.orphanages);
         
 
 
       }catch{
-
+       
         toast.error('Erro no servidor - ( 500 )',{ 
           position: toast.POSITION.TOP_LEFT
 
@@ -85,7 +85,13 @@ const DashBoard = () => {
       { orphanages.map(orphanage => (
 
           <MapContainer key={orphanage.id}>
-          <MiniMap page='dashboard' latitude={orphanage.latitude} longitude={orphanage.longitude}/>
+          <MiniMap 
+          page='dashboard' 
+          latitude={orphanage.latitude} 
+          longitude={orphanage.longitude}
+          idOrphanage={orphanage.id}
+          nameOrphanage={orphanage.name}
+          />
           </MapContainer>
 
       ))}

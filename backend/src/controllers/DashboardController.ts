@@ -178,12 +178,12 @@ class DashBoardController {
 
     
     if (!existsEmail) {
-      return response.status(402).json({ message: 'Email not exists' });
+      return response.status(404).json({ message: 'Email not exists' });
     }
 
 
     if (!existsOrphanage) {
-      return response.status(402).json({ message: 'Orphanage not exists' });
+      return response.status(404).json({ message: 'Orphanage not exists' });
     }
 
     await orphanageRepository.remove(existsOrphanage);
