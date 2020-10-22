@@ -12,15 +12,15 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { toast } from 'react-toastify';
 
+
 const DashBoard = () => {
 
-  const [orphanage, setOrphanage] = useState({
-    orphanages: [
+  const [orphanages, setOrphanages] = useState([
     {
       id: '',
       name: '',
-      latitude: '',
-      longitude: '',
+      latitude: 0,
+      longitude: 0,
       about: '',
       instructions: '',
       phone: '',
@@ -29,8 +29,8 @@ const DashBoard = () => {
       pending: '',
       markerMap: ''
     }
-  ]
-  });
+
+  ]);
 
   const history = useHistory();
 
@@ -53,16 +53,20 @@ const DashBoard = () => {
         { headers: { Authorization: auth}}
         );
 
-          
+        
+   
+        return setOrphanages(data.orphanages);
+        
+
 
       }catch{
 
-      toast.error('Erro no servidor - ( 500 )',{ 
-        position: toast.POSITION.TOP_LEFT
+        toast.error('Erro no servidor - ( 500 )',{ 
+          position: toast.POSITION.TOP_LEFT
 
-      });
+        });
 
-      history.push('/app');
+        return history.push('/');
 
       };
 
@@ -71,28 +75,21 @@ const DashBoard = () => {
   }, [history, token]);
 
 
-
+ 
 
   return (
 
     <>
       <LayoutDashBoard titleHeader='Orfanatos Cadastrados'>
 
-          <MapContainer>
-          <MiniMap page='dashboard' latitude={-8.8061861} longitude={-44.2194616}/>
+      { orphanages.map(orphanage => (
+
+          <MapContainer key={orphanage.id}>
+          <MiniMap page='dashboard' latitude={orphanage.latitude} longitude={orphanage.longitude}/>
           </MapContainer>
-          <MapContainer>
-          <MiniMap page='dashboard' latitude={-8.8061861} longitude={-44.2194616}/>
-          </MapContainer>
-          <MapContainer>
-          <MiniMap page='dashboard' latitude={-8.8061861} longitude={-44.2194616}/>
-          </MapContainer>
-          <MapContainer>
-          <MiniMap page='dashboard' latitude={-8.8061861} longitude={-44.2194616}/>
-          </MapContainer>
-          <MapContainer>
-          <MiniMap page='dashboard' latitude={-8.8061861} longitude={-44.2194616}/>
-          </MapContainer>
+
+      ))}
+          
 
 
       </LayoutDashBoard>
