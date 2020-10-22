@@ -44,3 +44,26 @@ export const MapContainer = styled.div`
   }
 
 `;
+
+
+export const NotFoundOrphanages = styled.div`
+  
+  width: 100%;
+  /* max-width: 1100px; */
+  
+  height: calc(90vh - 146px);
+  /* max-height: 680px; */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+
+  
+  h1{
+    color: ${props => props.theme.colors.textTirdyColor};
+    font-weight: 600;
+    font-size: 24px;
+  }
+`;

@@ -18,7 +18,7 @@ class DashBoardController {
       const pendingOrphanages = await orphanageRepository.find({ where: { pending: true } });
 
 
-      return response.status(202).json({ orphanages: pendingOrphanages });
+      return response.status(202).json(pendingOrphanages);
     }
 
 
@@ -27,7 +27,7 @@ class DashBoardController {
       const registredOrphanages = await orphanageRepository.find({ where: { pending: false } });
 
 
-      return response.status(202).json({ orphanages: registredOrphanages });
+      return response.status(202).json(registredOrphanages);
     }
 
 

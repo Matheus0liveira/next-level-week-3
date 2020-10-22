@@ -6,12 +6,13 @@ import api from '../../../services/api';
 import useUser from '../../../utils/useUser';
 
 
-import {MapContainer} from './styles';
+import {MapContainer, NotFoundOrphanages} from './styles';
 
 import 'react-toastify/dist/ReactToastify.css';
 
 import { toast } from 'react-toastify';
 
+import BadMarker from '../../../assets/images/BadMarker.svg';
 
 const DashBoard = () => {
 
@@ -53,15 +54,17 @@ const DashBoard = () => {
         { headers: { Authorization: auth}}
         );
 
-        
-   
-        setOrphanages(data.orphanages);
+        if(data.length === 0) return;
+
+        setOrphanages(data);
+     
+       
         
 
 
       }catch{
        
-        toast.error('Erro no servidor - ( 500 )',{ 
+        toast.error('Erro no servidor - ( 500 )',{
           position: toast.POSITION.TOP_LEFT
 
         });
@@ -75,26 +78,36 @@ const DashBoard = () => {
   }, [history, token]);
 
 
- 
+  // console.log(orphanages) 
 
   return (
 
     <>
       <LayoutDashBoard titleHeader='Orfanatos Cadastrados'>
+      {orphanages[0].id === '' ? (
 
-      { orphanages.map(orphanage => (
 
-          <MapContainer key={orphanage.id}>
-          <MiniMap 
-          page='dashboard' 
-          latitude={orphanage.latitude} 
-          longitude={orphanage.longitude}
-          idOrphanage={orphanage.id}
-          nameOrphanage={orphanage.name}
-          />
-          </MapContainer>
+        <NotFoundOrphanages>
+          <img src={BadMarker} alt=""/>
+          <h1>Nenhum no momento</h1>
+        </NotFoundOrphanages>
+        
+        ) : (
+          orphanages.map(orphanage => (
+   
+             <MapContainer key={orphanage.id}>
+             <MiniMap 
+             page='dashboard' 
+             latitude={orphanage.latitude} 
+             longitude={orphanage.longitude}
+             idOrphanage={orphanage.id}
+             nameOrphanage={orphanage.name}
+             />
+             </MapContainer>
+   
+         ))
 
-      ))}
+      )}
           
 
 
