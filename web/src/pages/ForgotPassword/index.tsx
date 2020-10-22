@@ -69,7 +69,7 @@ const ForgotPassword = () => {
       });
 
 
-      history.push('/');
+     return history.push('/');
     }
     );
 

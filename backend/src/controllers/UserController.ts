@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import * as Yup from 'yup';
 import { getRepository } from 'typeorm';
 import crypto from 'crypto';
+import bcrypt from 'bcryptjs';
 import UserView from '../view/User_View';
 import transporter from '../utils/transporter';
 
@@ -190,18 +191,18 @@ class UserController {
     const userRepository = getRepository(User);
 
     if (!token) {
-      return response.json({ message: 'Token not provider' });
+      return response.status(404).json({ message: 'Token not provider' });
     }
 
 
     const user = await userRepository.findOne({ where: { email } });
 
     if (!user) {
-      return response.json({ message: 'User not exists' });
+      return response.status(404).json({ message: 'User not exists' });
     }
 
     if (token !== user.resetToken) {
-      return response.json({ message: 'Tokens not match' });
+      return response.status(408).json({ message: 'Tokens not match' });
     }
     const { id } = user;
 
@@ -216,9 +217,11 @@ class UserController {
       return response.json({ message: 'Token expired' });
     }
 
+    const newPassword = await bcrypt.hash(password, 10);
+
     const data = {
       email: user.email,
-      password,
+      password: newPassword,
       resetToken: '',
       resetTokenExpires: '',
 
@@ -232,7 +235,7 @@ class UserController {
       return;
     }
 
-    return response.json(UserView.render(userUpdated));
+    return response.status(200).json(UserView.render(userUpdated));
   }
 }
 

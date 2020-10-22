@@ -1,8 +1,10 @@
 import React, { useEffect, useState, FormEvent } from 'react';
 
 
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import LayoutRestrictAccess from '../../components/LayoutRestrictAccess';
+import api from '../../services/api';
 
 import {
   Session,
@@ -16,6 +18,13 @@ import {
 
 
 
+interface PropsParams{
+
+  token: string; 
+}
+
+
+
 const ResetPassword = () => {
 
 
@@ -23,10 +32,16 @@ const ResetPassword = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [remember, setRemeber] = useState(false);
+  const [remember, setRemember] = useState(false);
   const [unlockButton, setUnlockButton] = useState(false);
 
+
+
   const history = useHistory();
+
+
+  const { token } = useParams() as PropsParams;
+
 
 
   useEffect(()=>{
@@ -43,7 +58,6 @@ const ResetPassword = () => {
   },[email, password]);
 
 
-
   const validateEmail = (email: string) => {
 
 
@@ -54,7 +68,20 @@ const ResetPassword = () => {
 
 
 
-  const handleSubmit = (event: FormEvent) => {
+
+  useEffect(() => {
+
+    if(!token){
+
+      history.push('/notfound');
+    }
+  }, [history, token]);
+
+
+  const handleSubmit = async (event: FormEvent) => {
+
+
+   
     event.preventDefault();
 
 
@@ -63,11 +90,65 @@ const ResetPassword = () => {
     }
 
 
+    try{
+
+      await api.put(`/users/reset_password/${token}`, {
+        email, password
+      });
+
+      toast.success(`Senha redefinida como sucesso`,{ 
+        position: toast.POSITION.BOTTOM_RIGHT,
+        closeOnClick: true,
+  
+        });
+        history.push('/restrict/login');
+      
+
+
     
-    history.push('/restrict/dashboard/orphanages'); 
+    }catch({ response }){
+
+      switch (response.status){
+
+        case 408 || 404: 
+        toast.warning(`Você não tem autorização para trocar a senha, solicite um link para acesso na página de: esqueci minha senha`,{ 
+        position: toast.POSITION.BOTTOM_RIGHT,
+        closeOnClick: true,
+  
+        });
+        history.push('/restrict/login'); 
+
+        break;
+
+
+        case 404: 
+
+         toast.error(`😥 Usuário não encontado, solicite uma conta para autorização `,{ 
+        position: toast.POSITION.BOTTOM_RIGHT,
+        closeOnClick: true,
+  
+        });
+        history.push('/restrict/login');
+
+        break;
+
+
+      }
+
+
+
+
+      // console.log(e);
+
+
+    }
+
+    // history.push('/restrict/dashboard/orphanages'); 
     
  
   };
+    
+
 
 
 
@@ -119,7 +200,7 @@ const ResetPassword = () => {
               name="remember" 
               id="remember"
               defaultChecked={remember}
-              onClick={() => setRemeber(!remember)}
+              onClick={() => setRemember(!remember)}
 
               />
 
