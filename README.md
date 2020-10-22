@@ -61,17 +61,17 @@ This week's project was Happy, a project focused on orphanages, with the goal of
 
 ### Future updates.
 
-[x] Add whatsapp field.
+- [x] Add whatsapp field.
 
-[ ] Add colors in the respective markers (when registering an orphanage, the author chooses the color).
+- [ ] Add colors in the respective markers (when registering an orphanage, the author chooses the color).
 
-[x] DashBoard User(Admin).
+- [x] DashBoard User(Admin).
 
-[x] Delete Orphanage (Dashboard).
+- [x] Delete Orphanage (Dashboard).
 
-[x] Authenticated routes - web/back (Dashboard).
+- [x] Authenticated routes - web/back (Dashboard).
 
-[x] Custom Alerts depending on the status of routes (Web).
+- [x] Custom Alerts depending on the status of routes (Web).
 
 - [x] Change password if lost (Dashboard).
 
