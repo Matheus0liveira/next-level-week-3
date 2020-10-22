@@ -98,7 +98,17 @@ export default function Orphanage() {
 
       <main>
         <OrphanageDetails>
-          <img src={orphanage.images[activeImageIndex].url} alt={orphanage.name} />
+          {
+            !orphanage.images ? (
+
+              <p>Sem imagens</p>
+              
+              )
+              : 
+              (
+                <img src={orphanage.images[activeImageIndex].url} alt={orphanage.name} />
+            )
+          }
 
           <Images>
             {orphanage.images.map((image, index) => (

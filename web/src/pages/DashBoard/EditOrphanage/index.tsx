@@ -61,12 +61,6 @@ const EditOrphanage = () => {
     } ,[history, id]);
 
 
-    console.log(previewImages);
-
-
-
-
-
 
   useEffect(() => {
 

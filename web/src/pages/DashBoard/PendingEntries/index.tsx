@@ -91,6 +91,7 @@ const PendingEntries = () => {
           orphanages.map(orphanage => (
    
              <MapContainer key={orphanage.id}>
+               {console.log(orphanage.id)}
              <MiniMap 
              page='dashboard/pending' 
              latitude={orphanage.latitude} 

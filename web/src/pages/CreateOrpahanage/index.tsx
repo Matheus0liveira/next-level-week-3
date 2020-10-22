@@ -119,7 +119,6 @@ const CreateOrphanage = () => {
 
     });
 
-    console.log(data);
 
     await api.post('/orphanages', data);
 

@@ -97,8 +97,6 @@ export default function CreateOrphanage({
 
   const {themeValues } = useTheme();
 
-  console.log(position)
-
   return (
 
   <>
@@ -255,7 +253,7 @@ export default function CreateOrphanage({
                   {previewImages.map((image, index) => (
                     
                   
-                    <img key={image} src={image} alt="" />
+                    <img key={index} src={image} alt="" />
              
                    
                   ))}
