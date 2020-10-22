@@ -32,16 +32,19 @@ export const PageCreateOrphanage = styled.div`
 
 export const CreateOrphanageForm = styled.form`
 
+  position: relative;
   width: 700px;
-  margin: 0px auto 0 auto;
+  margin: 0px auto 60px auto;
 
   background:${props => props.theme.colors.createOrphanageBg};
 
   border: ${props => props.theme.name === 'dark' ? '1px solid #585858' :  '1px solid #D3E2E5'};
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 
-  padding: 64px 80px;
+  padding: 64px 80px 250px 80px;
 
   overflow: hidden;
 
@@ -316,24 +319,32 @@ export const Footer = styled.footer`
 
 
   width: 100%;
+  height: 160px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
 
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  gap: 20px;
-
-  width: 700px;
-  padding: 64px 80px;
-  margin: 0 auto 64px auto;
-
+   align-items: center;
   background:${props => props.theme.colors.inputBg};
-
+  gap: 20px;
+  width: 700px;
+  margin: 30px auto 0 auto;
+  border-top: ${props => props.theme.name === 'dark' ? '1px solid #585858' :  '1px solid #D3E2E5'};
   border-left: ${props => props.theme.name === 'dark' ? '1px solid #585858' :  '1px solid #D3E2E5'};
   border-right: ${props => props.theme.name === 'dark' ? '1px solid #585858' :  '1px solid #D3E2E5'};
   border-bottom: ${props => props.theme.name === 'dark' ? '1px solid #585858' :  '1px solid #D3E2E5'};
-
+  justify-content: space-around;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  padding: 0  80px;
+
+   
+/*
+
+
+*/
 
 
 

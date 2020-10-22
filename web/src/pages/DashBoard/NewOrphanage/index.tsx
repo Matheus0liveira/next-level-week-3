@@ -4,12 +4,15 @@ import { useHistory, useParams } from 'react-router-dom';
 
 import FormCreateUpdate from '../../../components/FormCreateUpdate'
 import api from '../../../services/api';
+import useUser from '../../../utils/useUser';
 
 
 interface PropsParams{
   
   id: string;
 }
+
+
 
 const NewOrphanage = () => {
 
@@ -25,6 +28,9 @@ const NewOrphanage = () => {
   const [images, setImages] = useState<File[]>([]);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
 
+
+
+  const { token } = useUser();
 
 
   const history = useHistory();
@@ -65,9 +71,6 @@ const NewOrphanage = () => {
 
     if(!data) return;
 
-    console.log(data);
-
-
     setName(data.name);
     setAbout(data.about);
     setInstructions(data.instructions);
@@ -76,19 +79,16 @@ const NewOrphanage = () => {
     setOpenOnWeekends(data.open_on_weekends);
     setImages(data.images);
     setPosition({ latitude: data.latitude, longitude: data.longitude})
-    console.log('LAT', data.latitude, 'LONG', data.longitude)
-   })();
-
-  }, [id]);
 
 
-
-
+  })();
+  
+}, [id]);
 
   const handleMapClick = (event: LeafletMouseEvent) => {
  
 
-    const { lat, lng } = event.latlng
+    const { lat, lng } = event.latlng;
 
     setPosition({
       latitude: lat,
@@ -124,13 +124,14 @@ const NewOrphanage = () => {
   };
 
 
-  const handleForm = async (event: FormEvent) => {
+ const handleForm = async (event: FormEvent) => {
 
     event.preventDefault();
 
 
 
     const { latitude, longitude } = position;
+    const pending = true;
 
     const data = new FormData();
 
@@ -138,13 +139,13 @@ const NewOrphanage = () => {
     data.append('about', about);
     data.append('instructions', instructions);
     data.append('phone', phone);
+    data.append('pending', String(pending));
     data.append('latitude', String(latitude));
     data.append('longitude', String(longitude));
     data.append('opening_hours', opening_hours);
     data.append('open_on_weekends', String(open_on_weekends));
 
 
-    console.log(data);
 
     images.forEach(image => {
 
@@ -152,11 +153,20 @@ const NewOrphanage = () => {
 
     });
 
-    await api.post('/orphanages', data);
+      console.log(data);
+
+      const auth = `Bearer ${token} `
+
+
+
+    await api.put(`/dashboard/update/${id}`, data,
+    {
+      headers: {Authorization: auth}
+    });
 
     history.push('/orphanage/create/success');
 
-  };
+  };  
 
 
   return (

@@ -67,6 +67,7 @@ class UserController {
 
     };
 
+
     await userRepository.update({ id }, dataUpdate);
 
     

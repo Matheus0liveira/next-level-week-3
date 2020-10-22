@@ -112,7 +112,6 @@ const CreateOrpanage = () => {
     data.append('open_on_weekends', String(open_on_weekends));
 
 
-    console.log(data);
 
     images.forEach(image => {
 
@@ -120,11 +119,13 @@ const CreateOrpanage = () => {
 
     });
 
+    console.log(data);
+
     await api.post('/orphanages', data);
 
     history.push('/orphanage/create/success');
 
-  };
+  };  
 
 
   return (

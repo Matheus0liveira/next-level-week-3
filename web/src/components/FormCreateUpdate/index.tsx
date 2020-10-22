@@ -99,7 +99,6 @@ export default function CreateOrphanage({
 
 
 
-
   return (
 
   <>
@@ -109,9 +108,9 @@ export default function CreateOrphanage({
         <SideBar />
 
         <main>
+          <CreateOrphanageForm onSubmit={handleForm}>
           <Text> Editar perfil de {name} </Text>
           
-          <CreateOrphanageForm onSubmit={handleForm}>
             <fieldset>
               <legend>Dados</legend>
 
@@ -312,10 +311,9 @@ export default function CreateOrphanage({
 
             )
           }
-          </CreateOrphanageForm>
 
           {
-          page === 'newOrphanage' &&
+            page === 'newOrphanage' &&
             (
               <Footer>
                 <ButtonForm type='button' color='red'>
@@ -325,13 +323,14 @@ export default function CreateOrphanage({
                 </ButtonForm>
 
 
-                <ButtonForm type='button' color='green'>
+                <ButtonForm type='submit' color='green'>
                   <FiCheck size={24} color='#FFF'/>
                   <p>Aceitar</p>
                 </ButtonForm>
               </Footer>
             )
           }
+          </CreateOrphanageForm>
         </main>
       </PageCreateOrphanage>
     </>
