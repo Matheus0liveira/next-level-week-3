@@ -8,10 +8,10 @@ import api from '../../services/api';
 import { CreateOrphanagePage } from './styles';
 
 
-const CreateOrpanage = () => {
+const CreateOrphanage = () => {
 
 
-  const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
+  const [position, setPosition] = useState({ latitude: -12.2826141, longitude: -50.2129528});
 
   const [name, setName] = useState('');
   const [about, setAbout] = useState('');
@@ -162,4 +162,4 @@ const CreateOrpanage = () => {
 };
 
 
-export default CreateOrpanage;
+export default CreateOrphanage;

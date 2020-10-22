@@ -34,7 +34,7 @@ export const CreateOrphanageForm = styled.form`
 
   position: relative;
   width: 700px;
-  margin: 0px auto 60px auto;
+  margin: 40px auto 60px auto;
 
   background:${props => props.theme.colors.createOrphanageBg};
 
@@ -95,7 +95,7 @@ export const Text = styled.h1`
   text-align: center;
   font-weight: 600;
   font-size: 18px;
-  margin: 40px 0 ;
+  margin: 40px 0 0;
 
   color: ${props => props.theme.colors.textTirdyColor};
 `;

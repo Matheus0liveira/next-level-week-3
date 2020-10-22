@@ -97,7 +97,7 @@ export default function CreateOrphanage({
 
   const {themeValues } = useTheme();
 
-
+  console.log(position)
 
   return (
 
@@ -108,14 +108,39 @@ export default function CreateOrphanage({
         <SideBar />
 
         <main>
+          {
+            page !== 'default' &&(
+
+              <Text> Editar perfil de {name} </Text>
+
+            )
+          }
           <CreateOrphanageForm onSubmit={handleForm}>
-          <Text> Editar perfil de {name} </Text>
           
             <fieldset>
               <legend>Dados</legend>
 
               <Map
-                center={[position.latitude, position.longitude]}
+                center={
+
+                  page === 'default ' ? (
+
+                        [
+                          position.latitude,
+                          position.longitude
+                        ]
+                      )
+                      :
+
+                      (
+                        [
+                          location.latitude,
+                          location.longitude
+                        ]
+
+                      )
+
+                }
                 style={{ width: '100%', height: 280 }}
                 zoom={15}
                 onClick={handleMapClick}
@@ -130,6 +155,7 @@ export default function CreateOrphanage({
                     interactive={false}
                     icon={mapIcon}
                     position={[
+                      
                       position.latitude,
                       position.longitude
                     ]}

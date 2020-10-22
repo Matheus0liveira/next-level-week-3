@@ -12,11 +12,13 @@ import { Link } from 'react-router-dom';
 
 
 interface PropsMiniMap{
+
   page?: string;
   latitude: number;
   longitude: number;
   idOrphanage?: string;
   nameOrphanage?: string;
+
 };
 
 
