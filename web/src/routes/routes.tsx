@@ -42,9 +42,9 @@ const Routes = () => {
         
         <Route  exact path='/restrict/edit_password/:id' component={ResetPassword}/>
 
+
+
         <Route isPrivate={true} exact path='/restrict/dashboard/orphanages' component={DashBoard}/>
-
-
 
         <Route isPrivate={true} exact path='/restrict/dashboard/orphanages/new-orphanage' component={NewOrphanage}/>
 

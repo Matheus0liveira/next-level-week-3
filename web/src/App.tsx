@@ -2,6 +2,7 @@ import React from 'react';
 import Routes from './routes/routes';
 import GlobalStyle from './assets/styles/global';
 import CustomThemeProvider from './context/theme';
+import { ToastContainer } from 'react-toastify';
 
 import 'leaflet/dist/leaflet.css';
 import Layout from './components/Layout';
@@ -14,7 +15,7 @@ function App() {
       <Layout>
 
         <GlobalStyle/>
-
+        <ToastContainer/>
         <UserProvider>
           
           <Routes/>
