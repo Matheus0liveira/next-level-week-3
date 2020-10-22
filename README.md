@@ -51,11 +51,11 @@ This week's project was Happy, a project focused on orphanages, with the goal of
 
 ### Features added by me.
 
-&rarr; Switch Theme ( dark - light).
+- [x] Switch Theme ( dark - light).
 
-&rarr; Switch Theme in map ( dark - light - satelite).
+- [x] Switch Theme in map ( dark - light - satelite).
 
-&rarr; Added success page after registering an orphanage.
+- [x] Added success page after registering an orphanage.
 
 <br/>
 
