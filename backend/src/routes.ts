@@ -30,7 +30,7 @@ routes.post('/orphanages', upload.array('images'), OrphanagesController.create);
 
 
 // Session
-routes.post('/auth', AuthController.authentication);
+routes.post('/auth', AuthController.authent ication);
 
 
 // User

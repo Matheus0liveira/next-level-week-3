@@ -68,10 +68,7 @@ const Login = () => {
     event.preventDefault();
     setError(false);
     
-    
-    if(!unlockedButton){
-      return;
-    }
+   
     
     try{
       
@@ -79,23 +76,22 @@ const Login = () => {
          email, password
        });
 
-       console.log(data);
 
        setUser(data.user);
        setToken(data.token);
 
-
+       
+       history.push('/restrict/dashboard/orphanages');
        
     }catch( err ){
 
-      setEmail('')
-      setPassword('')
+      setEmail('');
+      setPassword('');
       setError(true);
     }
 
 
     
-    // history.push('/restrict/dashboard/orphanages');
     
  
   }
