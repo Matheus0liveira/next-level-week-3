@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 
 import FormCreateUpdate from '../../../components/FormCreateUpdate';
 import api from '../../../services/api';
+import useUser from '../../../utils/useUser';
 
 
 interface PropsParams{
@@ -28,6 +29,10 @@ const EditOrphanage = () => {
   const [markerMap, setMarkerMap] = useState('#FF6666');
 
 
+
+  const { token } = useUser();
+
+
   const history = useHistory();
 
   const { id } = useParams() as PropsParams;
@@ -37,6 +42,28 @@ const EditOrphanage = () => {
     latitude: 0,
     longitude:0
   });
+
+
+
+
+  useEffect(() => {
+
+    navigator.geolocation.getCurrentPosition( (position: any) => {
+
+
+      if(position){
+        const { latitude, longitude } = position.coords;
+
+
+        setLocation({latitude, longitude});
+
+      }
+    }, error => console.log(error));
+
+  
+  }, []);
+
+
   
   
 
@@ -57,6 +84,7 @@ const EditOrphanage = () => {
       setOpenOnWeekends(data.open_on_weekends);
       setImages(data.images);
       setPreviewImages(data.images);
+      setPosition({ latitude: data.latitude, longitude: data.longitude});
       setLocation({ latitude: data.latitude, longitude: data.longitude});
 
      })()
@@ -102,7 +130,7 @@ const EditOrphanage = () => {
 
     const { lat, lng } = event.latlng;
 
-    setLocation({
+    setPosition({
       latitude: lat,
       longitude: lng
     });
@@ -144,10 +172,14 @@ const EditOrphanage = () => {
 
     const data = new FormData();
 
+    const pending = true;
+
     data.append('name', name);
     data.append('about', about);
     data.append('instructions', instructions);
     data.append('phone', phone);
+    data.append('markerMap', markerMap);
+    data.append('pending', String(pending));
     data.append('latitude', String(latitude));
     data.append('longitude', String(longitude));
     data.append('opening_hours', opening_hours);
@@ -160,9 +192,17 @@ const EditOrphanage = () => {
 
     });
 
-    await api.post('/orphanages', data);
+    console.log(position);  
 
-    history.push('/orphanage/create/success');
+    const auth = `Bearer ${token}`
+
+    await api.put(`/dashboard/update/${id}`, data, {
+      headers: {
+        Authorization: auth
+      }
+    });
+
+    history.goBack();
 
   };
 
@@ -194,7 +234,7 @@ const EditOrphanage = () => {
      handleForm={handleForm}
      markerMap={markerMap}
      handleSelectColorMarker={handleSelectColorMarker}
-     page='dashboard:pending'
+     page='dashboard:edit'
      
      />
 

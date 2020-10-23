@@ -10,7 +10,12 @@ import SwitchTheme from '../../components/SwitchTheme';
 import useTheme from '../../utils/useTheme';
 
 
-
+import mapMarkerImg from '../../assets/images/map-marker.svg';
+import mapIconYellow from '../../assets/images/Marker-yellow.svg';
+import mapIconGreen from '../../assets/images/Marker-green.svg';
+import mapIconBlack from '../../assets/images/Marker-black.svg';
+import mapIconBlue from '../../assets/images/Marker-blue.svg';
+import mapIconRed from '../../assets/images/Marker-red.svg';
 
 
 import {
@@ -33,6 +38,7 @@ interface Orphanage {
   about: string;
   instructions: string;
   phone: string;
+  markerMap: string;
   opening_hours: string;
   open_on_weekends: string;
   images: Array<{
@@ -85,6 +91,37 @@ export default function Orphanage() {
 
   }, [history, params.id]);
 
+
+
+  const handleSelectMarker = (color: string) => {
+
+
+    switch(color){
+
+      case  '#FF6666':
+        return mapIconRed;
+
+      case  '#68DF7B':
+        return mapIconGreen;
+
+      case  '#FFD666':
+        return mapIconYellow;
+
+      case  '#434343':
+        return mapIconBlack;
+
+      case  '#15D3D6':
+        return mapIconBlue;
+
+
+      default:
+        return mapMarkerImg;
+        
+    };
+
+  };
+
+
   if (!orphanage) {
     return <p>Carregando...</p>
   }
@@ -99,7 +136,7 @@ export default function Orphanage() {
       <main>
         <OrphanageDetails>
           {
-            !orphanage.images ? (
+            !orphanage.images[activeImageIndex].url ? (
 
               <p>Sem imagens</p>
               
@@ -134,7 +171,12 @@ export default function Orphanage() {
             <h1>{orphanage.name}</h1>
             <p>{orphanage.about}</p>
 
-            <MiniMap latitude={orphanage.latitude} longitude={orphanage.longitude} />
+            <MiniMap 
+            latitude={orphanage.latitude} 
+            longitude={orphanage.longitude}
+            handleSelectMarker={handleSelectMarker}
+             colorMarker={orphanage.markerMap}
+             />
 
             <hr />
 

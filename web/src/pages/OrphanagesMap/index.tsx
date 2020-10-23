@@ -17,14 +17,11 @@ import useTheme from '../../utils/useTheme';
 import L from 'leaflet';
 
 
-import mapIcon from '../../utils/mapIcon';
-
-
+import mapIconYellow from '../../assets/images/Marker-yellow.svg';
+import mapIconGreen from '../../assets/images/Marker-green.svg';
 import mapIconBlack from '../../assets/images/Marker-black.svg';
 import mapIconBlue from '../../assets/images/Marker-blue.svg';
 import mapIconRed from '../../assets/images/Marker-red.svg';
-import mapIconGreen from '../../assets/images/Marker-green.svg';
-import mapIconYellow from '../../assets/images/Marker-yellow.svg';
 
 interface Orphanage {
   id: number;
@@ -56,7 +53,7 @@ const OrphanagesMap = () => {
 
   } , []);
 
-  const selectMarker = (color: string) => {
+  const handleSelectMarker = (color: string) => {
 
 
     switch(color){
@@ -80,9 +77,9 @@ const OrphanagesMap = () => {
       default:
         return mapMarkerImg;
         
-    }
+    };
 
-  }
+  };
 
 
   return (
@@ -121,7 +118,7 @@ const OrphanagesMap = () => {
               key={orphanage.id}
               icon={
                 L.icon({
-                  iconUrl: selectMarker(orphanage.markerMap),
+                  iconUrl: handleSelectMarker(orphanage.markerMap),
 
                   iconSize: [58, 68],
                   iconAnchor: [29, 68],

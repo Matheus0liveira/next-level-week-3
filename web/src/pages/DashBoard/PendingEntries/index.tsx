@@ -13,6 +13,15 @@ import api from '../../../services/api';
 import { NotFoundOrphanages, MapContainer } from './styles';
 import MiniMap from '../../../components/MiniMap';
 
+
+import mapMarkerImg from '../../../assets/images/map-marker.svg';
+import mapIconYellow from '../../../assets/images/Marker-yellow.svg';
+import mapIconGreen from '../../../assets/images/Marker-green.svg';
+import mapIconBlack from '../../../assets/images/Marker-black.svg';
+import mapIconBlue from '../../../assets/images/Marker-blue.svg';
+import mapIconRed from '../../../assets/images/Marker-red.svg';
+
+
 const PendingEntries = () => {
   
 
@@ -75,6 +84,36 @@ const PendingEntries = () => {
 
   }, [history, token]);
 
+
+
+  const handleSelectMarker = (color: string) => {
+
+
+    switch(color){
+
+      case  '#FF6666':
+        return mapIconRed;
+
+      case  '#68DF7B':
+        return mapIconGreen;
+
+      case  '#FFD666':
+        return mapIconYellow;
+
+      case  '#434343':
+        return mapIconBlack;
+
+      case  '#15D3D6':
+        return mapIconBlue;
+
+
+      default:
+        return mapMarkerImg;
+        
+    };
+
+  };
+
   return (
    <>
 
@@ -98,6 +137,8 @@ const PendingEntries = () => {
              longitude={orphanage.longitude}
              idOrphanage={orphanage.id}
              nameOrphanage={orphanage.name}
+             handleSelectMarker={handleSelectMarker}
+             colorMarker={orphanage.markerMap}
              />
              </MapContainer>
    

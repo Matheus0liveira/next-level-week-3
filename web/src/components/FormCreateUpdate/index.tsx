@@ -388,6 +388,20 @@ export default function CreateOrphanage({
 
             )
           }
+          {
+            page === 'dashboard:edit' && (
+              <>
+              <Button 
+              typeStyle="confirm" 
+              type="submit"
+              >
+                Confirmar
+              </Button>
+
+             </>
+
+            )
+          }
 
           {
             page === 'newOrphanage' &&
