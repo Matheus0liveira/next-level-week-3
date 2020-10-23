@@ -124,7 +124,14 @@ const DashBoard = () => {
   return (
 
     <>
-      <LayoutDashBoard countOrphanage={orphanages.length} titleHeader='Orfanatos Cadastrados'>
+      <LayoutDashBoard 
+        countOrphanage={orphanages[0].latitude === 0 ? 
+          orphanages.length - 1 
+          :
+          orphanages.length
+      
+        } 
+        titleHeader='Orfanatos Cadastrados'>
       {orphanages[0].id === '' ? (
 
 

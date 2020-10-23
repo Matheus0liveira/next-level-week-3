@@ -22,6 +22,8 @@ import mapIconBlue from '../../../assets/images/Marker-blue.svg';
 import mapIconRed from '../../../assets/images/Marker-red.svg';
 
 
+
+
 const PendingEntries = () => {
   
 
@@ -114,10 +116,20 @@ const PendingEntries = () => {
 
   };
 
+  console.log(orphanages[0].latitude === 0 ?  orphanages.length - 1 :  orphanages.length)
+
   return (
    <>
 
-    <LayoutDashBoard countOrphanage={orphanages.length}  titleHeader='Orfanatos Pendentes'>
+    <LayoutDashBoard 
+      countOrphanage={orphanages[0].latitude === 0 ? 
+        orphanages.length - 1 
+        :
+        orphanages.length
+      
+      }  
+
+      titleHeader='Orfanatos Pendentes'>
       {orphanages[0].id === '' ? (
 
 
