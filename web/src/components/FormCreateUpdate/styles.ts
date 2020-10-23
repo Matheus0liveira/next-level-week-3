@@ -428,12 +428,13 @@ export const ButtonMarkerSelect = styled.button<PropsButtonMarkerSelect>`
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 1px solid purple;
+    border-bottom: 1px solid #000;
+
 
 
     ${props => props.active  && css`
   
-    border-bottom: 4px solid purple;
+    border-bottom:  ${props => props.theme.name === 'dark' ? '5px solid #585858' :  '5px solid #D3E2E5'};
   
   `};
 

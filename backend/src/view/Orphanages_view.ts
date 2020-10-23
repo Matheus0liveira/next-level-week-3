@@ -13,6 +13,7 @@ export default {
       instructions: orphanage.instructions,
       phone: orphanage.phone,
       pending: orphanage.pending,
+      markerMap: orphanage.markerMap,
       opening_hours: orphanage.opening_hours,
       open_on_weekends: orphanage.open_on_weekends,
       images: imageView.renderMany(orphanage.images),

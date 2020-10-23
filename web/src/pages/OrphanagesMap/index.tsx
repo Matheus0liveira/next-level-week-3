@@ -13,14 +13,25 @@ import mapMarkerImg from '../../assets/images/map-marker.svg';
 import { FiArrowRight, FiPlus } from 'react-icons/fi';
 
 import SwitchTheme from '../../components/SwitchTheme';
-import mapIcon from '../../utils/mapIcon';
 import useTheme from '../../utils/useTheme';
+import L from 'leaflet';
+
+
+import mapIcon from '../../utils/mapIcon';
+
+
+import mapIconBlack from '../../assets/images/Marker-black.svg';
+import mapIconBlue from '../../assets/images/Marker-blue.svg';
+import mapIconRed from '../../assets/images/Marker-red.svg';
+import mapIconGreen from '../../assets/images/Marker-green.svg';
+import mapIconYellow from '../../assets/images/Marker-yellow.svg';
 
 interface Orphanage {
   id: number;
   latitude: number;
   longitude: number;
   name: string
+  markerMap: string;
 }
 
 const OrphanagesMap = () => {
@@ -45,7 +56,33 @@ const OrphanagesMap = () => {
 
   } , []);
 
-  
+  const selectMarker = (color: string) => {
+
+
+    switch(color){
+
+      case  '#FF6666':
+        return mapIconRed;
+
+      case  '#68DF7B':
+        return mapIconGreen;
+
+      case  '#FFD666':
+        return mapIconYellow;
+
+      case  '#434343':
+        return mapIconBlack;
+
+      case  '#15D3D6':
+        return mapIconBlue;
+
+
+      default:
+        return mapMarkerImg;
+        
+    }
+
+  }
 
 
   return (
@@ -82,7 +119,15 @@ const OrphanagesMap = () => {
 
             <Marker 
               key={orphanage.id}
-              icon={mapIcon}
+              icon={
+                L.icon({
+                  iconUrl: selectMarker(orphanage.markerMap),
+
+                  iconSize: [58, 68],
+                  iconAnchor: [29, 68],
+                  popupAnchor: [0, -60]
+                })
+              }
               position={[orphanage.latitude, orphanage.longitude]}
             >
           

@@ -64,6 +64,7 @@ class OrphanageController {
       about,
       instructions,
       phone,
+      markerMap,
       opening_hours,
       open_on_weekends,
 
@@ -88,6 +89,7 @@ class OrphanageController {
       about,
       instructions,
       phone,
+      markerMap,
       opening_hours,
       open_on_weekends: open_on_weekends === 'true',
       images,
@@ -100,6 +102,7 @@ class OrphanageController {
       about: Yup.string().required().max(300),
       instructions: Yup.string().required(),
       phone: Yup.string().required(),
+      markerMap: Yup.string().required(),
       opening_hours: Yup.string().required(),
       open_on_weekends: Yup.boolean().required(),
       images: Yup.array(

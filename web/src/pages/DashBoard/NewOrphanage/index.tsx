@@ -30,6 +30,10 @@ const NewOrphanage = () => {
 
 
 
+  const [markerMap, setMarkerMap] = useState('#FF6666');
+
+
+
   const { token } = useUser();
 
 
@@ -84,6 +88,19 @@ const NewOrphanage = () => {
   })();
   
 }, [id]);
+
+
+
+ const handleSelectColorMarker = (color: string) => {
+
+    setMarkerMap(color);
+
+    console.log(markerMap);
+
+
+  };
+
+
 
   const handleMapClick = (event: LeafletMouseEvent) => {
  
@@ -195,7 +212,9 @@ const NewOrphanage = () => {
      handleMapClick={handleMapClick}
      handleSelectImage={handleSelectImage}
      handleForm={handleForm}
-     page='newOrphanage'
+     markerMap={markerMap}
+     handleSelectColorMarker={handleSelectColorMarker}
+     page='default'
      
      />
 

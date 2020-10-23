@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Dispatch, FormEvent, SetStateAction, useState } from "react";
+import React, { ChangeEvent, Dispatch, FormEvent, SetStateAction } from "react";
 
 import InputMask from "react-input-mask";
 
@@ -35,6 +35,8 @@ import MarkerRed from '../../assets/images/Marker-red.svg';
 import MarkerGreen from '../../assets/images/Marker-green.svg';
 import MarkerBlue from '../../assets/images/Marker-blue.svg';
 import MarkerBlack from '../../assets/images/Marker-black.svg';
+import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 interface PropsCreateOrphanage{
 
   name: string;
@@ -58,10 +60,14 @@ interface PropsCreateOrphanage{
     latitude: number;
     longitude: number;
   };
+
+  markerMap?:string;
+  handleSelectColorMarker: (color: string) => void;
+
   handleMapClick: (event: LeafletMouseEvent) => void;
   handleSelectImage: (event: ChangeEvent<HTMLInputElement>) => void;
   handleForm:(event: FormEvent) => void;
-  page?: string
+  page?: string;
   
 
 
@@ -86,16 +92,36 @@ export default function CreateOrphanage({
   setPosition,
   previewImages,
   location,
+  markerMap,
   handleMapClick,
+  handleSelectColorMarker,
   handleSelectImage,
   handleForm,
   page = 'default'
   
 }: PropsCreateOrphanage) {
 
-  const [markerSelect, setMarkerSelect ] = useState('#FF6666');
+
 
   const {themeValues } = useTheme();
+
+  const history = useHistory()
+
+
+  const handleConfirmEditOrphanage = () => {
+
+
+      history.push('/restrict/dashboard/orphanages');
+
+
+
+      toast.success(`🖌 Orfanato ${name}, editado com sucesso!`,{ 
+          position: toast.POSITION.BOTTOM_RIGHT
+
+        });
+
+  }
+
 
   return (
 
@@ -173,39 +199,50 @@ export default function CreateOrphanage({
               <ImagesMarkers>
                 <ButtonMarkerSelect
                 type='button' 
-                active={markerSelect === '#FF6666'}
-                onClick={() => setMarkerSelect('#FF6666')}
+                active={markerMap === '#FF6666'}
+                onClick={() => handleSelectColorMarker('#FF6666')}
                 >
+
                 <img src={MarkerRed} alt="" />
                 </ButtonMarkerSelect>
                 <ButtonMarkerSelect
                 type='button' 
-                active={markerSelect === '#68DF7B'}
-                onClick={() => setMarkerSelect('#68DF7B')}
+                active={markerMap === '#68DF7B'}
+                onClick={() => handleSelectColorMarker('#68DF7B')}
                 >
+
+                  
                 <img src={MarkerGreen} alt="" />
                 </ButtonMarkerSelect>
                 <ButtonMarkerSelect
                 type='button' 
-                active={markerSelect === '#FFD666'}
-                onClick={() => setMarkerSelect('#FFD666')}
+                active={markerMap === '#FFD666'}
+                onClick={() => handleSelectColorMarker('#FFD666')}
                 >
+
+
                 <img src={MarkerYellow} alt="" />
                 </ButtonMarkerSelect>
                 <ButtonMarkerSelect
                 type='button' 
-                active={markerSelect === '#434343'}
-                onClick={() => setMarkerSelect('#434343')}
+                active={markerMap === '#434343'}
+                onClick={() => handleSelectColorMarker('#434343')}
                 >
+
+
                 <img src={MarkerBlack} alt="" />
                 </ButtonMarkerSelect>
                 <ButtonMarkerSelect
                 type='button' 
-                active={markerSelect === '#15D3D6'}
-                onClick={() => setMarkerSelect('#15D3D6')}
+                active={markerMap === '#15D3D6'}
+                onClick={() => handleSelectColorMarker('#15D3D6')}
                 >
+
+
                 <img src={MarkerBlue} alt="" />
                 </ButtonMarkerSelect>
+                
+
                 
               </ImagesMarkers>
               </InputBlock>
@@ -327,9 +364,25 @@ export default function CreateOrphanage({
               </InputBlock>
             </fieldset>
           {
-            page === 'default' && (
+            page === 'createOrphanage' && (
 
-            <Button typeStyle="confirm" type="submit">
+            <Button 
+            typeStyle="confirm" 
+            type="submit"
+            >
+              Confirmar
+            </Button>
+
+            )
+          }
+          {
+            page === 'dashboard:pending' && (
+
+            <Button 
+            typeStyle="confirm" 
+            type="submit"
+            onClick={handleConfirmEditOrphanage}
+            >
               Confirmar
             </Button>
 

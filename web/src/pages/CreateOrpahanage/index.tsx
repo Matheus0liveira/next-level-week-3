@@ -21,6 +21,9 @@ const CreateOrphanage = () => {
   const [open_on_weekends, setOpenOnWeekends] = useState(true);
   const [images, setImages] = useState<File[]>([]);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
+  
+
+  const [markerMap, setMarkerMap] = useState('#FF6666');
 
 
   const history = useHistory();
@@ -49,6 +52,16 @@ const CreateOrphanage = () => {
   
   }, []);
 
+
+
+  const handleSelectColorMarker = (color: string) => {
+
+    setMarkerMap(color);
+
+    
+    
+  };
+  
 
 
 
@@ -106,6 +119,7 @@ const CreateOrphanage = () => {
     data.append('about', about);
     data.append('instructions', instructions);
     data.append('phone', phone);
+    data.append('markerMap', markerMap);
     data.append('latitude', String(latitude));
     data.append('longitude', String(longitude));
     data.append('opening_hours', opening_hours);
@@ -153,6 +167,9 @@ const CreateOrphanage = () => {
      handleMapClick={handleMapClick}
      handleSelectImage={handleSelectImage}
      handleForm={handleForm}
+     markerMap={markerMap}
+     handleSelectColorMarker={handleSelectColorMarker}
+     page='createOrphanage'
      
      />
 

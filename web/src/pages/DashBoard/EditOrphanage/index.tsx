@@ -25,6 +25,9 @@ const EditOrphanage = () => {
   const [previewImages, setPreviewImages] = useState<string[]>([]);
 
 
+  const [markerMap, setMarkerMap] = useState('#FF6666');
+
+
   const history = useHistory();
 
   const { id } = useParams() as PropsParams;
@@ -78,6 +81,17 @@ const EditOrphanage = () => {
 
   
   }, []);
+
+
+
+
+
+ const handleSelectColorMarker = (color: string) => {
+
+    setMarkerMap(color);
+
+
+  }
 
 
 
@@ -178,6 +192,9 @@ const EditOrphanage = () => {
      handleMapClick={handleMapClick}
      handleSelectImage={handleSelectImage}
      handleForm={handleForm}
+     markerMap={markerMap}
+     handleSelectColorMarker={handleSelectColorMarker}
+     page='dashboard:pending'
      
      />
 
