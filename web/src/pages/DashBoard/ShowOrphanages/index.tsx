@@ -59,7 +59,7 @@ const DashBoard = () => {
 
  
 
-        const { data } = await api.get('/dashboard/orphanages?option=pending',
+        const { data } = await api.get('/dashboard/orphanages?option=registred',
         { headers: { Authorization: auth}}
         );
 
@@ -124,7 +124,7 @@ const DashBoard = () => {
   return (
 
     <>
-      <LayoutDashBoard titleHeader='Orfanatos Cadastrados'>
+      <LayoutDashBoard countOrphanage={orphanages.length} titleHeader='Orfanatos Cadastrados'>
       {orphanages[0].id === '' ? (
 
 

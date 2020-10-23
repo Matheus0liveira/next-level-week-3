@@ -5,10 +5,11 @@ import { StyledHeader,Text }  from './styles';
 interface PropsHeader{
   title: string;
   countOrphanages: number;
+  countOrphanage: number;
 
 }
 
-const Header = ({title, countOrphanages} : PropsHeader) => {
+const Header = ({title, countOrphanages, countOrphanage} : PropsHeader) => {
 
 
   return (
@@ -16,7 +17,7 @@ const Header = ({title, countOrphanages} : PropsHeader) => {
     <StyledHeader>
 
   <Text typeText='title'>{title}</Text>
-      <Text typeText='count'>{ countOrphanages } orfanatos</Text>
+  <Text typeText='count'>{ countOrphanage } orfanato{countOrphanage === 1 ? '': 's'} encontrado </Text>
     </StyledHeader>
 
   );

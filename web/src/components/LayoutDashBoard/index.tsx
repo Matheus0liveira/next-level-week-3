@@ -7,10 +7,11 @@ import { Container, LayoutPage, MapContainer, FlexMap } from './styles';
 interface PropsLayoutDashBoard{
 
   titleHeader: string;
+  countOrphanage: number;
 }
 
 
-const LayoutDashBoard: React.FC<PropsLayoutDashBoard> = ({ children, titleHeader } ) => {
+const LayoutDashBoard: React.FC<PropsLayoutDashBoard> = ({ children, titleHeader, countOrphanage } ) => {
 
   return (
     
@@ -19,7 +20,7 @@ const LayoutDashBoard: React.FC<PropsLayoutDashBoard> = ({ children, titleHeader
       <LayoutPage>
 
         <Container>
-          <Header title={titleHeader} countOrphanages={0}/>
+          <Header countOrphanage={countOrphanage} title={titleHeader} countOrphanages={0}/>
 
             <MapContainer>
               <FlexMap>

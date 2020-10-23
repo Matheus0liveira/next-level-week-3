@@ -15,7 +15,7 @@ class OrphanageController {
 
     const orphanages = await orphanagesRepository.find({
       relations: ['images'],
-      where: { pending: true },
+      where: { pending: false },
     });
 
 

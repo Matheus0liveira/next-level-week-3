@@ -1,6 +1,7 @@
 import { LeafletMouseEvent } from 'leaflet';
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import FormCreateUpdate from '../../../components/FormCreateUpdate'
 import api from '../../../services/api';
@@ -148,7 +149,8 @@ const NewOrphanage = () => {
 
 
     const { latitude, longitude } = position;
-    const pending = true;
+
+    const pending = false;
 
     const data = new FormData();
 
@@ -156,6 +158,7 @@ const NewOrphanage = () => {
     data.append('about', about);
     data.append('instructions', instructions);
     data.append('phone', phone);
+    data.append('markerMap', markerMap);
     data.append('pending', String(pending));
     data.append('latitude', String(latitude));
     data.append('longitude', String(longitude));
@@ -170,7 +173,7 @@ const NewOrphanage = () => {
 
     });
 
-      console.log(data);
+    
 
       const auth = `Bearer ${token} `
 
@@ -181,7 +184,13 @@ const NewOrphanage = () => {
       headers: {Authorization: auth}
     });
 
-    history.push('/orphanage/create/success');
+
+    toast.success('Orfanato cadastrado com sucesso!',{ 
+          position: toast.POSITION.BOTTOM_RIGHT
+
+        });
+
+    history.goBack();
 
   };  
 
@@ -214,7 +223,8 @@ const NewOrphanage = () => {
      handleForm={handleForm}
      markerMap={markerMap}
      handleSelectColorMarker={handleSelectColorMarker}
-     page='default'
+     idOrphanage={id}
+     page='newOrphanage'
      
      />
 

@@ -159,9 +159,7 @@ const EditOrphanage = () => {
     
     
   };
-
-
-  console.log(markerMap);
+  
 
   const handleForm = async (event: FormEvent) => {
 
@@ -173,7 +171,7 @@ const EditOrphanage = () => {
 
     const data = new FormData();
 
-    const pending = true;
+    const pending = false;
 
     data.append('name', name);
     data.append('about', about);
@@ -192,8 +190,6 @@ const EditOrphanage = () => {
       data.append('images', image);
 
     });
-
-    console.log(position);  
 
     const auth = `Bearer ${token}`
 

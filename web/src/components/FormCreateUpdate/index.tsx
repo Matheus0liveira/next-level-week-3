@@ -9,6 +9,16 @@ import { Map, Marker, TileLayer } from 'react-leaflet';
 
 import mapIcon from '../../utils/mapIcon';
 
+
+import mapMarkerImg from '../../assets/images/map-marker.svg';
+import MarkerYellow from '../../assets/images/Marker-yellow.svg';
+import MarkerRed from '../../assets/images/Marker-red.svg';
+import MarkerGreen from '../../assets/images/Marker-green.svg';
+import MarkerBlue from '../../assets/images/Marker-blue.svg';
+import MarkerBlack from '../../assets/images/Marker-black.svg';
+
+
+
 import {
   PageCreateOrphanage,
   CreateOrphanageForm,
@@ -28,13 +38,13 @@ import SideBar from '../../components/SideBar';
 import { FiCheck, FiPlus, FiXCircle } from 'react-icons/fi';
 import SwitchTheme from '../../components/SwitchTheme';
 import useTheme from '../../utils/useTheme';
-import { LeafletMouseEvent } from 'leaflet';
+import L, { LeafletMouseEvent } from 'leaflet';
 
-import MarkerYellow from '../../assets/images/Marker-yellow.svg';
-import MarkerRed from '../../assets/images/Marker-red.svg';
-import MarkerGreen from '../../assets/images/Marker-green.svg';
-import MarkerBlue from '../../assets/images/Marker-blue.svg';
-import MarkerBlack from '../../assets/images/Marker-black.svg';
+
+
+
+
+
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 interface PropsCreateOrphanage{
@@ -51,6 +61,7 @@ interface PropsCreateOrphanage{
   setOpeningHours: Dispatch<SetStateAction<string>>;
   open_on_weekends: boolean;
   setOpenOnWeekends: Dispatch<SetStateAction<boolean>>;
+  idOrphanage?: string;
   position: {
      latitude: number; longitude: number;
   };
@@ -93,6 +104,7 @@ export default function CreateOrphanage({
   previewImages,
   location,
   markerMap,
+  idOrphanage,
   handleMapClick,
   handleSelectColorMarker,
   handleSelectImage,
@@ -105,7 +117,7 @@ export default function CreateOrphanage({
 
   const {themeValues } = useTheme();
 
-  const history = useHistory()
+  const history = useHistory();
 
 
   const handleConfirmEditOrphanage = () => {
@@ -120,7 +132,44 @@ export default function CreateOrphanage({
 
         });
 
-  }
+  };
+
+
+
+  const hadleDeleteNewOrphanage = () => {
+
+
+    history.push(`/restrict/dashboard/orphanages/delete-orphanage/${name}/${idOrphanage }`)
+
+  };
+
+  const handleSelectMarker = () => {
+
+
+    switch(markerMap){
+
+      case  '#FF6666':
+        return MarkerRed;
+
+      case  '#68DF7B':
+        return MarkerGreen;
+
+      case  '#FFD666':
+        return MarkerYellow;
+
+      case  '#434343':
+        return MarkerBlack;
+
+      case  '#15D3D6':
+        return MarkerBlue;
+
+
+      default:
+        return mapMarkerImg;
+        
+    };
+
+  };
 
 
   return (
@@ -133,7 +182,7 @@ export default function CreateOrphanage({
 
         <main>
           {
-            page !== 'default' &&(
+            ((page === 'dashboard:edit' || page === 'newOrphanage') &&
 
               <Text> Editar perfil de {name} </Text>
 
@@ -177,7 +226,16 @@ export default function CreateOrphanage({
 
                   <Marker
                     interactive={false}
-                    icon={mapIcon}
+                    icon={
+
+                      L.icon({
+                        iconUrl: handleSelectMarker(),
+
+                        iconSize: [58, 68],
+                        iconAnchor: [29, 68],
+                        popupAnchor: [0, -60]
+                      })
+                    }
                     position={[
                       
                       position.latitude,
@@ -407,7 +465,11 @@ export default function CreateOrphanage({
             page === 'newOrphanage' &&
             (
               <Footer>
-                <ButtonForm type='button' color='red'>
+                <ButtonForm 
+                type='button' 
+                color='red'
+                onClick={hadleDeleteNewOrphanage}
+                >
                   <FiXCircle size={24} color='#FFF'/>
                   <p>Recusar</p>
 

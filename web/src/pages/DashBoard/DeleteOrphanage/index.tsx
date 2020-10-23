@@ -45,15 +45,19 @@ const DeleteOrphanage = () => {
           position: toast.POSITION.BOTTOM_RIGHT
 
         });
-      return history.goBack();
+      return history.push('/restrict/dashboard/orphanages');
 
 
     }catch{
+
+
       toast.error('Erro no servidor - ( 500 )',{ 
           position: toast.POSITION.BOTTOM_RIGHT
 
         });
-    return history.push('/');
+
+
+      return history.push('/');
 
     }
   };

@@ -117,7 +117,7 @@ const PendingEntries = () => {
   return (
    <>
 
-    <LayoutDashBoard  titleHeader='Orfanatos Pendentes'>
+    <LayoutDashBoard countOrphanage={orphanages.length}  titleHeader='Orfanatos Pendentes'>
       {orphanages[0].id === '' ? (
 
 
