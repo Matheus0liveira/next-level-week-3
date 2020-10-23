@@ -161,7 +161,7 @@ const EditOrphanage = () => {
   };
 
 
-  console.log(position);
+  console.log(markerMap);
 
   const handleForm = async (event: FormEvent) => {
 
