@@ -32,7 +32,6 @@ const EditOrphanage = () => {
 
   const { token } = useUser();
 
-
   const history = useHistory();
 
   const { id } = useParams() as PropsParams;
@@ -162,13 +161,15 @@ const EditOrphanage = () => {
   };
 
 
+  console.log(position);
+
   const handleForm = async (event: FormEvent) => {
 
     event.preventDefault();
 
 
 
-    const { latitude, longitude } = location;
+    const { latitude, longitude } = position;
 
     const data = new FormData();
 
