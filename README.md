@@ -39,8 +39,6 @@ This week's project was Happy, a project focused on orphanages, with the goal of
 
 # <p id='functionalities'>⚙ Functionalities</p>
 
-### Main features
-
 - [x] Map showing all registered orphanages and their location.
 
 - [x] Register orphanage showing on the map in your location.
@@ -49,7 +47,7 @@ This week's project was Happy, a project focused on orphanages, with the goal of
 
 <br/>
 
-### Features added by me.
+### ✅ Features added by me.
 
 - [x] Switch Theme ( dark - light).
 
@@ -59,11 +57,11 @@ This week's project was Happy, a project focused on orphanages, with the goal of
 
 <br/>
 
-### Future updates.
+### ✅ Future updates.
 
 - [x] Add whatsapp field.
 
-- [ ] Add colors in the respective markers (when registering an orphanage, the author chooses the color).
+- [x] Add colors in the respective markers (when registering an orphanage, the author chooses the color).
 
 - [x] DashBoard User(Admin).
 
@@ -81,7 +79,7 @@ This week's project was Happy, a project focused on orphanages, with the goal of
 
 # <p id='instalation'>🔥 Instalation</p>
 
-#### First Clone this repositiorie
+#### First Clone this repositiory
 
 ```shell
 $ git clone https://github.com/Matheus0liveira/next-level-week-3.git
@@ -93,9 +91,15 @@ $ git clone https://github.com/Matheus0liveira/next-level-week-3.git
 
 #### For instalaitons dependncies execute: (using yarn/npm):
 
+> Create a variable file at the root of your project and place the settings for: JWT_TOKEN, and the mailtrap settings:
+
+Example:
+<img src='./.github/example_config.png' />
+
 ```shell
 
 $ cd backend/
+
 
 # yarn
 
@@ -129,7 +133,7 @@ $ npm run typeorm migration:run
 
 # yarn
 
-# erases the last migration made
+# Erases the last migration made
 # To delete both run twice or delete the tables directly from your sgbd
 
 $ yarn typeorm migration:revert
@@ -213,9 +217,15 @@ Layout in figma &rarr;
 <br/>
 <br/>
 <br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 <div align='center'>
 
-Project created by: <a href='https://www.github.com/Matheus0liveira'> Matheus Oliveira 💛 </a>
+#### Project created by: <a href='https://www.github.com/Matheus0liveira'> Matheus Oliveira 💜 </a>
+
+<hr/>
 
 </div>

@@ -17,7 +17,7 @@ const Header = ({title, countOrphanages, countOrphanage} : PropsHeader) => {
     <StyledHeader>
 
   <Text typeText='title'>{title}</Text>
-  <Text typeText='count'>{ countOrphanage } orfanato{countOrphanage === 1 ? '': 's'} encontrado </Text>
+  <Text typeText='count'>{ countOrphanage } Instituiç{countOrphanage === 1 ? 'ão': 'ões'} encontrado </Text>
     </StyledHeader>
 
   );

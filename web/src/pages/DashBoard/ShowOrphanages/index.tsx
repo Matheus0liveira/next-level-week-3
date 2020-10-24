@@ -131,7 +131,7 @@ const DashBoard = () => {
           orphanages.length
       
         } 
-        titleHeader='Orfanatos Cadastrados'>
+        titleHeader='Instituições Cadastrados'>
       {orphanages[0].id === '' ? (
 
 

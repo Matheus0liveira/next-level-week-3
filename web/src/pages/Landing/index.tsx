@@ -40,7 +40,7 @@ const Landing = () => {
         </Header>    
         <Main>
           <Text typeTitle='title'>Leve felicidade para o mundo</Text>
-          <Text typeTitle='description'>Visite orfanatos e mude o dia de muitas crianças.</Text>
+          <Text typeTitle='description'>Visite instituições e mude o dia de muitas crianças.</Text>
         </Main>
 
         <ButtonRestrict>

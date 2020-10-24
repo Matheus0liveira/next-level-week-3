@@ -116,7 +116,6 @@ const PendingEntries = () => {
 
   };
 
-  console.log(orphanages[0].latitude === 0 ?  orphanages.length - 1 :  orphanages.length)
 
   return (
    <>
@@ -129,7 +128,7 @@ const PendingEntries = () => {
       
       }  
 
-      titleHeader='Orfanatos Pendentes'>
+      titleHeader='Instituições Pendentes'>
       {orphanages[0].id === '' ? (
 
 
