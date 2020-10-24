@@ -89,12 +89,12 @@ $ git clone https://github.com/Matheus0liveira/next-level-week-3.git
 
 <summary>BackEnd</summary>
 
-#### For instalaitons dependncies execute: (using yarn/npm):
-
 > Create a variable file at the root of your project and place the settings for: JWT_TOKEN, and the mailtrap settings:
 
 Example:
 <img src='./.github/example_config.png' />
+
+#### For instalaitons dependncies execute: (using yarn/npm):
 
 ```shell
 
